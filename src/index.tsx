@@ -7,13 +7,14 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider as ReduxStoreProvider } from "react-redux";
 import theme from "./theme";
 import { store } from "./store/configureStore";
+import AppRouter from "./router/AppRouter";
 
 ReactDOM.render(
   <ReduxStoreProvider store={store}>
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
         <GlobalStyle />
-        Hello
+        <AppRouter />
       </MuiThemeProvider>
     </BrowserRouter>
   </ReduxStoreProvider>,
