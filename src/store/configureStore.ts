@@ -28,8 +28,8 @@ function setupStore() {
     enhancers: enhancers,
   });
   store.subscribe(() => {
-    const {} = store.getState();
-    saveState({});
+    const { user } = store.getState();
+    saveState({ user });
   });
 
   return store;

@@ -1,12 +1,13 @@
 // import { useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import Footer from "../view/components/footer/Footer";
 // import { RootState } from "../store/rootReducer";
 import Header from "../view/components/header";
 import Auth from "../view/pages/authentication/Auth";
 import Main from "../view/pages/main/Main";
 
 const AppRouter = () => {
-  //   const session = useSelector((state:RootState)=> state);
+  //   const session = useSelector((state:RootState)=> state.user);
   //   const isAuthenticated = Boolean(true);
 
   return (
@@ -21,6 +22,7 @@ const AppRouter = () => {
         </Route>
         <Route path="/dashboard">this is Dashboard</Route>
       </Switch>
+      <Footer />
     </>
   );
 };
