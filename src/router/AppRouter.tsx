@@ -2,6 +2,8 @@
 import { Route, Switch } from "react-router-dom";
 // import { RootState } from "../store/rootReducer";
 import Header from "../view/components/header";
+import Auth from "../view/pages/authentication/Auth";
+import Main from "../view/pages/main/Main";
 
 const AppRouter = () => {
   //   const session = useSelector((state:RootState)=> state);
@@ -11,7 +13,13 @@ const AppRouter = () => {
     <>
       <Header />
       <Switch>
-        <Route path="/">Main page</Route>
+        <Route exact path="/">
+          <Main />
+        </Route>
+        <Route path="/authentication">
+          <Auth />
+        </Route>
+        <Route path="/dashboard">this is Dashboard</Route>
       </Switch>
     </>
   );
