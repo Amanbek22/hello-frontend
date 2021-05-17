@@ -1,4 +1,5 @@
 // import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import Footer from "../view/components/footer/Footer";
 // import { RootState } from "../store/rootReducer";
@@ -12,7 +13,11 @@ import PublicRoute from "./components/PublishRoute";
 const AppRouter = () => {
   //   const session = useSelector((state:RootState)=> state.user);
   //   const isAuthenticated = Boolean(true);
-  if ("sad") return <Preloader />;
+  const [isFetching, setIsFetching] = useState(true);
+  useEffect(() => {
+    setIsFetching(false);
+  }, []);
+  if (isFetching) return <Preloader />;
   return (
     <>
       <Header />
