@@ -66,9 +66,9 @@ const Auth = () => {
         if (!userData) {
           await setData(data);
         }
-        if(userData && userData.profileDone){
+        if (userData && userData.profileDone) {
           history.push("/");
-        }else {
+        } else {
           history.push("/dashboard");
         }
       })

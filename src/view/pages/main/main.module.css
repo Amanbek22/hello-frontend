@@ -1,0 +1,48 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15%;
+  background-image: url("../../../assets/img/bgr.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.wrapper > img {
+  padding: 0 12%;
+}
+.text {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  margin: 4% 12%;
+}
+
+.text > :first-child {
+  font-size: 52px;
+  line-height: 61px;
+  color: #ffffff;
+}
+
+.text > :last-child {
+  padding-top: 10%;
+  font-size: 20px;
+  line-height: 23px;
+  color: #ffffff;
+}
+
+.cards {
+  margin: 5% 12%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pop,
+.new {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 37px;
+  color: #0b0d34;
+  margin: 0 12%;
+}

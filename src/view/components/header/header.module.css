@@ -1,0 +1,49 @@
+header {
+  display: flex;
+  padding: 34px 12%;
+  justify-content: space-between;
+  align-items: center;
+  background: #0b0d34;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: #ffffff;
+  position: fixed;
+  width: 100%;
+}
+
+.flag {
+  width: 29.33px;
+  height: 17.33px;
+  border-radius: 2px;
+}
+
+.vector {
+  width: 12px;
+  height: 7.41px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.btn {
+  width: 117px;
+  height: 36px;
+  left: 1443px;
+  top: 30px;
+  background: #21a95d;
+  border: 1px solid #21a95d;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 0 12%;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #ffffff;
+  margin: 0px 10px;
+}
