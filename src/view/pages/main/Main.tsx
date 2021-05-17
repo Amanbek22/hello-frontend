@@ -1,5 +1,5 @@
 import CardCategory from "../../components/card_category/CardCategory";
-import Css from "./Main.module.css";
+import Css from "./main.module.css";
 
 const Main = () => {
   const backendtest = [

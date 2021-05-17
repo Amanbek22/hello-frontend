@@ -1,0 +1,64 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+    max-width: 450px;
+}
+.container > p {
+    text-align: center;
+    line-height: 25px;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+.logo{
+    margin-bottom: 25px;
+}
+.wrapper{
+    border: 1px solid #E0E7EA;
+    padding: 20px;
+    width: 80%;
+    border-radius: 5px;
+    text-align: center;
+}
+.acceptt{
+    margin-top: 15px;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    font-weight: 500;
+}
+.rules{
+    display: block;
+    font-size: 14px;
+    margin: 10px 0;
+}
+.submit_btn{
+    margin-top: 10px;
+    width: 100%;
+    background: #21A95D;
+    border: none;
+    border-radius: 5px;
+    padding: 20px;
+    color: #fff;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 16px;
+}
+.input{
+    width: 100%;
+}
+
+.input input::-webkit-outer-spin-button,
+.input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.input input[type=number] {
+  -moz-appearance: textfield;
+}
