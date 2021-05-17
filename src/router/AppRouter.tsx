@@ -5,6 +5,8 @@ import Footer from "../view/components/footer/Footer";
 import Header from "../view/components/header";
 import Auth from "../view/pages/authentication/Auth";
 import Main from "../view/pages/main/Main";
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublishRoute";
 
 const AppRouter = () => {
   //   const session = useSelector((state:RootState)=> state.user);
@@ -17,10 +19,13 @@ const AppRouter = () => {
         <Route exact path="/">
           <Main />
         </Route>
-        <Route path="/authentication">
-          <Auth />
-        </Route>
-        <Route path="/dashboard">this is Dashboard</Route>
+        <PublicRoute
+          restricted={true}
+          component={Auth}
+          path="/authentication"
+          exact
+        />
+        <PrivateRoute path="/dashboard" component={() => "This is dashboard"} />
       </Switch>
       <Footer />
     </>
