@@ -1,17 +1,23 @@
 import { Link } from "react-router-dom";
-
+import Css from "./header.module.css";
 const Header = () => {
   return (
     <header>
-      <ul>
-        <li>
-          <Link to="/">Main</Link>
-        </li>
-        <li>
-          <Link to="/authentication">login</Link>
-        </li>
-      </ul>
-      <hr />
+      <Link to="/">
+        <img className={Css.logo} src="./img/logo1.png" alt="logo1" />
+      </Link>
+      <div>Жаңылыктар</div>
+      <div>Маектер</div>
+      <div>Жарнамалар</div>
+      <div>Байланыш</div>
+      <div className={Css.menu}>
+        <img className={Css.flag} src="./img/flag.png" alt="flag" />
+        <div>KG</div>
+        <img className={Css.vector} src="./img/vec.png" alt="vector" />
+      </div>
+      <Link to="/authentication">
+        <button className={Css.btn}>КИРҮҮ</button>
+      </Link>
     </header>
   );
 };
