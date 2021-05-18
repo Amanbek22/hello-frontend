@@ -14,7 +14,7 @@ export const fetchStates = createAsyncThunk(
 export const fetchCategories = createAsyncThunk(
   "data/categories",
   async (_, { dispatch }) => {
-    const res = await getData({ path: "categories" });
+    const res = await getData({ path: "bilimcats" });
     dispatch(dataSlice.actions.setCategories(res));
   },
 );
