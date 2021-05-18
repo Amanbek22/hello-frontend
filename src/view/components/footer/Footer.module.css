@@ -1,0 +1,38 @@
+.container{
+    background: #0B0D34;
+}
+footer{
+    display: flex;
+    margin: 10% 0;
+    padding: 5% 12%;
+}
+.box_title{
+    display: flex;
+    color: #FFFFFF;
+    margin: 0 0 0 8%;
+}
+.box_title > div{
+    margin: 0 7%;
+}
+@media (max-width: 767px){
+    footer{
+        flex-direction: column;
+    }
+    footer > img {
+        width: 174px;
+        height: 55px;
+    }
+    .box_title{
+        margin: 0;
+        flex-direction: column;
+    }
+    .box_title > div{
+        margin: 8% 0;
+    }
+    .box_title > :first-child{
+        margin: 18% 0 8% 0;
+    }
+    .box_title > :last-child{
+        padding: 0 0 20% 0;
+    }
+}
