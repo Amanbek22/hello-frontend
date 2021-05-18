@@ -1,5 +1,5 @@
 import CourseCard from "../../components/courseCard/courseCard";
-import Css from "./Main.module.css";
+import Css from "./main.module.css";
 import CardCategory from "../../components/card_category/CardCategory";
 
 const Main = () => {
