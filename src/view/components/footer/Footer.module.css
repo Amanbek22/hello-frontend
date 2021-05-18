@@ -1,0 +1,16 @@
+.container{
+    background: #0B0D34;
+}
+footer{
+    display: flex;
+    margin: 10% 0;
+    padding: 5% 12%;
+}
+.box_title{
+    display: flex;
+    color: #FFFFFF;
+    margin: 0 0 0 8%;
+}
+.box_title > div{
+    margin: 0 7%;
+}

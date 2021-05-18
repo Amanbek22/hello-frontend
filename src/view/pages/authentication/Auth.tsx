@@ -33,6 +33,13 @@ const Auth = () => {
         }
       });
   };
+  const setBack = () => {
+    // @ts-ignore
+    const appVerifier = window.recaptchaVerifier;
+    appVerifier.clear();
+    recaptchaWrapperRef.current.innerHTML = `<div id="recaptcha-container"></div>`;
+    setIsConfirm(false);
+  };
   const setupRecaptcha = () => {
     //@ts-ignore
     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
@@ -85,7 +92,7 @@ const Auth = () => {
       {!isConfirm ? (
         <PhoneForm onSubmit={onSubmit} />
       ) : (
-        <CodeForm onSubmit={onConfirm} />
+        <CodeForm onSubmit={onConfirm} setBack={setBack} />
       )}
     </>
   );
