@@ -4,6 +4,8 @@ const initialState = {
   isFetching: true,
   categories: null,
   states: null,
+  popular: null,
+  newPosts: null,
 };
 
 const dataSlice = createSlice({
@@ -15,6 +17,12 @@ const dataSlice = createSlice({
     },
     setStates(state, action: PayloadAction<any>) {
       state.states = action.payload;
+    },
+    setPopular(state, action: PayloadAction<any>) {
+      state.popular = action.payload;
+    },
+    setNew(state, action: PayloadAction<any>) {
+      state.newPosts = action.payload;
     },
     setFetching(state) {
       state.isFetching = false;

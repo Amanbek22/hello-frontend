@@ -3,10 +3,11 @@ import Css from "./maine.module.css";
 import CardCategory from "../../components/card_category/CardCategory";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
+import { BilimModalType } from "../../../models/type";
 
 const Main = () => {
-  const categories: any = useSelector(
-    (state: RootState) => state.data.categories,
+  const { categories, popular, newPosts }: any = useSelector(
+    (state: RootState) => state.data,
   );
   return (
     <div>
@@ -20,17 +21,31 @@ const Main = () => {
         </div>
         <div className={Css.pop}>Эң популярдуулар</div>
         <div className={Css.cards}>
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
+          {popular?.map((item: BilimModalType) => (
+            <CourseCard
+              categoryName={item.categoryName}
+              color={item.color}
+              icon={item.icon}
+              id={item.id}
+              name={item.name}
+              videoCount={item.videoCount}
+              testCount={item.testCount}
+            />
+          ))}
         </div>
         <div className={Css.new}>Эң жаңылар</div>
         <div className={Css.cards}>
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
-          <CourseCard />
+          {newPosts.map((item: BilimModalType) => (
+            <CourseCard
+              categoryName={item.categoryName}
+              color={item.color}
+              icon={item.icon}
+              id={item.id}
+              name={item.name}
+              videoCount={item.videoCount}
+              testCount={item.testCount}
+            />
+          ))}
         </div>
       </div>
       <div className="container">

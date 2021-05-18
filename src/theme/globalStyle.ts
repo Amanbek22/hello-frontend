@@ -43,5 +43,11 @@ a {
   line-height: 1.5;
   font-size: 14px;
 }
+button {
+  cursor: pointer;
+}
+button:disabled{
+  cursor: no-drop;
+}
 `;
 export default GlobalStyle;

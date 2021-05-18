@@ -1,18 +1,24 @@
+import { Link } from "react-router-dom";
+import { BilimModalType } from "../../../models/type";
 import css from "./courseCard.module.css";
 
-function courseCard() {
+function courseCard(props: BilimModalType) {
   return (
-    <div className={css.content}>
-      <img className={css.img} src="./img/doni.png" alt="DoniKyrgyz" />
+    <Link
+      to={`course/${props.id}`}
+      className={css.content}
+      style={{ background: props.color }}
+    >
+      <img className={css.img} src={props.icon} alt={props.name} />
       <div className={css.text}>
-        <div className={css.txt1}>Чет өлкөдө окуу</div>
-        <div className={css.txt2}>Doni Kyrgyz дан интервьюлар</div>
+        <div className={css.txt1}>{props.categoryName}</div>
+        <div className={css.txt2}>{props.name}</div>
         <div className={css.txt3}>
-          <div>12 видео сабак</div>
-          <div>0 тест</div>
+          <div>{props.videoCount} видео сабак</div>
+          <div>{props.testCount} тест</div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
