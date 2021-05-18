@@ -1,7 +1,7 @@
 .wrapper {
     display: flex;
     justify-content: space-between;
-    padding-top: 15%;
+    padding-top: 8%;
     background-image: url("../../../assets/img/bgr.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
