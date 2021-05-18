@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import Css from "./header.module.css";
-const Header = () => {
+
+interface PropsType {
+  isAuth: boolean;
+}
+const Header = ({ isAuth }: PropsType) => {
+  alert(isAuth);
   return (
     <header>
       <Link to="/">
@@ -15,9 +20,13 @@ const Header = () => {
         <div>KG</div>
         <img className={Css.vector} src="./img/vec.png" alt="vector" />
       </div>
-      <Link to="/authentication">
-        <button className={Css.btn}>КИРҮҮ</button>
-      </Link>
+      {!isAuth ? (
+        <Link to="/authentication">
+          <button className={Css.btn}>КИРҮҮ</button>
+        </Link>
+      ) : (
+        <button className={Css.btn}>Чыгуу</button>
+      )}
     </header>
   );
 };
