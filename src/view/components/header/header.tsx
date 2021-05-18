@@ -5,7 +5,6 @@ interface PropsType {
   isAuth: boolean;
 }
 const Header = ({ isAuth }: PropsType) => {
-  alert(isAuth);
   return (
     <header>
       <Link to="/">
