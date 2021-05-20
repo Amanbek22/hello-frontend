@@ -60,4 +60,15 @@
       justify-content: space-between;
       flex-wrap: wrap;
   }
-  
+  @media (max-width: 767px){
+    .box_cards{
+        flex-direction: column;
+    }
+    .title{
+        margin: 5% 0;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 28px;
+    }
+}
