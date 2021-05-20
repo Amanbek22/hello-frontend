@@ -1,6 +1,10 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+.container {
+  padding: 0 12%;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -38,6 +42,12 @@ a {
   word-break: normal;
   line-height: 1.5;
   font-size: 14px;
+}
+button {
+  cursor: pointer;
+}
+button:disabled{
+  cursor: no-drop;
 }
 `;
 export default GlobalStyle;
