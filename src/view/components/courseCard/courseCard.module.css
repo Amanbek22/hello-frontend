@@ -1,5 +1,7 @@
 .content {
-  width: 245px;
+  min-width: 220px;
+  max-width: 220px;
+  margin-right: 10px;
   height: 330px;
   background: #cfd8dc;
   border-radius: 5px;
@@ -25,14 +27,14 @@
 
 .txt1 {
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
   color: #21a95d;
   margin-top: 5%;
 }
 
 .txt2 {
   font-weight: 500;
-  font-size: 22px;
+  font-size: 20px;
   line-height: 24px;
   color: #0b0d34;
   margin: 5% 0;
@@ -44,7 +46,7 @@
 
 .txt3 {
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
   color: #8259e0;
   display: flex;
   justify-content: space-between;
