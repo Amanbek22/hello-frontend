@@ -49,5 +49,9 @@ button {
 button:disabled{
   cursor: no-drop;
 }
+.dark-bg {
+  background: #0B0D34;
+  color: #fff;
+}
 `;
 export default GlobalStyle;

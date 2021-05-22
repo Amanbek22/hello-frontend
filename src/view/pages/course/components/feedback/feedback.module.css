@@ -1,0 +1,11 @@
+.wrapper{
+    position: absolute;
+    right: 12%;
+    display: flex;
+    flex-direction: column;
+}
+.wrapper > img {
+    margin-bottom: 10px;
+    height: 45px;
+    cursor: pointer;
+}

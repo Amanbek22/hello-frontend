@@ -23,6 +23,7 @@ const Main = () => {
         <div className={Css.cards}>
           {popular?.map((item: BilimModalType) => (
             <CourseCard
+              key={item.id}
               categoryName={item.categoryName}
               color={item.color}
               icon={item.icon}
@@ -37,6 +38,7 @@ const Main = () => {
         <div className={Css.cards}>
           {newPosts.map((item: BilimModalType) => (
             <CourseCard
+              key={item.id}
               categoryName={item.categoryName}
               color={item.color}
               icon={item.icon}

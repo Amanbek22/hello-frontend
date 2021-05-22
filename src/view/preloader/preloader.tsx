@@ -10,7 +10,7 @@ const Preloader = () => {
         <circle cx="170" cy="170" r="85" stroke="#0B0D34" />
         {/*<circle cx="170" cy="170" r="60" stroke="#00bdd0"/>*/}
       </svg>
-      <img className={css.img} src="./img/logo.jpg" alt="HELLOIT" />
+      <img className={css.img} src="/img/logo.jpg" alt="HELLOIT" />
     </div>
   );
 };

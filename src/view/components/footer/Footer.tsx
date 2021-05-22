@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className={Css.container}>
       <footer>
-        <img src={"./img/logoFooter.png"} />
+        <img src="/img/logoFooter.png" />
         <div className={Css.box_title}>
           <div>Жаңылыктар</div>
           <div>Маектер</div>

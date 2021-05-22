@@ -6,7 +6,8 @@ export const fetchStates = createAsyncThunk(
   "data/states",
   async (_, { dispatch }) => {
     const res = await getData({ path: "states" });
-    dispatch(dataSlice.actions.setStates(res));
+    const result = JSON.parse(JSON.stringify(res));
+    dispatch(dataSlice.actions.setStates(result));
   },
 );
 
@@ -14,7 +15,8 @@ export const fetchCategories = createAsyncThunk(
   "data/categories",
   async (_, { dispatch }) => {
     const res = await getData({ path: "bilimcats" });
-    dispatch(dataSlice.actions.setCategories(res));
+    const result = JSON.parse(JSON.stringify(res));
+    dispatch(dataSlice.actions.setCategories(result));
   },
 );
 
@@ -22,14 +24,16 @@ export const fetchPopular = createAsyncThunk(
   "data/popular",
   async (_, { dispatch }) => {
     const res = await getData({ path: "bilim", order: "rating", limit: 4 });
-    dispatch(dataSlice.actions.setPopular(res));
+    const result = JSON.parse(JSON.stringify(res));
+    dispatch(dataSlice.actions.setPopular(result));
   },
 );
 export const fetchNew = createAsyncThunk(
   "data/new",
   async (_, { dispatch }) => {
     const res = await getData({ path: "bilim", order: "date", limit: 4 });
-    dispatch(dataSlice.actions.setNew(res.reverse()));
+    const result = JSON.parse(JSON.stringify(res));
+    dispatch(dataSlice.actions.setNew(result.reverse()));
   },
 );
 

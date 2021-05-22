@@ -12,6 +12,7 @@ import Main from "../view/pages/main/Main";
 import Preloader from "../view/preloader/preloader";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublishRoute";
+import Course from "../view/pages/course";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
@@ -28,6 +29,9 @@ const AppRouter = () => {
       <Switch>
         <Route exact path="/">
           <Main />
+        </Route>
+        <Route path="/course/:id">
+          <Course />
         </Route>
         <PublicRoute
           restricted={true}

@@ -2,7 +2,7 @@
   "processors": [["stylelint-processor-styled-components", {
     "moduleName": "styled-components",
     "importName": "default",
-    "strict": false,
+    "strict": true,
     "ignoreFiles": [],
     "parserPlugins": [
       "jsx",

@@ -8,16 +8,16 @@ const Header = ({ isAuth }: PropsType) => {
   return (
     <header>
       <Link to="/">
-        <img className={Css.logo} src="./img/logo1.png" alt="logo1" />
+        <img className={Css.logo} src="/img/logo1.png" alt="logo1" />
       </Link>
       <div>Жаңылыктар</div>
       <div>Маектер</div>
       <div>Жарнамалар</div>
       <div>Байланыш</div>
       <div className={Css.menu}>
-        <img className={Css.flag} src="./img/flag.png" alt="flag" />
+        <img className={Css.flag} src="/img/flag.png" alt="flag" />
         <div>KG</div>
-        <img className={Css.vector} src="./img/vec.png" alt="vector" />
+        <img className={Css.vector} src="/img/vec.png" alt="vector" />
       </div>
       {!isAuth ? (
         <Link to="/authentication">
