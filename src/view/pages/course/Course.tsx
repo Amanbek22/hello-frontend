@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getData } from "../../../firebase/firebase.actions";
-import { BilimModalType } from "../../../models/type";
+import {
+  BilimModalType,
+  TestModalType,
+  VideoModalType,
+} from "../../../models/type";
 import Preloader from "../../preloader/preloader";
 import CourseHeader from "./components/course-header/course-header";
 import { ContentHeader } from "./components/content-hedaer/content-header";
@@ -10,12 +14,13 @@ import Actions from "./components/actions/Actions";
 import Feedback from "./components/feedback/Feedback";
 import { Route, Switch } from "react-router-dom";
 import Videos from "./components/video/Video";
+import Tests from "./components/tests/Tests";
 
 const Course = () => {
   const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<BilimModalType | null>(null);
-  const [videos, setVideos] = useState<any[] | null>(null);
-  const [tests, setTests] = useState<any[] | null>(null);
+  const [videos, setVideos] = useState<VideoModalType[] | null>(null);
+  const [tests, setTests] = useState<TestModalType[] | null>(null);
   const [pending, setPending] = useState(true);
   useEffect(() => {
     getData({ path: "bilim", doc: id })
@@ -49,9 +54,9 @@ const Course = () => {
             {!!videos ? <Videos data={videos} /> : <Preloader />}
           </Route>
           <Route path="/course/:id/test">
-            {!!tests ? "Tests" : <Preloader />}
+            {!!tests ? <Tests data={tests} /> : <Preloader />}
           </Route>
-          <Route path="/course/:id/more">more</Route>
+          <Route path="/course/:id/more">"UpdateME"</Route>
         </Switch>
       </div>
     </div>

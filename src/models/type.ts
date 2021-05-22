@@ -19,3 +19,11 @@ export interface VideoModalType {
   length?: string;
   order?: number;
 }
+
+export interface TestModalType {
+  id: string;
+  name: string;
+  questions: number;
+  icon: string;
+  description: string;
+}

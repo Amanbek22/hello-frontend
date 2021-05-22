@@ -9,3 +9,38 @@
     height: 45px;
     cursor: pointer;
 }
+.modalWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal {
+    background: #FFFFFF;
+    outline: none;
+    width: 400px;
+    min-height: 120px;
+    border-radius: 5px;
+    position: relative;
+    padding-top: 30px;
+    text-align: center;
+}
+.close{
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    width: 20px;
+    cursor: pointer;
+}
+.content {
+    padding-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.link {
+    color: #21A95D;
+    font-size: 18px;
+    padding: 15px 0;
+}
+.link:first-child {
+    border-bottom: 2px solid #E0E7EA;
+}
