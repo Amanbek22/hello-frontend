@@ -1,20 +1,25 @@
 import React from "react";
 import css from "../../course.module.css";
 
-function Actions() {
+interface PropsType {
+  likes: number | undefined;
+  rating: number | undefined;
+  views: number | undefined;
+}
+function Actions({ likes, rating, views }: PropsType) {
   return (
     <div className={`container dark-bg ${css.actions}`}>
       <div className={css.action}>
         <img src="/img/user.png" alt="user" />
-        <span>74</span>
+        <span>{views}</span>
       </div>
       <div className={css.action}>
         <img src="/img/star.png" alt="star" />
-        <span>74</span>
+        <span>{rating}</span>
       </div>
       <div className={css.action}>
         <img src="/img/heart.png" alt="heart" />
-        <span>74</span>
+        <span>{likes}</span>
       </div>
     </div>
   );

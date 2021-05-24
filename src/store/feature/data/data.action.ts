@@ -43,7 +43,7 @@ export const fetchInitialize = createAsyncThunk(
     await dispatch(fetchPopular());
     await dispatch(fetchCategories());
     await dispatch(fetchNew());
-    dispatch(dataSlice.actions.setFetching());
+    dispatch(dataSlice.actions.setFetching(false));
     dispatch(fetchStates());
   },
 );

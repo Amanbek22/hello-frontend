@@ -23,6 +23,10 @@ const Course = () => {
   const [tests, setTests] = useState<TestModalType[] | null>(null);
   const [pending, setPending] = useState(true);
   useEffect(() => {
+    window.scroll({
+      top: 0,
+      left: 0,
+    });
     getData({ path: "bilim", doc: id })
       .finally(() => {
         setPending(false);
@@ -37,7 +41,7 @@ const Course = () => {
       setTests(res);
     });
   }, []);
-  if (pending) return <Preloader />;
+  if (pending) return <Preloader absolute />;
   return (
     <div>
       <CourseHeader
@@ -45,7 +49,7 @@ const Course = () => {
         videos={data?.videoCount}
         tests={data?.testCount}
       />
-      <Actions />
+      <Actions likes={data?.likes} rating={data?.rating} views={data?.views} />
       <div className={css.contentWrapper}>
         <Feedback />
         <ContentHeader />

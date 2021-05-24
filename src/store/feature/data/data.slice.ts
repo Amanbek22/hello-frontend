@@ -24,8 +24,8 @@ const dataSlice = createSlice({
     setNew(state, action: PayloadAction<any>) {
       state.newPosts = action.payload;
     },
-    setFetching(state) {
-      state.isFetching = false;
+    setFetching(state, action) {
+      state.isFetching = action.payload;
     },
   },
 });

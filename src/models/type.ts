@@ -8,6 +8,8 @@ export interface BilimModalType {
   rating?: number;
   videoCount?: number;
   testCount?: number;
+  views?: number;
+  likes?: number;
 }
 
 export interface VideoModalType {
