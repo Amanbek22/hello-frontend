@@ -13,6 +13,7 @@ import Preloader from "../view/preloader/preloader";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublishRoute";
 import Course from "../view/pages/course";
+import Test from "../view/pages/test/Test";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
@@ -40,6 +41,7 @@ const AppRouter = () => {
           exact
         />
         <PrivateRoute path="/dashboard" component={() => "This is dashboard"} />
+        <PrivateRoute exact path="/test/:uuid/:id" component={Test} />
       </Switch>
       <Footer />
     </>
