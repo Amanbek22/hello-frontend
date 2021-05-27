@@ -29,3 +29,16 @@ export interface TestModalType {
   icon: string;
   description: string;
 }
+
+export interface QuestionModalType {
+  id: string;
+  answer: number;
+  question: string;
+  varA: string;
+  varB: string;
+  varC: string;
+  varD: string;
+  varE?: string;
+  photo?: string;
+  description: string;
+}
