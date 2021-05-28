@@ -7,6 +7,7 @@ import css from "./test.module.css";
 import Description from "./components/description/Description";
 import AnswerGroup from "./components/answer-group/AnswerGroup";
 import Result from "./components/result/Result";
+import ModalWindow from "../../components/modal/Modal";
 
 type Params = {
   id: string;
@@ -20,6 +21,7 @@ function Test() {
   const [activeC, setActiveC] = useState(0);
   const [results, setResults] = useState<string[]>([]);
   const [isResult, setIsResult] = useState(false);
+  const [isModal, setIsModal] = useState(false);
   const { uuid, id }: Params = useParams();
   // Get data
   useEffect(() => {
@@ -70,6 +72,12 @@ function Test() {
       setActiveC(activeC - 1);
     }
   };
+  const openModal = () => {
+    setIsModal(true);
+  };
+  const closeModal = () => {
+    setIsModal(false);
+  };
   const onResult = () => {
     setIsResult(true);
   };
@@ -95,11 +103,20 @@ function Test() {
             Кийинки
           </button>
         ) : (
-          <button className={css.btn} onClick={onResult}>
+          <button className={css.btn} onClick={openModal}>
             Жыйынтык
           </button>
         )}
       </div>
+      <ModalWindow open={isModal} onClose={closeModal}>
+        <div className={css.modalWrapper}>
+          <h3>Жыйынтыкты коруу?</h3>
+          <div onClick={onResult} className={css.getResult}>
+            Ооба (Ырастоо)
+          </div>
+          <div onClick={closeModal}>Жок, артка</div>
+        </div>
+      </ModalWindow>
     </div>
   );
 }
