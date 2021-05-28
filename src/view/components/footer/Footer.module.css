@@ -1,38 +1,53 @@
 .container{
     background: #0B0D34;
+    color: #FFFFFF;
 }
 footer{
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin: 10% 0;
-    padding: 5% 12%;
+    padding: 2% 15% 2% 12%;
 }
-.box_title{
-    display: flex;
-    color: #FFFFFF;
-    margin: 0 0 0 8%;
+.logo > div{
+    margin: 10% 0;
 }
-.box_title > div{
-    margin: 0 7%;
+.address > div{
+    margin: 4% 0;
 }
-@media (max-width: 767px){
-    footer{
-        flex-direction: column;
-    }
-    footer > img {
-        width: 174px;
-        height: 55px;
-    }
-    .box_title{
-        margin: 0;
-        flex-direction: column;
-    }
-    .box_title > div{
-        margin: 8% 0;
-    }
-    .box_title > :first-child{
-        margin: 18% 0 8% 0;
-    }
-    .box_title > :last-child{
-        padding: 0 0 20% 0;
-    }
+.contacts{
+    margin: 0 0 4% 0;
+}
+.contacts > div{
+    margin: 20% 0;
+}
+.phone > span{
+    margin: 0 7%
+}
+.list{
+    list-style: none;
+}
+.list > li{
+    margin: 25% 0;
+}
+.list > li:first-child{
+    margin: 25% 0 0 0;
+}
+.box_social{
+    margin: 0 0 7% 0;
+}
+.box_social > div{
+    margin: 10% 0;
+}
+.box_social{
+    width: 20%;
+}
+.box_img > img{
+    margin: 0 15%;
+}
+.box_img > img:first-child{
+    margin: 0;
+}
+.box_img > img:last-child{
+    margin: 0;
 }
