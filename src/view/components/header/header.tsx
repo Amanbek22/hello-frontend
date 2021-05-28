@@ -10,7 +10,9 @@ const Header = ({ isAuth }: PropsType) => {
       <Link to="/">
         <img className={Css.logo} src="/img/logo1.png" alt="logo1" />
       </Link>
-      <div>Жаңылыктар</div>
+      <Link to="/news">
+        <div>Жаңылыктар</div>
+      </Link>
       <div>Маектер</div>
       <div>Жарнамалар</div>
       <div>Байланыш</div>

@@ -1,0 +1,32 @@
+.container{
+    padding: 5% 12% 5% 12%;
+}
+.container > img{
+    margin: 3% 0;
+    width: 100%;
+}
+.list{
+    margin: 0 11% 0 0;
+    list-style: none;
+    padding: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: #7E7E7E;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.point{
+    font-size: 45px;
+    border-radius: 100%;
+}
+.box_card{
+    margin: 4% 0 0 0;
+    display: flex;
+    flex-direction: column;
+}
+.box_card > div:first-child{
+    border-top: 2px solid #E0E7EA;
+}
