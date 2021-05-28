@@ -16,7 +16,6 @@ import Course from "../view/pages/course";
 import News from "../view/pages/news/News";
 import Test from "../view/pages/test/Test";
 
-
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
   const isAuthenticated = Boolean(session);
