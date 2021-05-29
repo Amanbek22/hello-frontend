@@ -30,7 +30,7 @@ const Footer = () => {
           <div>Биз социалдык</div>
           <div className={Css.box_img}>
             <img src="/img/instagram.png" />
-            <img src="/img/whatsapp.png" />
+            <img src="/img/whatsapp.png" className={Css.whatsapp} />
             <img src="/img/telegram.png" />
           </div>
         </div>
