@@ -15,7 +15,12 @@ function Lesson() {
       doc: vid,
     })
       .finally(() => setIsPending(false))
-      .then((res: VideoModalType) => setData(res));
+      .then((res: VideoModalType) =>
+        setData({
+          ...res,
+          videoUrl: res?.videoUrl.replace("watch?v=", "embed/"),
+        }),
+      );
   }, [id]);
   if (isPending) return <Preloader absolute />;
   return (
@@ -31,7 +36,14 @@ function Lesson() {
         {/*    type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'*/}
         {/*  />*/}
         {/*</video>*/}
-        <iframe src={data?.videoUrl} width="100%" />
+        <iframe
+          src={data?.videoUrl}
+          width="100%"
+          height="400px"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        />
         <h2 className={css.title}>{data?.name}</h2>
         <p className={css.description}>{data?.description}</p>
       </div>
