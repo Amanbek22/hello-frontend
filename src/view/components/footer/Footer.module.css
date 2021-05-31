@@ -4,51 +4,59 @@
 }
 footer{
     display: flex;
-    align-items: center;
     justify-content: space-between;
     margin: 10% 0;
     padding: 2% 15% 2% 12%;
 }
-.logo > div{
+.logo > img {
     margin: 10% 0;
     font-size: 12px;
 }
-.address > div{
-    margin: 4% 0;
-}
-.contacts{
-    margin: 0 0 4% 0;
-}
 .contacts > div{
-    margin: 20% 0;
+    margin: 15% 0;
 }
-.phone > span{
-    margin: 0 7%
+.address > div{
+    margin: 3% 0;
 }
-.list{
+.phone > span {
+    margin: 0 5%;
+}
+.list > li {
     list-style: none;
-}
-.list > li{
-    margin: 25% 0;
-}
-.list > li:first-child{
-    margin: 25% 0 0 0;
+    margin: 27% 0;
 }
 .box_social{
-    margin: 0 0 7% 0;
-}
-.box_social > div{
-    margin: 10% 0;
-}
-.box_social{
+    margin: 1.2% 0 0 0;
     width: 20%;
 }
-.box_img > img{
-    margin: 0 15%;
+.box_social > div{
+    margin: 7% 0;
 }
-.box_img > img:first-child{
-    margin: 0;
+.whatsapp{
+    margin: 0 10%;
 }
-.box_img > img:last-child{
-    margin: 0;
+
+@media (max-width: 767px){
+    footer{
+        flex-direction: column;
+        padding: 5% 10%;
+    }
+    .logo > div{
+        display: none;
+    }
+    .logo > img {
+        margin: 5% 0;
+    }
+    .list > li{
+        margin: 12% 0;
+    }
+    .list > li:first-child{
+        margin: 5% 0;
+    }
+    .contacts > div{
+        margin: 10% 0;
+    }
+    .box_social{
+        width: 100%;
+    }
 }
