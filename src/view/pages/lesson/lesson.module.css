@@ -1,0 +1,16 @@
+.wrapper {
+    margin: 40px 0;
+    padding: 20px 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #E0E7EA;
+    border-radius: 14px;
+}
+.title{
+    margin: 25px 0;
+}
+
+.description {
+    color: #7E7E7E;
+}

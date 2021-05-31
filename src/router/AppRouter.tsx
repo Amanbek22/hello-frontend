@@ -15,6 +15,7 @@ import PublicRoute from "./components/PublishRoute";
 import Course from "../view/pages/course";
 import News from "../view/pages/news/News";
 import Test from "../view/pages/test/Test";
+import Lesson from "../view/pages/lesson/Lesson";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
@@ -34,6 +35,9 @@ const AppRouter = () => {
         </Route>
         <Route exact path="/news">
           <News />
+        </Route>
+        <Route exact path="/lesson/:id/:vid">
+          <Lesson />
         </Route>
         <Route path="/course/:id">
           <Course />

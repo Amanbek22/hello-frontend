@@ -13,7 +13,7 @@ const News = () => {
         <li>Спорт</li>
         <li>Сүйүктүү кесип</li>
         <li>Маданият</li>
-        <li className={Css.point}>&#183;&#183;&#183;</li>
+        {/*<li className={Css.point}>&#183;&#183;&#183;</li>*/}
       </ul>
       <div className={Css.box_card}>
         <LastNews />
