@@ -36,7 +36,7 @@ const PhoneForm = (props: PropsType) => {
   return (
     <form className={css.container} onSubmit={submit}>
       <img className={css.logo} src="./img/logoFooter.png" alt="HelloIT" />
-      <p>Кируу же каттоодон отуу учун телефон номеринизди жазынынз</p>
+      <p>Кирүү же каттоодон өтүү үчүн телефон номериңизди жазыңыз</p>
       <div className={css.wrapper}>
         <CssTextField
           className={css.input}
@@ -49,7 +49,7 @@ const PhoneForm = (props: PropsType) => {
           variant="outlined"
         />
         <p className={css.acceptt}>
-          Каттоодон отуу менен, сиз автоматтык турдо тиркеменин колдонуу
+          Каттоодон өтүү менен, сиз автоматтык түрдө тиркеменин колдонуу
           шарттарына макул болосуз
         </p>
         <Link className={css.rules} to="#">
