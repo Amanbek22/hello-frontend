@@ -9,23 +9,31 @@ header {
   font-weight: normal;
   font-size: 18px;
   color: #ffffff;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
   z-index: 99999;
 }
+.menu_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .header_menu {
   display: flex;
   font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: normal;
   font-size: 18px;
   color: #ffffff;
-  position: relative;
+  margin-left: 45px;
 }
-
+.header_menu > * {
+  margin-right: 20px;
+}
 .item {
-  margin: 0 5% 0 0;
+  /*margin: 0 5% 0 0;*/
+  color: #FFFFFF;
+  cursor: pointer;
 }
 
 .flag {
@@ -44,6 +52,10 @@ header {
   align-items: center;
   height: 100%;
   cursor: pointer;
+  margin-left: 15px;
+}
+.active {
+  color: #3ee45d;
 }
 .lang {
   margin: 0 5%;
@@ -59,7 +71,6 @@ header {
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   color: #ffffff;
-  margin: 0px 10px;
   cursor: pointer;
 }
 .btn:focus {
@@ -73,13 +84,6 @@ header {
 .label {
   display: flex;
   align-items: center;
-}
-
-@media (max-width: 1200px) {
-  .menu {
-    transform: translate(50%);
-    transition: all 0.09s linear;
-  }
 }
 
 @media (max-width: 1024px) {
