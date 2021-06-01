@@ -5,9 +5,9 @@ function courseCard() {
     <div className={css.content}>
       <img className={css.img} src="./img/doni.png" alt="DoniKyrgyz" />
       <div className={css.text}>
-        <div className={css.txt1}>Чет өлкөдө окуу</div>
-        <div className={css.txt2}>Doni Kyrgyz дан интервьюлар</div>
-        <div className={css.txt3}>
+        <div className={css.text1}>Чет өлкөдө окуу</div>
+        <div className={css.text2}>Doni Kyrgyz дан интервьюлар</div>
+        <div className={css.text3}>
           <div>12 видео сабак</div>
           <div>0 тест</div>
         </div>

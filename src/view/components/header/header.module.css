@@ -9,10 +9,23 @@ header {
   font-weight: normal;
   font-size: 18px;
   color: #ffffff;
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100%;
   z-index: 99999;
+}
+.header_menu {
+  display: flex;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: #ffffff;
+  position: relative;
+}
+
+.item {
+  margin: 0 5% 0 0;
 }
 
 .flag {
@@ -29,7 +42,11 @@ header {
 .menu {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  height: 100%;
+  cursor: pointer;
+}
+.lang {
+  margin: 0 5%;
 }
 
 .btn {
@@ -47,4 +64,58 @@ header {
 }
 .btn:focus {
   outline: none;
-} 
+}
+
+.header_burger {
+  display: none;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 1200px) {
+  .menu {
+    transform: translate(50%);
+    transition: all 0.09s linear;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header_menu {
+    display: none;
+  }
+
+  .logo_wrapper {
+    display: none;
+  }
+  .header_burger {
+    display: flex;
+    position: relative;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+  }
+  .header_burger > span:before,
+  .header_burger > span:after {
+    content: "";
+    background-color: #ffffff;
+    position: absolute;
+    width: 28px;
+    height: 2px;
+  }
+  .header_burger > span:before {
+    top: -8px;
+  }
+  .header_burger > span:after {
+    bottom:-8px;
+  }
+  .header_burger > span {
+    position: absolute;
+    background-color: #ffffff;
+    width: 28px;
+    height: 2px;
+    top: 50%;
+  }
+}

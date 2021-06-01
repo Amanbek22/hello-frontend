@@ -6,7 +6,7 @@ import { fetchInitialize } from "../store/feature/data/data.action";
 import { RootState } from "../store/rootReducer";
 import Footer from "../view/components/footer/Footer";
 // import { RootState } from "../store/rootReducer";
-import Header from "../view/components/header";
+import Header from "../view/components/header/header";
 import Auth from "../view/pages/authentication/Auth";
 import Main from "../view/pages/main/Main";
 import Preloader from "../view/preloader/preloader";
