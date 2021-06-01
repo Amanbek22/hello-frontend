@@ -1,0 +1,56 @@
+.container{
+    padding: 5% 12% 5% 12%;
+}
+.container_slider{
+    margin: 5% 0;
+}
+.slider{
+    background-image: url("../../../assets/img/background_slider.svg");
+    width: 100%;
+    height: 615px;
+}
+.box_info{
+    color: #FFFFFF;
+    margin: 30% 5%;
+}
+.title{
+    margin: 2% 0;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 56px;
+}
+.text{
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 2%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 28px;
+}
+.list{
+    margin: 0 11% 0 0;
+    list-style: none;
+    padding: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 28px;
+    color: #7E7E7E;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.point{
+    font-size: 45px;
+    border-radius: 100%;
+}
+.box_card{
+    margin: 4% 0 0 0;
+    display: flex;
+    flex-direction: column;
+}
+.box_card > div:first-child{
+    border-top: 2px solid #E0E7EA;
+}

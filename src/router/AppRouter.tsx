@@ -12,6 +12,10 @@ import Main from "../view/pages/main/Main";
 import Preloader from "../view/preloader/preloader";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublishRoute";
+import Course from "../view/pages/course";
+import News from "../view/pages/news/News";
+import Test from "../view/pages/test/Test";
+import Lesson from "../view/pages/lesson/Lesson";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
@@ -29,6 +33,15 @@ const AppRouter = () => {
         <Route exact path="/">
           <Main />
         </Route>
+        <Route exact path="/news">
+          <News />
+        </Route>
+        <Route exact path="/lesson/:id/:vid">
+          <Lesson />
+        </Route>
+        <Route path="/course/:id">
+          <Course />
+        </Route>
         <PublicRoute
           restricted={true}
           component={Auth}
@@ -36,6 +49,7 @@ const AppRouter = () => {
           exact
         />
         <PrivateRoute path="/dashboard" component={() => "This is dashboard"} />
+        <PrivateRoute exact path="/test/:uuid/:id" component={Test} />
       </Switch>
       <Footer />
     </>

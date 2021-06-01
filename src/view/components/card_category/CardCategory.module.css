@@ -23,6 +23,22 @@
     /* position: absolute; */
     left: 20px;
 }
+@media (max-width: 767px){
+    .container{
+        width: 100%;
+        margin: 3% 0;
+    }
+    .title{
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 28px;
+    }
+    .box > img {
+        width: 129,06px;
+        height: 92,56px;
+    }
+    
+}
 .box > img{
     width: 50%;
 }

@@ -1,68 +1,84 @@
 .wrapper {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 8%;
-  background-image: url("../../../assets/img/bgr.png");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 8%;
+    background-image: url("../../../assets/img/bgr.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .wrapper > img {
-  padding: 0 12%;
-  width: 50%;
-  height: 50%;
+    padding: 0 12%;
+    width: 50%;
+    height: 50%;
 }
+
 .text {
-  font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  margin: 4% 12%;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    margin: 4% 12%;
 }
 
 .text > :first-child {
-  font-size: 52px;
-  line-height: 61px;
-  color: #ffffff;
+    font-size: 52px;
+    line-height: 61px;
+    color: #ffffff;
 }
 
 .text > :last-child {
-  padding-top: 10%;
-  font-size: 20px;
-  line-height: 23px;
-  color: #ffffff;
+    padding-top: 10%;
+    font-size: 16px;
+    line-height: 23px;
+    color: #ffffff;
 }
 
 .cards {
-  margin: 5% 12%;
-  display: flex;
-  justify-content: space-between;
-  max-height: fit-content;
-  overflow-x: auto;
+    margin: 5% 12%;
+    display: flex;
+    justify-content: space-between;
+    overflow-x: scroll;
+}
+
+.cards::-webkit-scrollbar {
+    display: none;
 }
 
 .pop,
 .new {
-  font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 32px;
-  line-height: 37px;
-  color: #0b0d34;
-  margin: 0 12%;
-}
-.title {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 32px;
-  line-height: 37px;
-  margin: 2% 0;
-}
-.box_cards {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 37px;
+    color: #0b0d34;
+    margin: 0 12%;
 }
 
-@media screen and (max-width: 1100px) {
-  
+.title {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 37px;
+    margin: 2% 0;
+}
+
+.box_cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 767px) {
+    .box_cards {
+        flex-direction: column;
+    }
+
+    .title {
+        margin: 5% 0;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 28px;
+    }
 }

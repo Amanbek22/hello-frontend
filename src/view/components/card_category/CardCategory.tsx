@@ -11,7 +11,7 @@ interface Props {
 const CardCategory = (props: Props) => {
   return (
     <Link
-      to={`/course/${props.id}`}
+      to={`/category/${props.id}`}
       style={{ background: props.color }}
       className={Css.container}
     >

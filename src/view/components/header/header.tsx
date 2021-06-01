@@ -20,7 +20,9 @@ const Header = ({ isAuth }: PropsType) => {
         <span></span>
       </div>
       <div className={Css.header_menu}>
-        <div className={Css.item}>Жаңылыктар</div>
+        <Link to="/news">
+          <div>Жаңылыктар</div>
+        </Link>
         <div className={Css.item}>Маектер</div>
         <div className={Css.item}>Жарнамалар</div>
         <div className={Css.item}>Байланыш</div>

@@ -27,7 +27,6 @@ body {
 a {
   text-decoration: none;
 }
-
 #root {
   height: 100%;
 }
@@ -42,6 +41,16 @@ a {
   word-break: normal;
   line-height: 1.5;
   font-size: 14px;
+}
+button {
+  cursor: pointer;
+}
+button:disabled{
+  cursor: no-drop;
+}
+.dark-bg {
+  background: #0B0D34;
+  color: #fff;
 }
 `;
 export default GlobalStyle;
