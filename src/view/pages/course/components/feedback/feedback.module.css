@@ -1,20 +1,31 @@
-.wrapper{
-    position: absolute;
-    right: 12%;
-    display: flex;
-    flex-direction: column;
+.wrapper {
+  position: absolute;
+  right: 12%;
+  display: flex;
+  flex-direction: column;
 }
 .wrapper > img {
-    margin-bottom: 10px;
-    height: 45px;
-    cursor: pointer;
+  margin-bottom: 10px;
+  height: 45px;
+  cursor: pointer;
 }
 
 .link {
-    color: #21A95D;
-    font-size: 18px;
-    padding: 15px 0;
+  color: #21a95d;
+  font-size: 18px;
+  padding: 15px 0;
 }
 .link:first-child {
-    border-bottom: 2px solid #E0E7EA;
+  border-bottom: 2px solid #e0e7ea;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    transform: translateY(-100%);
+  }
+}
+@media screen and (min-width: 769px) {
+  .wrapper {
+    transform: translateY(-100%);
+  }
 }

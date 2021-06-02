@@ -11,9 +11,9 @@ function courseCard(props: BilimModalType) {
     >
       <img className={css.img} src={props.icon} alt={props.name} />
       <div className={css.text}>
-        <div className={css.txt1}>{props.categoryName}</div>
-        <div className={css.txt2}>{props.name}</div>
-        <div className={css.txt3}>
+        <div className={css.text1}>{props.categoryName}</div>
+        <div className={css.text2}>{props.name}</div>
+        <div className={css.text3}>
           <div>{props.videoCount} видео сабак</div>
           <div>{props.testCount} тест</div>
         </div>
