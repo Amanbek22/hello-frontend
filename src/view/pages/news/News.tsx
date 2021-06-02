@@ -3,6 +3,7 @@ import LastNews from "./components/LastNews/LastNews";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./news.css";
 
 const News = () => {
   const settings = {

@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import css from "../../course.module.css";
 import { useParams } from "react-router";

@@ -1,4 +1,3 @@
-import React from "react";
 import Video from "../../../../components/video/Video";
 import { VideoModalType } from "../../../../../models/type";
 

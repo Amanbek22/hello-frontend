@@ -9,6 +9,7 @@ const Main = () => {
   const { categories, popular, newPosts }: any = useSelector(
     (state: RootState) => state.data,
   );
+
   return (
     <div>
       <div className={Css.container}>
