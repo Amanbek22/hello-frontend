@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
   userData: null,
+  userInfo: null,
 };
 
 const userSlice = createSlice({
@@ -10,6 +11,9 @@ const userSlice = createSlice({
   reducers: {
     setUserData(state, action: PayloadAction<any>) {
       state.userData = action.payload;
+    },
+    setUserInfo(state, action: PayloadAction<any>) {
+      state.userInfo = action.payload;
     },
   },
 });

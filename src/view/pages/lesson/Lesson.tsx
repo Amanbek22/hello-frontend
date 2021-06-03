@@ -15,12 +15,13 @@ function Lesson() {
       doc: vid,
     })
       .finally(() => setIsPending(false))
-      .then((res: VideoModalType) =>
+      .then((res: VideoModalType) => {
+        // console.log(res);
         setData({
           ...res,
           videoUrl: res?.videoUrl.replace("watch?v=", "embed/"),
-        }),
-      );
+        });
+      });
   }, [id]);
   if (isPending) return <Preloader absolute />;
   return (

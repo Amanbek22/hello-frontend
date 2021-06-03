@@ -60,7 +60,7 @@ const Auth = () => {
         dispatch(userSlice.actions.setUserData(user));
         const userData = await getData({
           path: "users",
-          doc: user.uuid,
+          doc: user.uid,
         });
         const data = {
           path: "users",
@@ -70,7 +70,9 @@ const Auth = () => {
           },
           doc: user.uuid,
         };
+        dispatch(userSlice.actions.setUserInfo(userData));
         if (!userData) {
+          dispatch(userSlice.actions.setUserInfo(data.data));
           await setData(data);
         }
         if (userData && userData.profileDone) {

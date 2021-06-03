@@ -16,16 +16,19 @@ import Course from "../view/pages/course";
 import News from "../view/pages/news/News";
 import Test from "../view/pages/test/Test";
 import Lesson from "../view/pages/lesson/Lesson";
+import EditProfile from "../view/pages/edit-profile/EditProfile";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
   const isAuthenticated = Boolean(session);
   const isFetching = useSelector((state: RootState) => state.data.isFetching);
+  const userInfo: any = useSelector((state: RootState) => state.user.userInfo);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchInitialize());
+    dispatch(fetchInitialize(session));
   }, []);
-  if (isFetching) return <Preloader />;
+  if (isFetching) return <Preloader absolute />;
+  if (userInfo && !userInfo?.profileDone) return <EditProfile />;
   return (
     <>
       <Header isAuth={isAuthenticated} />

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getData } from "../../../firebase/firebase.actions";
 import dataSlice from "./data.slice";
+import { fetchUser } from "../user/user.actions";
 
 export const fetchStates = createAsyncThunk(
   "data/states",
@@ -39,7 +40,11 @@ export const fetchNew = createAsyncThunk(
 
 export const fetchInitialize = createAsyncThunk(
   "data.initialize",
-  async (_, { dispatch }) => {
+  async (user: any, { dispatch }) => {
+    const isAuth = Boolean(user);
+    if (isAuth) {
+      await dispatch(fetchUser(user));
+    }
     await dispatch(fetchPopular());
     await dispatch(fetchCategories());
     await dispatch(fetchNew());
