@@ -16,6 +16,7 @@ import Course from "../view/pages/course";
 import News from "../view/pages/news/News";
 import Test from "../view/pages/test/Test";
 import Lesson from "../view/pages/lesson/Lesson";
+import Category from "../view/pages/category/Category";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
@@ -41,6 +42,9 @@ const AppRouter = () => {
         </Route>
         <Route path="/course/:id">
           <Course />
+        </Route>
+        <Route exact path="/category">
+          <Category />
         </Route>
         <PublicRoute
           restricted={true}
