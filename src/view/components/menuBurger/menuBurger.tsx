@@ -1,4 +1,5 @@
 import css from "./menuBurger.module.css";
+import { Link, NavLink } from "react-router-dom";
 
 interface PropsType {
   open: boolean;
@@ -13,12 +14,18 @@ const MenuBurger = (props: PropsType) => {
           <div className={css.close} onClick={() => props.setOpen(false)}>
             <img src="/img/close.png" alt="X" />
           </div>
-          <div className={css.logo}>
+          <Link
+            to="/"
+            onClick={() => props.setOpen(false)}
+            className={css.logo}
+          >
             <img src="/img/logo2.png" alt="logo" />
-          </div>
+          </Link>
           <div className={css.header_menu}>
             <ul className={css.burger_title}>
-              <li>Жаңылыктар</li>
+              <NavLink onClick={() => props.setOpen(false)} to="/news">
+                Жаңылыктар
+              </NavLink>
               <li>Маектер</li>
               <li>Жарнамалар</li>
               <li>Байланыш</li>

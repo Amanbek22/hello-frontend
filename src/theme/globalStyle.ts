@@ -27,9 +27,6 @@ body {
 a {
   text-decoration: none;
 }
-#root {
-  height: 100%;
-}
 
 :not(pre) > code {
   font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, monospace;
