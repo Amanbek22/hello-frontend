@@ -8,7 +8,7 @@ import {
 } from "../../../models/type";
 import Preloader from "../../preloader/preloader";
 import CourseHeader from "./components/course-header/course-header";
-import { ContentHeader } from "./components/content-hedaer/content-header";
+import { ContentHeader } from "./components/content-header/content-header";
 import css from "./course.module.css";
 import Actions from "./components/actions/Actions";
 import Feedback from "./components/feedback/Feedback";
