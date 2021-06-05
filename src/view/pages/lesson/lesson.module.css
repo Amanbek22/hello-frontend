@@ -1,16 +1,26 @@
 .wrapper {
-    margin: 40px 0;
-    padding: 20px 15%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid #E0E7EA;
-    border-radius: 14px;
+  margin: 40px 0;
+  padding: 20px 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #e0e7ea;
+  border-radius: 14px;
 }
-.title{
-    margin: 25px 0;
+.title {
+  margin: 25px 0;
 }
 
 .description {
-    color: #7E7E7E;
+  color: #7e7e7e;
+}
+
+@media (max-width: 992px) {
+  .wrapper {
+    border: none;
+    padding: 0;
+  }
+  .video_card {
+    border-radius: 14px;
+  }
 }

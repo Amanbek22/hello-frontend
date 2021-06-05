@@ -1,6 +1,6 @@
 import css from "./category.module.css";
 
-function Category() {
+const Category = () => {
   return (
     <div>
       <div className={css.card_wrapper}>
@@ -14,6 +14,6 @@ function Category() {
       </div>
     </div>
   );
-}
+};
 
 export default Category;
