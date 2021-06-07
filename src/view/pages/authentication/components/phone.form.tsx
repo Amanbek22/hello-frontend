@@ -21,17 +21,23 @@ export const CssTextField = withStyles({
     },
   },
 })(TextField);
-
 interface PropsType {
   onSubmit: (str: string) => void;
 }
 const PhoneForm = (props: PropsType) => {
-  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
+  const [error, setError] = useState("");
   const submit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsDisabled(true);
-    props.onSubmit(email);
+    if (/^\996[0-9]{9}$/.test(phone)) {
+      e.preventDefault();
+      setIsDisabled(true);
+      props.onSubmit(phone);
+      setError("");
+    } else {
+      e.preventDefault();
+      setError("Введите данные в формате 996_________");
+    }
   };
   return (
     <form className={css.container} onSubmit={submit}>
@@ -39,16 +45,18 @@ const PhoneForm = (props: PropsType) => {
       <p>Кирүү же каттоодон өтүү үчүн телефон номериңизди жазыңыз</p>
       <div className={css.wrapper}>
         <CssTextField
+          error={!!error}
           className={css.input}
-          value={email}
-          required
-          onChange={(e) => setEmail(e.target.value)}
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
           type="number"
+          required
           id="outlined-basic"
           label="Телефон номериниз"
           variant="outlined"
+          helperText={error}
         />
-        <p className={css.acceptt}>
+        <p className={css.accept}>
           Каттоодон өтүү менен, сиз автоматтык түрдө тиркеменин колдонуу
           шарттарына макул болосуз
         </p>
