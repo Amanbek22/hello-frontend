@@ -1,0 +1,38 @@
+.wrapper {
+    border: 1px solid #E0E7EA;
+    border-radius: 14px;
+    margin: 50px 12%;
+    text-align: center;
+    padding: 20px;
+}
+
+.form {
+    width: 450px;
+    margin: 25px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.form > div {
+    text-align: left;
+    margin: 20px 0;
+}
+.submit{
+    width: 220px;
+    height: 55px;
+    background: #21a95d;
+    border: 1px solid #21a95d;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 auto;
+}
+.error {
+    margin-bottom: 15px;
+    color: red;
+    font-size: 15px;
+}

@@ -42,3 +42,11 @@ export interface QuestionModalType {
   photo?: string;
   description: string;
 }
+
+export interface CityModalType {
+  id: string;
+  name: string;
+  nameRus: string;
+  nameEn: string;
+  icon: string;
+}
