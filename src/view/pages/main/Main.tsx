@@ -1,5 +1,5 @@
 import CourseCard from "../../components/courseCard/courseCard";
-import Css from "./maine.module.css";
+import Css from "./main.module.css";
 import CardCategory from "../../components/card_category/CardCategory";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";

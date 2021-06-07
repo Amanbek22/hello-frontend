@@ -27,17 +27,8 @@ function Lesson() {
   return (
     <div className={`container`}>
       <div className={css.wrapper}>
-        {/*<video width="100%">*/}
-        {/*  <source*/}
-        {/*    src={data?.videoUrl}*/}
-        {/*    type='video/ogg; codecs="theora, vorbis"'*/}
-        {/*  />*/}
-        {/*  <source*/}
-        {/*    src={data?.videoUrl}*/}
-        {/*    type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'*/}
-        {/*  />*/}
-        {/*</video>*/}
         <iframe
+          className={css.video_card}
           src={data?.videoUrl}
           width="100%"
           height="400px"

@@ -16,6 +16,7 @@ import Course from "../view/pages/course";
 import News from "../view/pages/news/News";
 import Test from "../view/pages/test/Test";
 import Lesson from "../view/pages/lesson/Lesson";
+import Category from "../view/pages/category/Category";
 import EditProfile from "../view/pages/edit-profile/EditProfile";
 
 const AppRouter = () => {
@@ -44,6 +45,9 @@ const AppRouter = () => {
         </Route>
         <Route path="/course/:id">
           <Course />
+        </Route>
+        <Route exact path="/category/:id">
+          <Category />
         </Route>
         <PublicRoute
           restricted={true}
