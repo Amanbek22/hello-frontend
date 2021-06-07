@@ -37,6 +37,7 @@ function Lesson() {
         {/*  />*/}
         {/*</video>*/}
         <iframe
+          className={css.video_card}
           src={data?.videoUrl}
           width="100%"
           height="400px"
