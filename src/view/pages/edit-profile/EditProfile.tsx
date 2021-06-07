@@ -19,7 +19,7 @@ function EditProfile() {
   const user: any = useSelector((state: RootState) => state.user.userInfo);
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
-  const submit = (values: FormEvent) => {
+  const update = (values: FormEvent) => {
     updateData({
       path: "users",
       doc: user.uid,
@@ -31,6 +31,26 @@ function EditProfile() {
       .catch(() => {
         setError(true);
       });
+  };
+  const submit = (values: FormEvent | any) => {
+    const payload = new FormData();
+    payload.append("image", values?.userPhoto[0]);
+    payload.append("code", "0");
+    if (values.userPhoto) {
+      fetch("http://176.126.164.190:8000/api/image-create/", {
+        method: "POST",
+        body: payload,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          update({ ...values, userPhoto: data.image });
+        })
+        .catch(() => {
+          update(values);
+        });
+    } else {
+      update(values);
+    }
   };
   return (
     <div className={`${css.wrapper}`}>
