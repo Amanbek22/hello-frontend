@@ -70,6 +70,9 @@
 }
 
 @media (max-width: 767px) {
+    .cards {
+        margin: 5%;
+    }
     .wrapper {
         padding-top: 0;
         flex-direction: column;

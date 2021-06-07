@@ -18,7 +18,7 @@ const Main = () => {
             <div>Салам!</div>
             <div>Бул - дүйнө өзгөртө алчу эң күчтүү курал.</div>
           </div>
-          <img src="./img/Group3.png" alt="#" />
+          <img src="/img/Group3.png" alt="#" />
         </div>
         <div className={Css.pop}>Эң популярдуулар</div>
         <div className={Css.cards}>

@@ -49,5 +49,13 @@ button:disabled{
   background: #0B0D34;
   color: #fff;
 }
+button:disabled {
+  cursor: not-allowed !important;
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 0 5%;
+  }
+}
 `;
 export default GlobalStyle;

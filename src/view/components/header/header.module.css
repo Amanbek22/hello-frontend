@@ -101,6 +101,9 @@ header {
   color: #3ee45d !important;
 }
 @media (max-width: 1024px) {
+  header {
+    padding: 24px 5%;
+  }
   .header_menu {
     display: none;
   }

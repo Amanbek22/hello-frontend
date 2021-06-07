@@ -18,9 +18,8 @@ export const setData = async ({ path, data, doc }: dataType) => {
   }
 };
 
-// if you need to order input to getData(orderName)
-// if you need to limit input to getData(limitCount)
-
+// if you need to order, input to getData(orderName)
+// if you need to limit, input to getData(limitCount)
 export const getData = async ({ path, doc, order, limit }: dataType) => {
   if (doc) {
     const res = await db.collection(path).doc(doc);
@@ -41,4 +40,6 @@ export const getData = async ({ path, doc, order, limit }: dataType) => {
   }
 };
 
-export const updateData = ({}: dataType) => {};
+export const updateData = async ({ path, doc, data }: dataType) => {
+  return await db.collection(path).doc(doc).update(data);
+};
