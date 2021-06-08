@@ -1,5 +1,8 @@
 import { useRef, useState } from "react";
-import { signInFirebase } from "../../../firebase/firebase";
+import {
+  signInFirebase,
+  signInFirebaseWithEmail,
+} from "../../../firebase/firebase";
 import firebase from "../../../firebase/firebase";
 import { useDispatch } from "react-redux";
 import userSlice from "../../../store/feature/user/user.slice";
@@ -7,6 +10,7 @@ import PhoneForm from "./components/phone.form";
 import CodeForm from "./components/code.form";
 import { getData, setData } from "../../../firebase/firebase.actions";
 import { useHistory } from "react-router";
+import LoginEmail from "./components/login.email";
 
 const Auth = () => {
   // states & instance of hooks
@@ -15,6 +19,7 @@ const Auth = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   // methods
+
   const onSubmit = (email: string) => {
     setupRecaptcha();
     //@ts-ignore
@@ -58,41 +63,61 @@ const Auth = () => {
         // User signed in successfully.
         const user = result.user?.toJSON();
         dispatch(userSlice.actions.setUserData(user));
-        const userData = await getData({
-          path: "users",
-          doc: user.uid,
-        });
-        const data = {
-          path: "users",
-          data: {
-            login: user.phoneNumber,
-            profileDone: false,
-          },
-          doc: user.uuid,
-        };
-        dispatch(userSlice.actions.setUserInfo(userData));
-        if (!userData) {
-          dispatch(userSlice.actions.setUserInfo(data.data));
-          await setData(data);
-        }
-        if (userData && userData.profileDone) {
-          history.push("/");
-        } else {
-          history.push("/dashboard");
-        }
+        await login(user);
       })
       .catch(() => {
         // User couldn't sign in (bad verification code?)
         // ...
       });
   };
+  const onLoginWithEmail = async () => {
+    const { user } = await signInFirebaseWithEmail();
+    dispatch(
+      userSlice.actions.setUserData({
+        email: user?.email,
+        displayName: user?.displayName,
+        photoUrl: user?.photoURL,
+        uid: user?.uid,
+      }),
+    );
+    await login(user);
+  };
+
+  const login = async (user: any) => {
+    const userData = await getData({
+      path: "users",
+      doc: user?.uid,
+    });
+    const data = {
+      path: "users",
+      data: {
+        login: user?.email,
+        profileDone: false,
+      },
+      doc: user?.uid,
+    };
+    dispatch(userSlice.actions.setUserInfo(userData));
+    if (!userData) {
+      dispatch(userSlice.actions.setUserInfo(data.data));
+      await setData(data);
+    }
+    if (userData && userData.profileDone) {
+      history.push("/");
+    } else {
+      history.push("/dashboard");
+    }
+  };
+
   return (
     <>
       <div ref={recaptchaWrapperRef}>
         <div id="recaptcha-container" />
       </div>
       {!isConfirm ? (
-        <PhoneForm onSubmit={onSubmit} />
+        <>
+          <PhoneForm onSubmit={onSubmit} />
+          <LoginEmail onClick={onLoginWithEmail} />
+        </>
       ) : (
         <CodeForm onSubmit={onConfirm} setBack={setBack} />
       )}

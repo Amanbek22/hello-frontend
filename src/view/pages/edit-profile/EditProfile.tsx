@@ -16,7 +16,7 @@ import { updateData } from "../../../firebase/firebase.actions";
 import { fetchUser } from "../../../store/feature/user/user.actions";
 
 function EditProfile() {
-  const user: any = useSelector((state: RootState) => state.user.userInfo);
+  const user: any = useSelector((state: RootState) => state.user.userData);
   const dispatch = useDispatch();
   const [error, setError] = useState(false);
   const update = (values: FormEvent) => {

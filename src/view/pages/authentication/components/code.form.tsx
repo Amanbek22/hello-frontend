@@ -1,6 +1,7 @@
 import { useState } from "react";
 import css from "./forms.module.css";
 import { CssTextField } from "./phone.form";
+import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
 interface PropsType {
   onSubmit: (str: string) => void;
@@ -18,7 +19,13 @@ const CodeForm = (props: PropsType) => {
     <form className={css.container} onSubmit={submit}>
       <img className={css.logo} src="./img/logoFooter.png" alt="HelloIT" />
       <div className={css.wrapper}>
-        <div onClick={() => props.setBack()}>Артка</div>
+        <div className={css.back}>
+          <KeyboardBackspaceIcon
+            onClick={() => props.setBack()}
+            className={css.back__icon}
+          />
+          <p>Артка</p>
+        </div>
         <br />
         <p>Сиздин телефон номеринизге келген кодду жазыныз</p>
         <br />
@@ -30,7 +37,7 @@ const CodeForm = (props: PropsType) => {
           type="number"
           id="outlined-basic"
           label="Тастыктуу код"
-          variant="outlined"
+          focused
         />
         <br />
         <button disabled={isDisabled} className={css.submit_btn}>
