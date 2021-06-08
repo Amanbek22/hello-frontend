@@ -76,7 +76,7 @@ const Auth = () => {
       userSlice.actions.setUserData({
         email: user?.email,
         displayName: user?.displayName,
-        photoUrl: user?.photoURL,
+        userPhoto: user?.photoURL,
         uid: user?.uid,
       }),
     );

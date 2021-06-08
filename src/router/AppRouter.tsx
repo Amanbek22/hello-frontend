@@ -18,6 +18,7 @@ import Test from "../view/pages/test/Test";
 import Lesson from "../view/pages/lesson/Lesson";
 import Category from "../view/pages/category/Category";
 import EditProfile from "../view/pages/edit-profile/EditProfile";
+import Profile from "../view/pages/maekter/Profile";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
@@ -32,7 +33,11 @@ const AppRouter = () => {
   if (userInfo && !userInfo?.profileDone) return <EditProfile />;
   return (
     <>
-      <Header isAuth={isAuthenticated} />
+      <Header
+        isAuth={isAuthenticated}
+        name={userInfo?.userName}
+        img={userInfo?.userPhoto || userInfo?.photoUrl}
+      />
       <Switch>
         <Route exact path="/">
           <Main />
@@ -56,6 +61,7 @@ const AppRouter = () => {
           exact
         />
         <PrivateRoute path="/dashboard" component={() => "This is dashboard"} />
+        <PrivateRoute path="/profile" component={Profile} />
         <PrivateRoute exact path="/test/:uuid/:id" component={Test} />
       </Switch>
       <Footer />

@@ -23,7 +23,7 @@ function EditProfile() {
     updateData({
       path: "users",
       doc: user.uid,
-      data: { ...values, profileDone: true },
+      data: { ...values, profileDone: true, friends: 0, images: 0 },
     })
       .then(() => {
         dispatch(fetchUser(user));

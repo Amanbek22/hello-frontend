@@ -39,7 +39,7 @@ function AddPicture({ input }: any) {
     <AddPhoto>
       <div className="button">
         {value ? (
-          <img src={value} alt="#" />
+          <img src={value} height="150" width="150" alt="#" />
         ) : (
           <img src="/img/camera.png" alt="Picture" />
         )}

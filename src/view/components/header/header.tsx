@@ -9,9 +9,11 @@ import userSlice from "../../../store/feature/user/user.slice";
 
 interface PropsType {
   isAuth: boolean;
+  name: string | null;
+  img: string | undefined;
 }
 
-const Header = ({ isAuth }: PropsType) => {
+const Header = ({ isAuth, img, name }: PropsType) => {
   const [open, setOpen] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -51,9 +53,20 @@ const Header = ({ isAuth }: PropsType) => {
           <button className={Css.btn}>КИРҮҮ</button>
         </Link>
       ) : (
-        <button className={Css.btn} onClick={onLogoutHandler}>
-          Чыгуу
-        </button>
+        <Link to="/profile">
+          <div className={Css.user_info}>
+            <p>{name}</p>
+            {img && (
+              <img
+                className={Css.avatar}
+                width="38"
+                height="38"
+                src={`${img}`}
+                alt="avatar"
+              />
+            )}
+          </div>
+        </Link>
       )}
     </header>
   );
