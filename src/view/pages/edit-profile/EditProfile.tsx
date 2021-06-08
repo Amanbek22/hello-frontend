@@ -76,7 +76,7 @@ function EditProfile() {
               </Field>
               <Field name="bio">
                 {(props) => (
-                  <Input {...props} label="Өзүңүңүз же ишиңиз жөнүндө" />
+                  <Input {...props} label="Өзүңүз же ишиңиз жөнүндө" />
                 )}
               </Field>
               {error ? (
