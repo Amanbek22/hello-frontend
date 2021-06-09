@@ -18,18 +18,21 @@ import Test from "../view/pages/test/Test";
 import Lesson from "../view/pages/lesson/Lesson";
 import Category from "../view/pages/category/Category";
 import EditProfile from "../view/pages/edit-profile/EditProfile";
-import Profile from "../view/pages/maekter/Profile";
+import Maekter from "../view/pages/maekter/Maekter";
+import Profile from "../view/pages/profile/Profile";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
   const isAuthenticated = Boolean(session);
   const isFetching = useSelector((state: RootState) => state.data.isFetching);
   const userInfo: any = useSelector((state: RootState) => state.user.userInfo);
+  const loading = useSelector((state: RootState) => state.user.loading);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchInitialize(session));
   }, []);
   if (isFetching) return <Preloader absolute />;
+  if (loading) return <Preloader absolute />;
   if (userInfo && !userInfo?.profileDone) return <EditProfile />;
   return (
     <>
@@ -61,7 +64,9 @@ const AppRouter = () => {
           exact
         />
         <PrivateRoute path="/dashboard" component={() => "This is dashboard"} />
+        <PrivateRoute path="/edit-profile" component={EditProfile} />
         <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/maekter" component={Maekter} />
         <PrivateRoute exact path="/test/:uuid/:id" component={Test} />
       </Switch>
       <Footer />

@@ -15,14 +15,6 @@ interface PropsType {
 
 const Header = ({ isAuth, img, name }: PropsType) => {
   const [open, setOpen] = useState(false);
-  const history = useHistory();
-  const dispatch = useDispatch();
-
-  const onLogoutHandler = async () => {
-    await Logout();
-    dispatch(userSlice.actions.setUserData(null));
-    history.push("/");
-  };
 
   return (
     <header>
@@ -32,7 +24,7 @@ const Header = ({ isAuth, img, name }: PropsType) => {
       </div>
       <div className={Css.menu_wrapper}>
         <Link className={Css.logo_wrapper} to="/">
-          <img className={Css.logo} src="./img/logo1.png" alt="logo1" />
+          <img className={Css.logo} src="/img/logo1.png" alt="logo1" />
         </Link>
         <div className={Css.header_menu}>
           <NavLink activeClassName={Css.active} className={Css.item} to="/news">
@@ -43,9 +35,9 @@ const Header = ({ isAuth, img, name }: PropsType) => {
           <div className={Css.item}>Байланыш</div>
         </div>
         <div className={Css.menu}>
-          <img className={Css.flag} src="./img/flag.png" alt="flag" />
+          <img className={Css.flag} src="/img/flag.png" alt="flag" />
           <div className={Css.lang}>KG</div>
-          <img className={Css.vector} src="./img/vec.png" alt="vector" />
+          <img className={Css.vector} src="/img/vec.png" alt="vector" />
         </div>
       </div>
       {!isAuth ? (

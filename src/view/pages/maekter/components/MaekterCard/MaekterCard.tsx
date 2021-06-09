@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import css from "../../profile.module.css";
+import css from "../../maekter.module.css";
 import { Button, IconButton, Paper, withStyles } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import PopoverElement from "../../../../components/popover/PopoverElement";
@@ -81,7 +81,7 @@ interface IProps {
   profession: string;
 }
 
-const ProfileCard: React.FC<IProps> = ({
+const MaekterCard: React.FC<IProps> = ({
   name,
   img,
   city,
@@ -174,4 +174,4 @@ const ProfileCard: React.FC<IProps> = ({
   );
 };
 
-export default ProfileCard;
+export default MaekterCard;

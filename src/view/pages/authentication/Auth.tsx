@@ -4,23 +4,27 @@ import {
   signInFirebaseWithEmail,
 } from "../../../firebase/firebase";
 import firebase from "../../../firebase/firebase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import userSlice from "../../../store/feature/user/user.slice";
 import PhoneForm from "./components/phone.form";
 import CodeForm from "./components/code.form";
 import { getData, setData } from "../../../firebase/firebase.actions";
 import { useHistory } from "react-router";
 import LoginEmail from "./components/login.email";
+import { RootState } from "../../../store/rootReducer";
+import Preloader from "../../preloader/preloader";
 
 const Auth = () => {
   // states & instance of hooks
   const [isConfirm, setIsConfirm] = useState(false);
   const recaptchaWrapperRef: any = useRef();
+  const loading = useSelector((state: RootState) => state.user.loading);
   const history = useHistory();
   const dispatch = useDispatch();
   // methods
 
   const onSubmit = (email: string) => {
+    dispatch(userSlice.actions.setLoading);
     setupRecaptcha();
     //@ts-ignore
     const appVerifier = window.recaptchaVerifier;
@@ -63,6 +67,7 @@ const Auth = () => {
         // User signed in successfully.
         const user = result.user?.toJSON();
         dispatch(userSlice.actions.setUserData(user));
+        dispatch(userSlice.actions.setLoading);
         await login(user);
       })
       .catch(() => {
@@ -71,6 +76,8 @@ const Auth = () => {
       });
   };
   const onLoginWithEmail = async () => {
+    dispatch(userSlice.actions.setLoading);
+    console.log(loading);
     const { user } = await signInFirebaseWithEmail();
     dispatch(
       userSlice.actions.setUserData({
@@ -84,6 +91,7 @@ const Auth = () => {
   };
 
   const login = async (user: any) => {
+    dispatch(userSlice.actions.setLoading);
     const userData = await getData({
       path: "users",
       doc: user?.uid,
@@ -104,9 +112,13 @@ const Auth = () => {
     if (userData && userData.profileDone) {
       history.push("/");
     } else {
-      history.push("/dashboard");
+      history.push("/edit-profile");
     }
   };
+
+  if (loading) {
+    return <Preloader absolute />;
+  }
 
   return (
     <>

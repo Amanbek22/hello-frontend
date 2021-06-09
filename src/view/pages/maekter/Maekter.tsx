@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import css from "./profile.module.css";
+import css from "./maekter.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
 import styled from "styled-components";
-import ProfileCard from "./components/ProfileCard/ProfileCard";
+import MaekterCard from "./components/MaekterCard/MaekterCard";
 import Advertisement from "./components/Advertisment/Advertisement";
 import Photos from "./components/Photos/Photos";
 
@@ -24,7 +24,7 @@ const Tab = styled.button`
   }
 `;
 
-const Profile = () => {
+const Maekter = () => {
   const user: any = useSelector((state: RootState) => state.user.userInfo);
   const [index, setIndex] = useState(0);
 
@@ -34,7 +34,7 @@ const Profile = () => {
 
   return (
     <div className={css.container}>
-      <ProfileCard
+      <MaekterCard
         name={user?.userName}
         img={user?.userPhoto}
         city={user?.userAddressText}
@@ -61,4 +61,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Maekter;
