@@ -2,10 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import Css from "./header.module.css";
 import { useState } from "react";
 import MenuBurger from "../menuBurger/menuBurger";
-import { Logout } from "../../../firebase/firebase";
-import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
-import userSlice from "../../../store/feature/user/user.slice";
 
 interface PropsType {
   isAuth: boolean;
@@ -30,7 +26,13 @@ const Header = ({ isAuth, img, name }: PropsType) => {
           <NavLink activeClassName={Css.active} className={Css.item} to="/news">
             Жаңылыктар
           </NavLink>
-          <div className={Css.item}>Маектер</div>
+          <NavLink
+            activeClassName={Css.active}
+            className={Css.item}
+            to="/communication"
+          >
+            Маектер
+          </NavLink>
           <div className={Css.item}>Жарнамалар</div>
           <div className={Css.item}>Байланыш</div>
         </div>
@@ -45,7 +47,7 @@ const Header = ({ isAuth, img, name }: PropsType) => {
           <button className={Css.btn}>КИРҮҮ</button>
         </Link>
       ) : (
-        <Link to="/profile">
+        <Link to="/my-profile">
           <div className={Css.user_info}>
             <p>{name}</p>
             {img && (

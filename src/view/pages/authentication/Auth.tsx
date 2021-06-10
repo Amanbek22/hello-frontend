@@ -24,7 +24,6 @@ const Auth = () => {
   // methods
 
   const onSubmit = (email: string) => {
-    dispatch(userSlice.actions.setLoading);
     setupRecaptcha();
     //@ts-ignore
     const appVerifier = window.recaptchaVerifier;
@@ -65,9 +64,9 @@ const Auth = () => {
       .confirm(code)
       .then(async (result: any) => {
         // User signed in successfully.
+        dispatch(userSlice.actions.setLoading(true));
         const user = result.user?.toJSON();
         dispatch(userSlice.actions.setUserData(user));
-        dispatch(userSlice.actions.setLoading);
         await login(user);
       })
       .catch(() => {
@@ -76,8 +75,7 @@ const Auth = () => {
       });
   };
   const onLoginWithEmail = async () => {
-    dispatch(userSlice.actions.setLoading);
-    console.log(loading);
+    dispatch(userSlice.actions.setLoading(true));
     const { user } = await signInFirebaseWithEmail();
     dispatch(
       userSlice.actions.setUserData({
@@ -91,7 +89,7 @@ const Auth = () => {
   };
 
   const login = async (user: any) => {
-    dispatch(userSlice.actions.setLoading);
+    dispatch(userSlice.actions.setLoading(true));
     const userData = await getData({
       path: "users",
       doc: user?.uid,
