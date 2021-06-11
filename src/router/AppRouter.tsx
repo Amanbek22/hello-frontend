@@ -18,6 +18,7 @@ import Test from "../view/pages/test/Test";
 import Lesson from "../view/pages/lesson/Lesson";
 import Category from "../view/pages/category/Category";
 import EditProfile from "../view/pages/edit-profile/EditProfile";
+import Ads from "../view/pages/ads/Ads";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
@@ -48,6 +49,9 @@ const AppRouter = () => {
         </Route>
         <Route exact path="/category/:id">
           <Category />
+        </Route>
+        <Route exact path="/ads">
+          <Ads />
         </Route>
         <PublicRoute
           restricted={true}

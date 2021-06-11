@@ -36,8 +36,10 @@ const Header = ({ isAuth }: PropsType) => {
           <NavLink activeClassName={Css.active} className={Css.item} to="/news">
             Жаңылыктар
           </NavLink>
+          <NavLink activeClassName={Css.active} className={Css.item} to="/ads">
+            Жарнамалар
+          </NavLink>
           <div className={Css.item}>Маектер</div>
-          <div className={Css.item}>Жарнамалар</div>
           <div className={Css.item}>Байланыш</div>
         </div>
         <div className={Css.menu}>
