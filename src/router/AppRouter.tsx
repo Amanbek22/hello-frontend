@@ -18,6 +18,7 @@ import Test from "../view/pages/test/Test";
 import Lesson from "../view/pages/lesson/Lesson";
 import Category from "../view/pages/category/Category";
 import EditProfile from "../view/pages/edit-profile/EditProfile";
+import Ads from "../view/pages/ads/Ads";
 import UserProfile from "../view/pages/userProfile/UserProfile";
 import Profile from "../view/pages/profile/Profile";
 import Communication from "../view/pages/communication/Communication";
@@ -57,6 +58,9 @@ const AppRouter = () => {
         </Route>
         <Route exact path="/category/:id">
           <Category />
+        </Route>
+        <Route exact path="/ads">
+          <Ads />
         </Route>
         <PublicRoute
           restricted={true}
