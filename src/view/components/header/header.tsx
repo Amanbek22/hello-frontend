@@ -2,25 +2,15 @@ import { Link, NavLink } from "react-router-dom";
 import Css from "./header.module.css";
 import { useState } from "react";
 import MenuBurger from "../menuBurger/menuBurger";
-import { Logout } from "../../../firebase/firebase";
-import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
-import userSlice from "../../../store/feature/user/user.slice";
 
 interface PropsType {
   isAuth: boolean;
+  name: string | null;
+  img: string | undefined;
 }
 
-const Header = ({ isAuth }: PropsType) => {
+const Header = ({ isAuth, img, name }: PropsType) => {
   const [open, setOpen] = useState(false);
-  const history = useHistory();
-  const dispatch = useDispatch();
-
-  const onLogoutHandler = async () => {
-    await Logout();
-    dispatch(userSlice.actions.setUserData(null));
-    history.push("/");
-  };
 
   return (
     <header>
@@ -30,7 +20,7 @@ const Header = ({ isAuth }: PropsType) => {
       </div>
       <div className={Css.menu_wrapper}>
         <Link className={Css.logo_wrapper} to="/">
-          <img className={Css.logo} src="./img/logo1.png" alt="logo1" />
+          <img className={Css.logo} src="/img/logo1.png" alt="logo1" />
         </Link>
         <div className={Css.header_menu}>
           <NavLink activeClassName={Css.active} className={Css.item} to="/news">
@@ -39,13 +29,19 @@ const Header = ({ isAuth }: PropsType) => {
           <NavLink activeClassName={Css.active} className={Css.item} to="/ads">
             Жарнамалар
           </NavLink>
-          <div className={Css.item}>Маектер</div>
+          <NavLink
+            activeClassName={Css.active}
+            className={Css.item}
+            to="/communication"
+          >
+            Маектер
+          </NavLink>
           <div className={Css.item}>Байланыш</div>
         </div>
         <div className={Css.menu}>
-          <img className={Css.flag} src="./img/flag.png" alt="flag" />
+          <img className={Css.flag} src="/img/flag.png" alt="flag" />
           <div className={Css.lang}>KG</div>
-          <img className={Css.vector} src="./img/vec.png" alt="vector" />
+          <img className={Css.vector} src="/img/vec.png" alt="vector" />
         </div>
       </div>
       {!isAuth ? (
@@ -53,9 +49,20 @@ const Header = ({ isAuth }: PropsType) => {
           <button className={Css.btn}>КИРҮҮ</button>
         </Link>
       ) : (
-        <button className={Css.btn} onClick={onLogoutHandler}>
-          Чыгуу
-        </button>
+        <Link to="/my-profile">
+          <div className={Css.user_info}>
+            <p>{name}</p>
+            {img && (
+              <img
+                className={Css.avatar}
+                width="38"
+                height="38"
+                src={`${img}`}
+                alt="avatar"
+              />
+            )}
+          </div>
+        </Link>
       )}
     </header>
   );
