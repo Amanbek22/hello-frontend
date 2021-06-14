@@ -5,41 +5,50 @@
 footer{
     display: flex;
     justify-content: space-between;
-    margin: 10% 0;
-    padding: 2% 15% 2% 12%;
+    margin: 10% 0 0 0;
+    padding: 4% 15% 4% 12%;
 }
 .logo > img {
-    margin: 10% 0;
-    font-size: 12px;
+    margin: 0 0 10% 0;
+    width: 247px;
+    height: 79px;
 }
-.contacts > div{
-    margin: 15% 0;
+.logo > div{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
 }
-.address > div{
-    margin: 3% 0;
+.address{
+    margin: 0 0 22% 0;
 }
-.phone > span {
-    margin: 0 5%;
+.address > div:first-child{
+    margin: 0 0 5% 0;
 }
-.list > li {
-    list-style: none;
-    margin: 27% 0;
+.phone > img{
+    margin: 0 4% 0 0;
+}
+.list > li{
+    margin: 30% 0 0 0;
+}
+.list > li:first-child{
+    margin: 0;
 }
 .box_social{
-    margin: 1.2% 0 0 0;
     width: 20%;
 }
-.box_social > div{
-    margin: 7% 0;
+.box_img{
+    margin: 5% 0 0 0;
 }
-.whatsapp{
-    margin: 0 10%;
+.box_img > img{
+    margin: 0 10% 0 0;
 }
-
 @media (max-width: 767px){
     footer{
-        flex-direction: column;
         padding: 5% 10%;
+    }
+    .footer > div,ul{
+        width: 100%;
     }
     .logo > div{
         display: none;
@@ -58,5 +67,10 @@ footer{
     }
     .box_social{
         width: 100%;
+    }
+}
+@media (max-width: 996px){
+    footer{
+        flex-wrap: wrap;
     }
 }

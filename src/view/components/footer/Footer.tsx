@@ -18,19 +18,17 @@ const Footer = () => {
             <span>+996 999 060 999</span>
           </div>
         </div>
-        <div>
-          <ul className={Css.list}>
-            <li>Жаңылыктар</li>
-            <li>Маектер</li>
-            <li>Жарнамалар</li>
-            <li>Байланыш</li>
-          </ul>
-        </div>
+        <ul className={`${Css.list}`}>
+          <li>Жаңылыктар</li>
+          <li>Маектер</li>
+          <li>Жарнамалар</li>
+          <li>Байланыш</li>
+        </ul>
         <div className={Css.box_social}>
           <div>Биз социалдык</div>
           <div className={Css.box_img}>
             <img src="/img/instagram.png" />
-            <img src="/img/whatsapp.png" className={Css.whatsapp} />
+            <img src="/img/whatsapp.png" />
             <img src="/img/telegram.png" />
           </div>
         </div>

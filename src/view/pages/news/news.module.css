@@ -1,8 +1,9 @@
 .container{
-    padding: 5% 12% 5% 12%;
+    padding: 5% 12% 0 12%;
 }
+/* Slider */
 .container_slider{
-    margin: 5% 0;
+    margin: 4% 0;
 }
 .slider{
     background-image: url("../../../assets/img/background_slider.svg");
@@ -29,6 +30,7 @@
     font-size: 18px;
     line-height: 28px;
 }
+/* Menu navigation */
 .list{
     margin: 0 11% 0 0;
     list-style: none;
@@ -43,8 +45,7 @@
     justify-content: space-between;
 }
 .point{
-    font-size: 45px;
-    border-radius: 100%;
+    font-size: 22px;
 }
 .box_card{
     margin: 4% 0 0 0;
