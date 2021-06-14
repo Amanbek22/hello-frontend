@@ -18,8 +18,9 @@ import Test from "../view/pages/test/Test";
 import Lesson from "../view/pages/lesson/Lesson";
 import Category from "../view/pages/category/Category";
 import EditProfile from "../view/pages/edit-profile/EditProfile";
-import Maekter from "../view/pages/maekter/Maekter";
+import UserProfile from "../view/pages/userProfile/UserProfile";
 import Profile from "../view/pages/profile/Profile";
+import Communication from "../view/pages/communication/Communication";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
@@ -65,8 +66,9 @@ const AppRouter = () => {
         />
         <PrivateRoute path="/dashboard" component={() => "This is dashboard"} />
         <PrivateRoute path="/edit-profile" component={EditProfile} />
-        <PrivateRoute path="/profile" component={Profile} />
-        <PrivateRoute path="/maekter" component={Maekter} />
+        <PrivateRoute path="/my-profile" component={Profile} />
+        <PrivateRoute path="/user-profile" component={UserProfile} />
+        <PrivateRoute path="/communication" component={Communication} />
         <PrivateRoute exact path="/test/:uuid/:id" component={Test} />
       </Switch>
       <Footer />

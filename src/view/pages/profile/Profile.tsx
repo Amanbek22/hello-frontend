@@ -24,6 +24,8 @@ const Tabs = styled.div`
   padding: 0 100px;
   max-width: 1200px;
   width: 100%;
+  background-color: #fff;
+  border-radius: 50px;
 `;
 
 const Tab = styled.button`
@@ -35,7 +37,7 @@ const Tab = styled.button`
   padding: 20px 17px 30px;
   border-bottom: 1px solid #e0e7ea;
   &:first-child {
-    padding-left: 0px;
+    padding-left: 0;
   }
   &:hover {
     color: #21a95d;
@@ -46,11 +48,17 @@ const Tab = styled.button`
 const tabs = ["Жарнамалар", "Жаңылыктар", "Курстар", "Жүргүнчүлөр үчүн"];
 
 const Profile = () => {
+  //hooks
   const history = useHistory();
   const dispatch = useDispatch();
   const [logout, setLogout] = useState<boolean>(false);
   const [tabIndex, setTabIndex] = useState<number>(0);
   const query = useQuery();
+  const { login, userName, userPhoto, userAddressText }: any = useSelector(
+    (state: RootState) => state.user.userInfo,
+  );
+
+  //functions
 
   const onLogoutHandler = async () => {
     await Logout();
@@ -65,10 +73,6 @@ const Profile = () => {
   const goBack = () => {
     history.goBack();
   };
-
-  const { login, userName, userPhoto, userAddressText }: any = useSelector(
-    (state: RootState) => state.user.userInfo,
-  );
 
   const onLogoutModal = () => {
     history.push({
@@ -93,29 +97,24 @@ const Profile = () => {
         onLogoutModal={onLogoutModal}
         logout={logout}
       />
-      <div className={css.container}>
-        <div className={css.overflow} />
-        <div className={css.content}>
-          <>
-            <Tabs>
-              {tabs.map((tab, index) => (
-                <Tab
-                  className={index === tabIndex ? css.active : ""}
-                  key={tab}
-                  onClick={() => setTabIndex(index)}
-                >
-                  {tab}
-                </Tab>
-              ))}
-            </Tabs>
-          </>
-
-          <ProfileAdvertisment tabIndex={tabIndex} />
-          <ProfileNews tabIndex={tabIndex} />
-          <ProfileCourses tabIndex={tabIndex} />
-          <ProfileFollowers tabIndex={tabIndex} />
-        </div>
+      <div className={css.tabs}>
+        <Tabs>
+          {tabs.map((tab, index) => (
+            <Tab
+              className={index === tabIndex ? css.active : ""}
+              key={tab}
+              onClick={() => setTabIndex(index)}
+            >
+              {tab}
+            </Tab>
+          ))}
+        </Tabs>
       </div>
+
+      <ProfileAdvertisment tabIndex={tabIndex} />
+      <ProfileNews tabIndex={tabIndex} />
+      <ProfileCourses tabIndex={tabIndex} />
+      <ProfileFollowers tabIndex={tabIndex} />
 
       <ModalWindow open={logout} onClose={onLogoutModal}>
         <LogoutModal onLogout={onLogoutHandler} goBack={goBack} />

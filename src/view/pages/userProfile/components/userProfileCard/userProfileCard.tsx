@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import css from "../../maekter.module.css";
+import css from "../../userProfile.module.css";
 import { Button, IconButton, Paper, withStyles } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import PopoverElement from "../../../../components/popover/PopoverElement";
@@ -81,7 +81,7 @@ interface IProps {
   profession: string;
 }
 
-const MaekterCard: React.FC<IProps> = ({
+const UserProfileCard: React.FC<IProps> = ({
   name,
   img,
   city,
@@ -125,7 +125,7 @@ const MaekterCard: React.FC<IProps> = ({
   }, [query]);
 
   const open = Boolean(anchorEl);
-  const id = open ? "maekter-popover" : undefined;
+  const id = open ? "userProfile-popover" : undefined;
 
   return (
     <Paper elevation={0} className={css.paper}>
@@ -174,4 +174,4 @@ const MaekterCard: React.FC<IProps> = ({
   );
 };
 
-export default MaekterCard;
+export default UserProfileCard;

@@ -1,18 +1,17 @@
 .container{
     padding: 0% 12%;
     width: 100%;
-    position: relative;
 }
 
-.content{
-    position: relative;
-    z-index: 2;
-
+.tabs{
+    width: 100%;
+    background-color: #1C4F42;
+    height: 40px;
 }
 
 .card{
     width: 100%;
-    height: 400px;
+    height: 360px;
     background-color: #1C4F42;
     display: flex;
     justify-content: center;
@@ -102,26 +101,13 @@
 
 .editIButton{
     position: absolute !important;
-    top: -10px !important;
+    top: -13px !important;
     right: -50px !important;
 }
 
 .editIcon{
     color: #21A95D;
     font-size: 20px;
-}
-
-.overflow{
-    max-width: 1200px;
-    width: 100%;
-    position: absolute;
-    height: 100px;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #fff;
-    border-radius: 50px;
-    z-index: 1;
 }
 
 .logout__header{
