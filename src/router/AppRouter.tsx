@@ -19,21 +19,30 @@ import Lesson from "../view/pages/lesson/Lesson";
 import Category from "../view/pages/category/Category";
 import EditProfile from "../view/pages/edit-profile/EditProfile";
 import Ads from "../view/pages/ads/Ads";
+import UserProfile from "../view/pages/userProfile/UserProfile";
+import Profile from "../view/pages/profile/Profile";
+import Communication from "../view/pages/communication/Communication";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
   const isAuthenticated = Boolean(session);
   const isFetching = useSelector((state: RootState) => state.data.isFetching);
   const userInfo: any = useSelector((state: RootState) => state.user.userInfo);
+  const loading = useSelector((state: RootState) => state.user.loading);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchInitialize(session));
   }, []);
   if (isFetching) return <Preloader absolute />;
+  if (loading) return <Preloader absolute />;
   if (userInfo && !userInfo?.profileDone) return <EditProfile />;
   return (
     <>
-      <Header isAuth={isAuthenticated} />
+      <Header
+        isAuth={isAuthenticated}
+        name={userInfo?.userName}
+        img={userInfo?.userPhoto || userInfo?.photoUrl}
+      />
       <Switch>
         <Route exact path="/">
           <Main />
@@ -60,6 +69,10 @@ const AppRouter = () => {
           exact
         />
         <PrivateRoute path="/dashboard" component={() => "This is dashboard"} />
+        <PrivateRoute path="/edit-profile" component={EditProfile} />
+        <PrivateRoute path="/my-profile" component={Profile} />
+        <PrivateRoute path="/user-profile" component={UserProfile} />
+        <PrivateRoute path="/communication" component={Communication} />
         <PrivateRoute exact path="/test/:uuid/:id" component={Test} />
       </Switch>
       <Footer />

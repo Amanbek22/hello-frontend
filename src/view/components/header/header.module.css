@@ -100,6 +100,19 @@ header {
 .active, .white .active {
   color: #3ee45d !important;
 }
+
+.user_info{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+.avatar {
+  margin-left: 15px;
+  border-radius: 50%;
+}
+
 @media (max-width: 1024px) {
   header {
     padding: 24px 5%;

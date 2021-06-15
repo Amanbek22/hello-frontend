@@ -1,0 +1,99 @@
+.card{
+    width: 100%;
+    height: 135px;
+    background-color: #1C4F42;
+    padding-top: 40px;
+    box-sizing: border-box;
+}
+
+.avatar{
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background-color: #7e7e7e;
+}
+
+.ibutton{
+    margin-left: 10px;
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.icon{
+    width: 20px;
+    height: 20px;
+    color: #fff;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.box{
+    min-height: 300px;
+}
+
+.wrapper{
+   width: 100%;
+   height: 165px;
+   background-color: #1C4F42;
+}
+
+.tabs{
+    margin: 0 auto;
+    width: 800px;
+    min-height: 400px;
+    background-color: #fff;
+    border-radius: 50px;
+}
+
+.content__wrapper{
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 55px;
+}
+
+.userCard{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.userCard__right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.name{
+    font-size: 14px;
+    line-height: 16px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.you{
+    font-size: 14px;
+    color: #7E7E7E;
+    margin-left: 10px;
+}
+
+.message{
+    font-size: 14px;
+    color: #000;
+    margin-left: 5px;
+}
+
+.time{
+    color: #7E7E7E;
+    font-size: 10px;
+}
+
+
+
