@@ -15,7 +15,9 @@ function Ads() {
         </div>
       </div>
       <div className={css.text_wrapper}>
-        <div className={css.left_block}>Баннер</div>
+        <div className={css.left_block}>
+          <span>Баннер</span>
+        </div>
         <div>
           <div className={css.group}>
             <div className={css.group_img}>
