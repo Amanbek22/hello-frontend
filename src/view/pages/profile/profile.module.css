@@ -131,7 +131,7 @@
 }
 
 .active{
-    color: #21a95d;
+    color: #21a95d !important;
 }
 
 .adGrid{

@@ -1,0 +1,39 @@
+.slider{
+    width: 100%;
+    height: 615px;
+}
+.box_info{
+    color: #FFFFFF;
+    margin: 30% 5%;
+    position: relative;
+    height: 615px;
+}
+.title{
+    margin: 2% 0;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 56px;
+}
+.text{
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 2%;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.slide{
+    position: relative;
+}
+
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 615px;
+    z-index: -1;
+}

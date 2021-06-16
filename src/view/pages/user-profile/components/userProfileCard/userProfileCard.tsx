@@ -1,13 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import css from "../../userProfile.module.css";
 import { Button, IconButton, Paper, withStyles } from "@material-ui/core";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import PopoverElement from "../../../../components/popover/PopoverElement";
-import ModalWindow from "../../../../components/modal/Modal";
-import { useLocation } from "react-router-dom";
-import { useHistory } from "react-router";
-import BlackList from "./BlackList/BlackList";
-import Application from "./Application/Application";
 
 const WriteButton = withStyles({
   root: {
@@ -69,16 +64,15 @@ const transformOrigin = {
   horizontal: "right",
 };
 
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-};
-
 interface IProps {
   name: string;
   img: string | undefined;
   city: string;
   photoCount: number;
   profession: string;
+  onBlackList: () => void;
+  onApplication: () => void;
+  toChat: () => void;
 }
 
 const UserProfileCard: React.FC<IProps> = ({
@@ -87,25 +81,11 @@ const UserProfileCard: React.FC<IProps> = ({
   city,
   photoCount,
   profession,
+  onBlackList,
+  onApplication,
+  toChat,
 }) => {
-  const history = useHistory();
-  const query = useQuery();
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-  const [application, setApplication] = useState<boolean>(false);
-  const [blackList, setBlackList] = useState<boolean>(false);
-
-  const onBlackList = () => {
-    history.push({
-      pathname: history.location.pathname,
-      search: !blackList ? `?black-list=true` : "",
-    });
-  };
-  const onApplication = () => {
-    history.push({
-      pathname: history.location.pathname,
-      search: !application ? `?application=true` : "",
-    });
-  };
 
   const handlePopoverOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -115,23 +95,18 @@ const UserProfileCard: React.FC<IProps> = ({
     setAnchorEl(null);
   };
 
-  const goBack = () => {
-    history.goBack();
-  };
-
-  useEffect(() => {
-    setApplication(Boolean(query.get("application")));
-    setBlackList(Boolean(query.get("black-list")));
-  }, [query]);
-
   const open = Boolean(anchorEl);
-  const id = open ? "userProfile-popover" : undefined;
+  const id = open ? "user-profile-popover" : undefined;
 
   return (
     <Paper elevation={0} className={css.paper}>
       <div className={css.paper__header}>
         <div className={css.paperLeft}>
-          <img src={img && img} alt="avatar" className={css.avatar} />
+          {img ? (
+            <img src={img} alt="avatar" className={css.avatar} />
+          ) : (
+            <div className={css.avatar} />
+          )}
           <p className={css.name}>{name}</p>
         </div>
         <div>
@@ -151,24 +126,18 @@ const UserProfileCard: React.FC<IProps> = ({
           positionTransform={transformOrigin}
         >
           <>
-            <p className={css.popoverText} onClick={onBlackList}>
+            <p className={css.popoverText} onClick={() => onBlackList()}>
               Кара тизмеге киргизүү
             </p>
-            <p className={css.popoverText} onClick={onApplication}>
+            <p className={css.popoverText} onClick={() => onApplication()}>
               Колдонуучунун үстүнөн арыз берүү
             </p>
           </>
         </PopoverElement>
-        <ModalWindow open={blackList} onClose={onBlackList}>
-          <BlackList addToBlackList={() => "added"} goBack={goBack} />
-        </ModalWindow>
-        <ModalWindow open={application} onClose={onApplication}>
-          <Application />
-        </ModalWindow>
       </div>
       <div>
         <GreenButton>Достошуу</GreenButton>
-        <WriteButton>Жазуу</WriteButton>
+        <WriteButton onClick={() => toChat()}>Жазуу</WriteButton>
       </div>
     </Paper>
   );

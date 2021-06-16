@@ -9,7 +9,15 @@ const Friends = () => {
 
   return (
     <>
-      <Link to="/user-profile">
+      <Link to="/chat/1" className={css.link}>
+        <UserCard
+          img={user.userPhoto}
+          message={user.message}
+          name={user.userName}
+          time={user.time}
+        />
+      </Link>
+      <Link to="/chat/1">
         <UserCard
           img={user.userPhoto}
           message={user.message}

@@ -1,5 +1,5 @@
 import React from "react";
-import AdCard from "./AdCard/AdCard";
+import AdCard from "../../../../components/AdCard/AdCard";
 
 const Advertisement = () => {
   return <AdCard />;

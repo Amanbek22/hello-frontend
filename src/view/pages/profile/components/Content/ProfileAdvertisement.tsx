@@ -1,5 +1,5 @@
 import React from "react";
-import css from "../profile.module.css";
+import css from "../../profile.module.css";
 import { Button, withStyles } from "@material-ui/core";
 
 export const GreenButton = withStyles({
@@ -26,16 +26,12 @@ export const GreenButton = withStyles({
   },
 })(Button);
 
-interface IProps {
-  tabIndex: number;
-}
-
-const ProfileAdvertisment: React.FC<IProps> = ({ tabIndex }) => {
+const ProfileAdvertisement: React.FC = () => {
   return (
-    <div className={tabIndex !== 0 ? css.none : css.adGrid}>
+    <div className={css.adGrid}>
       <GreenButton>Жарнама берүү</GreenButton>
     </div>
   );
 };
 
-export default ProfileAdvertisment;
+export default ProfileAdvertisement;

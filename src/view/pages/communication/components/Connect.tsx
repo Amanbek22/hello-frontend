@@ -9,7 +9,7 @@ const Connect = () => {
   const user: any = useSelector((state: RootState) => state.user.userInfo);
   return (
     <>
-      <Link to="/edit-profile">
+      <Link to="/chat/1" className={css.link}>
         <UserCard
           img={user.userPhoto}
           message={user.message}
