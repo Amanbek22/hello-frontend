@@ -96,33 +96,6 @@
     font-size: 10px;
 }
 
-.navlink{
-    margin: 20px 0 22px 70px;
-    display: block;
-    width: 118px;
-    box-sizing: border-box;
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 6px 20px;
-    color: #7e7e7e;
-}
-
-.navlink:first-child {
-    margin-left: 0;
-}
-
-.active {
-    width: 118px;
-    height: 40px;
-    background-color: #21a95d;
-    border-radius: 5px;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 
 

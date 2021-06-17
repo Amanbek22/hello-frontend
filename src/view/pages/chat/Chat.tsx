@@ -1,16 +1,18 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import css from "./chat.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
 import ChatCard from "./components/ChatCard";
 import { useLocation } from "react-router-dom";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import ModalWindow from "../../components/modal/Modal";
 import BlackList from "../../components/BlackList/BlackList";
 import Message from "./components/Message";
 import { Button, TextField, withStyles } from "@material-ui/core";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import AttachFileRoundedIcon from "@material-ui/icons/AttachFileRounded";
+import { fetchVisitor } from "../../../store/feature/visitor/visitor.action";
+import Preloader from "../../preloader/preloader";
 
 const MyButton = withStyles({
   root: {
@@ -59,8 +61,10 @@ const useQuery = () => {
 
 const Chat = () => {
   const history = useHistory();
-  const { userPhoto, uid }: any = useSelector(
-    (state: RootState) => state.visitor.visitor,
+  const { uid } = useParams<{ uid: string }>();
+  const dispatch = useDispatch();
+  const { visitor, loading }: any = useSelector(
+    (state: RootState) => state.visitor,
   );
   const query = useQuery();
   const [blackList, setBlackList] = useState<boolean>(false);
@@ -103,14 +107,19 @@ const Chat = () => {
   };
 
   useEffect(() => {
+    dispatch(fetchVisitor(uid));
+  }, []);
+
+  useEffect(() => {
     setBlackList(Boolean(query.get("black-list")));
   }, [query]);
 
   return (
     <>
+      {loading && <Preloader absolute />}
       <div>
         <ChatCard
-          img={userPhoto}
+          img={visitor?.userPhoto}
           addToBlackList={onBlackList}
           goToUserProfile={goToUserProfile}
           clickPhoto={onClickPhoto}

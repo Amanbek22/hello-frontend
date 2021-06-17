@@ -67,8 +67,3 @@
 .popoverText:last-child{
     margin-bottom: 10px;
 }
-
-.active{
-    color: #21A95D;
-    border-bottom: 1px solid #21A95D;
-}

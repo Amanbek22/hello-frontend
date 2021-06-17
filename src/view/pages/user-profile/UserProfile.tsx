@@ -13,23 +13,77 @@ import BlackList from "../../components/BlackList/BlackList";
 import Application from "./components/userProfileCard/Application/Application";
 import { NavLink, Route, Switch, useLocation } from "react-router-dom";
 import { fetchVisitor } from "../../../store/feature/visitor/visitor.action";
+import { createStyles, withStyles } from "@material-ui/core/styles";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import TabPanel from "../../components/TabPanel";
 
-const Tabs = styled.div`
-  margin: 30px 0px 40px;
-  text-align: center;
-`;
+// const Tabs = styled.div`
+//
+// `;
+//
+// const Tab = styled.button`
+//   background: none;
+//   border: none;
+//   font-size: 24px;
+//   margin-left: 50px;
+//   cursor: pointer;
+//   padding-bottom: 10px;
+//   &:first-child {
+//     margin-left: 0;
+//   }
+// `;
 
-const Tab = styled.button`
-  background: none;
-  border: none;
-  font-size: 24px;
-  margin-left: 50px;
-  cursor: pointer;
-  padding-bottom: 10px;
-  &:first-child {
-    margin-left: 0;
-  }
-`;
+function a11yProps(index: any) {
+  return {
+    id: `full-width-tab-${index}`,
+    "aria-controls": `full-width-tabpanel-${index}`,
+  };
+}
+
+interface StyledTabsProps {
+  value: number;
+  onChange: (event: React.ChangeEvent<any>, newValue: number) => void;
+}
+
+const StyledTabs = withStyles({
+  root: {
+    margin: "30px 0px 40px",
+    "& .MuiTabs-fixed": {
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+  },
+  indicator: {
+    backgroundColor: "transparent",
+  },
+})((props: StyledTabsProps) => (
+  <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />
+));
+
+interface StyledTabProps {
+  label: string;
+}
+
+const StyledTab = withStyles(() =>
+  createStyles({
+    root: {
+      fontSize: 24,
+      marginLeft: 50,
+      paddingBottom: 10,
+      textTransform: "none",
+      color: "#7E7E7E",
+      "&:first-child": {
+        marginLeft: 0,
+      },
+    },
+    selected: {
+      color: "#21A95D",
+      borderBottom: "1px solid #21A95D",
+    },
+  }),
+)((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -45,6 +99,14 @@ const UserProfile = () => {
   const query = useQuery();
   const [application, setApplication] = useState<boolean>(false);
   const [blackList, setBlackList] = useState<boolean>(false);
+
+  const [value, setValue] = React.useState(0);
+
+  //functions
+
+  const handleChange = (event: React.ChangeEvent<any>, newValue: number) => {
+    setValue(newValue);
+  };
 
   const onBlackList = () => {
     history.push({
@@ -78,7 +140,7 @@ const UserProfile = () => {
   return (
     <>
       <div className={css.container}>
-        {loading && <Preloader />}
+        {loading && <Preloader absolute />}
         <UserProfileCard
           name={visitor?.userName}
           img={visitor?.userPhoto}
@@ -89,19 +151,22 @@ const UserProfile = () => {
           onBlackList={onBlackList}
           toChat={goToChat}
         />
-        <Tabs>
-          <NavLink to={`/user/${uid}/advertisement`}>
-            <Tab>Жарнамалар</Tab>
-          </NavLink>
-          <NavLink to={`/user/${uid}/photos`}>
-            <Tab>Сүрөттөр</Tab>
-          </NavLink>
-        </Tabs>
+        <StyledTabs
+          value={value}
+          onChange={handleChange}
+          aria-label="styled tabs example"
+        >
+          <StyledTab label="Жарнамалар" {...a11yProps(0)} />
+          <StyledTab label="Сүрөттөр" {...a11yProps(1)} />
+        </StyledTabs>
 
-        <Switch>
-          <Route path="/user/:id/advertisement" component={Advertisement} />
-          <Route path="/user/:id/photos" component={Photos} />
-        </Switch>
+        <TabPanel index={0} value={value}>
+          <Advertisement />
+        </TabPanel>
+
+        <TabPanel index={1} value={value}>
+          <Photos />
+        </TabPanel>
       </div>
       <ModalWindow open={blackList} onClose={onBlackList}>
         <BlackList addToBlackList={() => "added"} goBack={goBack} />
