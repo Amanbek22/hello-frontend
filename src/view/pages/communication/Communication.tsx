@@ -66,7 +66,7 @@ const Communication = () => {
                 className={tabIndex === 0 ? "active" : ""}
                 onClick={() => setTabIndex(0)}
               >
-                Мактер
+                Маектер
               </Tab>
               <Tab
                 className={tabIndex === 1 ? "active" : ""}

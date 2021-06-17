@@ -1,5 +1,3 @@
-import React from "react";
-import css from "../communication.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/rootReducer";
 import UserCard from "./UserCard";
