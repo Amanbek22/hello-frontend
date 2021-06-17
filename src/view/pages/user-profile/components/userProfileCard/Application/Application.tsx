@@ -59,7 +59,6 @@ const Application = () => {
     <div>
       <h3 className={css.header}>Колдонуучун үстүнөн арыз берүү? </h3>
       <CssTextField
-        className={css.input}
         value={application}
         onChange={(e) => setApplication(e.target.value)}
         type="text"
@@ -68,6 +67,8 @@ const Application = () => {
         label="Арыз берүүңүздүн себеби"
         variant="outlined"
         rows="4"
+        autoFocus={true}
+        multiline={true}
       />
       <ApplyButton>Арыз калтыруу</ApplyButton>
     </div>

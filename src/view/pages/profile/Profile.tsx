@@ -8,7 +8,7 @@ import { Logout } from "../../../firebase/firebase";
 import userSlice from "../../../store/feature/user/user.slice";
 import { useLocation } from "react-router-dom";
 import ModalWindow from "../../components/modal/Modal";
-import LogoutModal from "./components/LogoutModal";
+import LogoutModal from "../../components/Logout/LogoutModal";
 import { createStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -109,6 +109,10 @@ const Profile = () => {
     });
   };
 
+  const onDashboard = () => {
+    history.push("/dashboard");
+  };
+
   useEffect(() => {
     setLogout(Boolean(query.get("logout")));
   }, [query]);
@@ -124,6 +128,7 @@ const Profile = () => {
         onEditProfile={onProfileEdit}
         onLogoutModal={onLogoutModal}
         logout={logout}
+        onDashboard={onDashboard}
       />
       <div className={css.tabs}>
         <StyledTabs

@@ -2,7 +2,7 @@ import React from "react";
 import css from "../../profile.module.css";
 import { Button, withStyles } from "@material-ui/core";
 
-export const GreenButton = withStyles({
+const GreenButton = withStyles({
   root: {
     boxShadow: "none",
     textTransform: "none",

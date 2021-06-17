@@ -13,6 +13,7 @@ interface IProps {
   onEditProfile: () => void;
   onLogoutModal: () => void;
   logout: boolean;
+  onDashboard: () => void;
 }
 
 const ProfileCard: React.FC<IProps> = ({
@@ -22,6 +23,7 @@ const ProfileCard: React.FC<IProps> = ({
   city,
   onEditProfile,
   onLogoutModal,
+  onDashboard,
 }) => {
   return (
     <div className={css.card}>
@@ -29,7 +31,7 @@ const ProfileCard: React.FC<IProps> = ({
       {img && <img src={img} alt="avatar" className={css.avatar} />}
       <div className={css.nameWrapper}>
         <h3 className={css.name}>{name}</h3>
-        <IconButton className={css.editIButton}>
+        <IconButton className={css.editIButton} onClick={() => onDashboard()}>
           <SettingsOutlinedIcon className={css.editIcon} />
         </IconButton>
       </div>

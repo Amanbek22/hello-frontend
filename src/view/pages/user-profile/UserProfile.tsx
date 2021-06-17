@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import css from "./userProfile.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
-import styled from "styled-components";
 import UserProfileCard from "./components/userProfileCard/userProfileCard";
 import Advertisement from "./components/Advertisment/Advertisement";
 import Photos from "./components/Photos/Photos";
@@ -11,28 +10,12 @@ import Preloader from "../../preloader/preloader";
 import ModalWindow from "../../components/modal/Modal";
 import BlackList from "../../components/BlackList/BlackList";
 import Application from "./components/userProfileCard/Application/Application";
-import { NavLink, Route, Switch, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { fetchVisitor } from "../../../store/feature/visitor/visitor.action";
 import { createStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import TabPanel from "../../components/TabPanel";
-
-// const Tabs = styled.div`
-//
-// `;
-//
-// const Tab = styled.button`
-//   background: none;
-//   border: none;
-//   font-size: 24px;
-//   margin-left: 50px;
-//   cursor: pointer;
-//   padding-bottom: 10px;
-//   &:first-child {
-//     margin-left: 0;
-//   }
-// `;
 
 function a11yProps(index: any) {
   return {

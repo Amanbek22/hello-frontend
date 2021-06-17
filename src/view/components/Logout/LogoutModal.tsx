@@ -1,5 +1,5 @@
 import React from "react";
-import css from "../profile.module.css";
+import css from "./logout.module.css";
 import { Divider } from "@material-ui/core";
 
 interface IProps {

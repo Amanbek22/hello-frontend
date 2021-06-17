@@ -10,7 +10,7 @@ import {
 import { RootState } from "../../../store/rootReducer";
 import SlickSlider from "../../components/Slider/SlickSlider";
 import ContentHeader from "./components/ContentHeader/ContentHeader";
-import { Redirect, Route, Switch, useParams } from "react-router-dom";
+import { Route, Switch, useParams } from "react-router-dom";
 import Preloader from "../../preloader/preloader";
 
 const News = () => {
