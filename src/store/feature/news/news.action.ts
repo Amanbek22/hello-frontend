@@ -70,7 +70,12 @@ export const fetchComments = createAsyncThunk(
   async (doc: string, { dispatch }) => {
     dispatch(newsSlice.actions.setLoading(true));
     try {
-      const res = await getData({ path: "news", doc: doc, path2: "comments" });
+      const res = await getData({
+        path: "news",
+        doc: doc,
+        path2: "comments",
+        order: "date",
+      });
       const result = JSON.parse(JSON.stringify(res));
       dispatch(newsSlice.actions.setComments(result));
       result.map((item: any, index: number) =>

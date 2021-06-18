@@ -40,6 +40,7 @@
 .box{
     width: 800px;
     min-height: 400px;
+    max-height: 800px;
     margin: -140px auto 0;
     background-color: #fff;
     border-radius: 50px;
@@ -50,12 +51,23 @@
     font-size: 50px;
 }
 
-.message{
+.message__right{
+    margin-left: auto;
     min-width: 200px;
     width: fit-content;
     padding: 10px;
     border-radius: 10px 10px 0 10px;
     background-color: #F6F6F6;
+    margin-bottom: 10px;
+}
+
+.message__left{
+    min-width: 200px;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px 10px 10px 0;
+    background-color: #F6F6F6;
+    margin-bottom: 10px;
 }
 
 .message__wrapper{

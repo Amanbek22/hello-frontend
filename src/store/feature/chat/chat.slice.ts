@@ -3,11 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState = {
   loading: false,
   error: null,
-  visitor: null,
+  chatRoom: [],
+  messages: [],
 };
 
-const visitorSlice = createSlice({
-  name: "visitor",
+const chatSlice = createSlice({
+  name: "chat",
   initialState,
   reducers: {
     setLoading(state, action: PayloadAction<any>) {
@@ -17,8 +18,13 @@ const visitorSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     },
-    setVisitor(state, action: PayloadAction<any>) {
-      state.visitor = action.payload;
+    setChatRoom(state, action: PayloadAction<any>) {
+      state.chatRoom = action.payload;
+      state.error = null;
+      state.loading = false;
+    },
+    setMessages(state, action: PayloadAction<any>) {
+      state.messages = action.payload;
       state.error = null;
       state.loading = false;
     },
@@ -26,6 +32,6 @@ const visitorSlice = createSlice({
 });
 
 export default {
-  actions: visitorSlice.actions,
-  reducer: visitorSlice.reducer,
+  actions: chatSlice.actions,
+  reducer: chatSlice.reducer,
 };

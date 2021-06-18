@@ -20,8 +20,6 @@ const News = () => {
   );
   const { id } = useParams<{ id: string }>();
 
-  console.log(id);
-
   useEffect(() => {
     dispatch(fetchNewCats());
     dispatch(fetchNews(id));

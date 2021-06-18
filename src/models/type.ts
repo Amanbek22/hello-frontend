@@ -50,3 +50,26 @@ export interface CityModalType {
   nameEn: string;
   icon: string;
 }
+
+export interface ChatModalType {
+  chatId: string;
+  chatType: number;
+  lastMessage: string;
+  lastMessageRead: boolean;
+  lastMessageSender: string;
+  lastMessageTime: any;
+  lastMessageType: number;
+  user: any[];
+}
+
+export interface MessageModalType {
+  messageText: string;
+  messageType: number;
+  read: boolean;
+  receiverUid: string;
+  replyUid: string;
+  senderName: string;
+  senderUid: string;
+  time: any;
+  userPhoto: string;
+}
