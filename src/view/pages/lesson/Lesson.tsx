@@ -16,11 +16,17 @@ function Lesson() {
     })
       .finally(() => setIsPending(false))
       .then((res: VideoModalType) => {
-        // console.log(res);
-        setData({
-          ...res,
-          videoUrl: res?.videoUrl.replace("watch?v=", "embed/"),
-        });
+        if (res?.videoUrl.includes("youtube")) {
+          const split = res.videoUrl.split("=");
+          const id =
+            "https://www.youtube.com/embed/" + split[1].replace("&t", "");
+          setData({
+            ...res,
+            videoUrl: id,
+          });
+        } else {
+          setData(res);
+        }
       });
   }, [id]);
   if (isPending) return <Preloader absolute />;
