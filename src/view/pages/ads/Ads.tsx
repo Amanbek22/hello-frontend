@@ -1,6 +1,16 @@
 import css from "./ads.module.css";
+import ModalWindow from "../../components/modal/Modal";
+import { useEffect, useState } from "react";
 
 function Ads() {
+  const [isModal, setIsModal] = useState(false);
+
+  const openModal = () => {
+    setIsModal(true);
+  };
+  const closeModal = () => {
+    setIsModal(false);
+  };
   return (
     <div className={css.wrapper}>
       <div className={css.item}>
@@ -33,7 +43,26 @@ function Ads() {
           </div>
         </div>
       </div>
-      <button className={css.btn}>Жарнама берүү</button>
+      <button className={css.btn} onClick={openModal}>
+        Жарнама берүү
+      </button>
+      <ModalWindow open={isModal} onClose={closeModal}>
+        <div className={css.modal_wrapper}>
+          <h3>Жарнама берүү</h3>
+          <div className={css.item}>
+            <span>Написать с WhatsAppa</span>
+            <div className={css.whatsapp_icon}>
+              <img src="/img/whatsapp_icon.png" alt="whatsapp_icon" />
+            </div>
+          </div>
+          <div className={css.item}>
+            <span>Написать здесь</span>
+            <div className={css.list_icon}>
+              <img src="/img/list_icon.png" alt="list_icon" />
+            </div>
+          </div>
+        </div>
+      </ModalWindow>
     </div>
   );
 }

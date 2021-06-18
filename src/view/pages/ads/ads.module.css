@@ -119,6 +119,59 @@
   text-transform: uppercase;
 }
 
+.modal_wrapper {
+  width: 545px;
+  height: 220px;
+  border-radius: 10px;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.modal_wrapper > h3 {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  margin: 25px 124px 30px 0;
+  color: #0b0d34;
+}
+
+.item {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 21px;
+  color: #21a95d;
+  margin: 0 100px 15px 100px;
+  align-items: center;
+}
+
+.whatsapp_icon {
+  border: 1px solid #ffffff;
+  width: 28.57px;
+  height: 28.57px;
+}
+
+.whatsapp_icon > img {
+  margin-left: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.list_icon {
+  height: 25px;
+  width: 22.5px;
+}
+
+.list_icon > img {
+  margin-left: 22.5px;
+  width: 100%;
+  height: 100%;
+}
+
 @media (max-width: 992px) {
   .wrapper {
     padding: 2% 5%;
@@ -161,19 +214,14 @@
     height: 105px;
   }
   .group_img {
-    width: 110.95px;
-    height: 72.75px;
+    width: 90.95px;
+    height: 52.75px;
     margin: 0 20px 0 10px;
   }
   .container_img {
-    width: 108.6px;
-    height: 102px;
+    width: 88.6px;
+    height: 82px;
     margin: 0;
-  }
-  .group > div,
-  .container > div {
-    font-size: 22px;
-    line-height: 24px;
   }
 }
 

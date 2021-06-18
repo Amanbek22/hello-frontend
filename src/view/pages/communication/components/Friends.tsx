@@ -1,5 +1,3 @@
-import React from "react";
-import css from "../communication.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/rootReducer";
 import UserCard from "./UserCard";
@@ -9,7 +7,7 @@ const Friends = () => {
 
   return (
     <>
-      <Link to="/chat/1" className={css.link}>
+      <Link to="/chat/1">
         <UserCard
           img={user.userPhoto}
           message={user.message}
