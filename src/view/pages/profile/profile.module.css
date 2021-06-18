@@ -7,6 +7,7 @@
     width: 100%;
     background-color: #1C4F42;
     height: 40px;
+    margin-bottom: 100px;
 }
 
 .card{
@@ -110,34 +111,7 @@
     font-size: 20px;
 }
 
-.logout__header{
-    font-size: 24px;
-    margin-bottom: 50px;
-}
-
-.logout__text{
-    font-size: 18px;
-    color: #FF2E2E;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-
-.logout__back{
-    color: #21A95D;
-    font-size: 18px;
-    margin-top: 20px;
-    margin-bottom: 4px;
-    cursor: pointer;
-}
-
-.active{
-    color: #21a95d;
-}
-
 .adGrid{
     display: grid;
 }
 
-.none{
-    display: none;
-}

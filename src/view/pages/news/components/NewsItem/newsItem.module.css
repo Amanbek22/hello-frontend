@@ -1,0 +1,41 @@
+.container{
+    border-bottom: 2px solid #E0E7EA;
+}
+.box{
+    padding: 3% 0;
+    display: flex;
+    align-items: center;
+}
+.box_info{
+    margin: 2%;
+}
+.box_info > div{
+    margin: 2% 0;
+}
+.title{
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+    color: #0B0D34;
+}
+.text{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    color: #7E7E7E;
+    height: 80px;
+    overflow: hidden;
+}
+.link{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    color: #21A95D;
+}
+
+.image{
+    border-radius: 5px;
+}

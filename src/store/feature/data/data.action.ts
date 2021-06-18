@@ -42,12 +42,12 @@ export const fetchInitialize = createAsyncThunk(
   "data.initialize",
   async (user: any, { dispatch }) => {
     const isAuth = Boolean(user);
-    if (isAuth) {
-      await dispatch(fetchUser(user));
-    }
     await dispatch(fetchPopular());
-    await dispatch(fetchCategories());
     await dispatch(fetchNew());
+    dispatch(fetchCategories());
+    if (isAuth) {
+      dispatch(fetchUser(user));
+    }
     dispatch(dataSlice.actions.setFetching(false));
     dispatch(fetchStates());
   },
