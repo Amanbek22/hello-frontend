@@ -23,7 +23,11 @@ const Header = ({ isAuth, img, name }: PropsType) => {
           <img className={Css.logo} src="/img/logo1.png" alt="logo1" />
         </Link>
         <div className={Css.header_menu}>
-          <NavLink activeClassName={Css.active} className={Css.item} to="/news">
+          <NavLink
+            activeClassName={Css.active}
+            className={Css.item}
+            to="/news/all"
+          >
             Жаңылыктар
           </NavLink>
           <NavLink activeClassName={Css.active} className={Css.item} to="/ads">
@@ -49,7 +53,7 @@ const Header = ({ isAuth, img, name }: PropsType) => {
           <button className={Css.btn}>КИРҮҮ</button>
         </Link>
       ) : (
-        <Link to="/my-profile">
+        <Link to="/profile">
           <div className={Css.user_info}>
             <p>{name}</p>
             {img && (

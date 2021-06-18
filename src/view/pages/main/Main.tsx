@@ -54,7 +54,7 @@ const Main = () => {
       <div className="container">
         <div className={Css.title}> Категориялар </div>
         <div className={Css.box_cards}>
-          {categories.map((item: any) => (
+          {categories?.map((item: any) => (
             <CardCategory
               key={item.id}
               color={item.color}

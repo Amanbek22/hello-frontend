@@ -1,0 +1,118 @@
+.card{
+    width: 100%;
+    height: 300px;
+    background-color: #1C4F42;
+    padding-top: 40px;
+    box-sizing: border-box;
+}
+
+.avatar{
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background-color: #7e7e7e;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon{
+    color: #fff;
+    height: 20px;
+}
+
+.popText{
+    display: block;
+    font-size: 18px;
+    color: #000;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+.popText:last-child{
+    margin-bottom: 0;
+}
+
+
+.box{
+    width: 800px;
+    min-height: 400px;
+    margin: -140px auto 0;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 20px 80px;
+}
+
+.text{
+    font-size: 50px;
+}
+
+.message{
+    min-width: 200px;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px 10px 0 10px;
+    background-color: #F6F6F6;
+}
+
+.message__wrapper{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.time{
+    font-size: 10px;
+    line-height: 12px;
+    color: #7E7E7E;
+}
+
+.message__text{
+    font-size: 14px;
+    color: #0B0D34;
+    line-height: 16px;
+}
+
+.icon__check{
+    color: #7E7E7E;
+}
+
+.input__wrapper{
+    position: relative;
+    margin-top: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.send__icon{
+    color: #fff;
+}
+
+.attach__icon{
+    color: #7e7e7e;
+    position: absolute;
+    top: 12px;
+    right: 62px;
+    z-index: 3;
+
+}
+
+.input{
+    position: absolute;
+    top: 12px;
+    right: 62px;
+    z-index: 4;
+    width: 24px;
+    height: 32px;
+    opacity: 0;
+}
+
+input[type=file], /* FF, IE7+, chrome (except button) */
+input[type=file]::-webkit-file-upload-button { /* chromes and blink button */
+    cursor: pointer;
+}
+
