@@ -1,0 +1,179 @@
+.wrapper {
+  padding: 2% 12%;
+  width: 100%;
+  height: 437px;
+  background: #f2f2f2;
+}
+
+.city,
+.item,
+.text_wrapper,
+.group,
+.container {
+  display: flex;
+}
+
+.city_item {
+  width: 128px;
+  height: 21px;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #21a95d;
+  margin-right: 16px;
+}
+
+.vector {
+  width: 12px;
+  height: 7.41px;
+  margin-right: 51px;
+}
+
+.vector > img {
+  width: 100%;
+  height: 100%;
+}
+
+.search {
+  width: 17.49px;
+  height: 17.49px;
+}
+
+.search > img {
+  width: 100%;
+  height: 100%;
+}
+
+.left_block {
+  width: 692px;
+  height: 312px;
+  background: #d5d5d5;
+  border-radius: 10px;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  color: #000000;
+  text-align: center;
+  line-height: 312px;
+  margin: 26px 25px 26px 0;
+}
+
+.group,
+.container {
+  align-items: center;
+  width: 483px;
+  height: 146px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+.group {
+  margin: 26px 0 18px 0;
+}
+
+.group_img {
+  width: 110.95px;
+  height: 82.75px;
+  margin: 0 39px 0 56px;
+}
+
+.group_img > img,
+.container_img > img {
+  width: 100%;
+  height: 100%;
+}
+
+.container_img {
+  width: 138.6px;
+  height: 132px;
+  margin: 0 24.4px 0 43px;
+}
+
+.group > div,
+.container > div {
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+}
+
+.btn {
+  width: 300px;
+  height: 52px;
+  display: block;
+  margin: 0 auto;
+  background: #21a95d;
+  border-radius: 5px;
+  border: none;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+@media (max-width: 992px) {
+  .wrapper {
+    padding: 2% 5%;
+  }
+  .left_block {
+    width: 50%;
+  }
+  .group,
+  .container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 769px) {
+  .city_item {
+    font-size: 24px;
+    width: 208px;
+    height: 21px;
+    line-height: 18px;
+  }
+  .vector {
+    width: 18px;
+    height: 13.41px;
+    margin-right: 81px;
+  }
+  .search {
+    width: 23.49px;
+    height: 23.49px;
+  }
+  .left_block {
+    width: 65%;
+    height: 230px;
+  }
+  .left_block > span {
+    display: none;
+  }
+  .group,
+  .container {
+    width: 100%;
+    height: 105px;
+  }
+  .group_img {
+    width: 110.95px;
+    height: 72.75px;
+    margin: 0 20px 0 10px;
+  }
+  .container_img {
+    width: 108.6px;
+    height: 102px;
+    margin: 0;
+  }
+  .group > div,
+  .container > div {
+    font-size: 22px;
+    line-height: 24px;
+  }
+}
+

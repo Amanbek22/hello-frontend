@@ -30,6 +30,9 @@ const Header = ({ isAuth, img, name }: PropsType) => {
           >
             Жаңылыктар
           </NavLink>
+          <NavLink activeClassName={Css.active} className={Css.item} to="/ads">
+            Жарнамалар
+          </NavLink>
           <NavLink
             activeClassName={Css.active}
             className={Css.item}
@@ -37,7 +40,6 @@ const Header = ({ isAuth, img, name }: PropsType) => {
           >
             Маектер
           </NavLink>
-          <div className={Css.item}>Жарнамалар</div>
           <div className={Css.item}>Байланыш</div>
         </div>
         <div className={Css.menu}>
