@@ -10,7 +10,7 @@ const Footer = () => {
         </div>
         <div className={Css.contacts}>
           <div className={Css.address}>
-            <div>Адрес ул Токтоналиева 86</div>
+            <div>Адрес ул Токтоналиев 86</div>
             <div>№104 офис, Бишкек 2021</div>
           </div>
           <div className={Css.phone}>

@@ -1,4 +1,3 @@
-import React from "react";
 import css from "./video.module.css";
 import { VideoModalType } from "../../../models/type";
 import { Link } from "react-router-dom";

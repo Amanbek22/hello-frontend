@@ -36,9 +36,13 @@
   font-style: normal;
 }
 
-ul > li {
+.burger_title {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
   margin: 25px 0;
-  list-style-type: none;
 }
 
 .close {

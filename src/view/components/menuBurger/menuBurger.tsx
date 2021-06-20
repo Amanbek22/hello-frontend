@@ -22,14 +22,30 @@ const MenuBurger = (props: PropsType) => {
             <img src="/img/logo2.png" alt="logo" />
           </Link>
           <div className={css.header_menu}>
-            <ul className={css.burger_title}>
-              <NavLink onClick={() => props.setOpen(false)} to="/news">
+            <div className={css.burger_title}>
+              <NavLink
+                className={css.item}
+                onClick={() => props.setOpen(false)}
+                to="/news"
+              >
                 Жаңылыктар
               </NavLink>
-              <li>Маектер</li>
-              <li>Жарнамалар</li>
-              <li>Байланыш</li>
-            </ul>
+              <NavLink
+                className={css.item}
+                onClick={() => props.setOpen(false)}
+                to="/ads"
+              >
+                Жарнамалар
+              </NavLink>
+              <NavLink
+                className={css.item}
+                onClick={() => props.setOpen(false)}
+                to="/communication"
+              >
+                Маектер
+              </NavLink>
+              <div className={css.item}>Байланыш</div>
+            </div>
           </div>
         </div>
       </div>

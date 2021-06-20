@@ -186,21 +186,6 @@
 }
 
 @media (max-width: 769px) {
-  .city_item {
-    font-size: 24px;
-    width: 208px;
-    height: 21px;
-    line-height: 18px;
-  }
-  .vector {
-    width: 18px;
-    height: 13.41px;
-    margin-right: 81px;
-  }
-  .search {
-    width: 23.49px;
-    height: 23.49px;
-  }
   .left_block {
     width: 65%;
     height: 230px;

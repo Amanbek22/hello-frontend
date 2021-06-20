@@ -1,6 +1,6 @@
 import css from "./ads.module.css";
 import ModalWindow from "../../components/modal/Modal";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Ads() {
   const [isModal, setIsModal] = useState(false);
