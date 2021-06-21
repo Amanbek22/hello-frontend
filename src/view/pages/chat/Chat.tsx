@@ -13,6 +13,12 @@ import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import AttachFileRoundedIcon from "@material-ui/icons/AttachFileRounded";
 import { fetchVisitor } from "../../../store/feature/visitor/visitor.action";
 import Preloader from "../../preloader/preloader";
+import {
+  createMessage,
+  fetchChatRoom,
+  fetchMessages,
+} from "../../../store/feature/chat/chat.action";
+import firebase from "../../../firebase/firebase";
 
 const MyButton = withStyles({
   root: {
@@ -66,12 +72,26 @@ const Chat = () => {
   const { visitor, loading }: any = useSelector(
     (state: RootState) => state.visitor,
   );
+  const user: any = useSelector((state: RootState) => state.user.userInfo);
+  const { chatRoom, messages }: any = useSelector(
+    (state: RootState) => state.chat,
+  );
   const query = useQuery();
   const [blackList, setBlackList] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value);
+  };
+
+  const onSubmitHandler = () => {
+    const data = {
+      messageText: message,
+      time: firebase.firestore.FieldValue.serverTimestamp(),
+      senderUid: user.uid,
+    };
+    dispatch(createMessage({ doc: chatRoom[0]?.id, data }));
+    setMessage("");
   };
 
   const onBlackList = () => {
@@ -108,7 +128,12 @@ const Chat = () => {
 
   useEffect(() => {
     dispatch(fetchVisitor(uid));
+    dispatch(fetchChatRoom({ user1: uid, user2: user.uid }));
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchMessages(chatRoom[0]?.id));
+  }, [chatRoom]);
 
   useEffect(() => {
     setBlackList(Boolean(query.get("black-list")));
@@ -128,7 +153,15 @@ const Chat = () => {
       </div>
 
       <div className={css.box}>
-        <Message />
+        {messages?.map((message: any) => (
+          <Message
+            key={message.id}
+            id={user.uid}
+            uid={message.senderUid}
+            text={message.messageText}
+            time={message.time.seconds}
+          />
+        ))}
         <div className={css.input__wrapper}>
           <MyTextField
             value={message}
@@ -143,7 +176,7 @@ const Chat = () => {
             accept="image/*,image/jpeg"
             className={css.input}
           />
-          <MyButton>
+          <MyButton onClick={onSubmitHandler} disabled={!message}>
             <SendRoundedIcon className={css.send__icon} />
           </MyButton>
         </div>

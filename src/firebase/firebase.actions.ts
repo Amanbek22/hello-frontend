@@ -40,7 +40,7 @@ export const getData = async ({
       .collection(path)
       .doc(doc)
       .collection(path2)
-      .orderBy("date");
+      .orderBy(order);
     return fetchData(res);
   }
 
@@ -65,7 +65,7 @@ export const getData = async ({
   return fetchData(res);
 };
 
-const fetchData = async (res: any) => {
+export const fetchData = async (res: any) => {
   const snapshot = await res.get();
   if (snapshot.empty) return [];
   const postData: any = [];
