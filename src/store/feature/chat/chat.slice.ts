@@ -4,7 +4,7 @@ const initialState = {
   loading: false,
   error: null,
   chatRoom: [],
-  messages: [],
+  myChats: [],
 };
 
 const chatSlice = createSlice({
@@ -23,8 +23,8 @@ const chatSlice = createSlice({
       state.error = null;
       state.loading = false;
     },
-    setMessages(state, action: PayloadAction<any>) {
-      state.messages = action.payload;
+    setMyChats(state, action: PayloadAction<any>) {
+      state.myChats = action.payload;
       state.error = null;
       state.loading = false;
     },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import css from "../chat.module.css";
 import DoneAllIcon from "@material-ui/icons/DoneAll";
 
@@ -14,12 +14,18 @@ const Message: React.FC<IProps> = ({ id, uid, text, time }) => {
     .toString()
     .split(" ")
     .slice(4, -2)
-    .join(" ");
+    .join(" ")
+    .split(":")
+    .slice(0, -1)
+    .join(":");
+
   return (
     <div className={id === uid ? css.message__right : css.message__left}>
       <span className={css.time}>{date}</span>
       <div className={css.message__wrapper}>
-        <p className={css.message__text}>{text}</p>
+        <p className={css.message__text} style={{ maxWidth: 500 }}>
+          {text}
+        </p>
         <DoneAllIcon className={css.icon__check} />
       </div>
     </div>

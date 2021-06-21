@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./communication.module.css";
 import CommunicationCard from "./components/CommunicationCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
 import { Divider } from "@material-ui/core";
 import Friends from "./components/Friends";
@@ -10,6 +10,7 @@ import { createStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import TabPanel from "../../components/TabPanel";
+import { fetchMyChats } from "../../../store/feature/chat/chat.action";
 
 interface StyledTabsProps {
   value: number;
@@ -73,10 +74,11 @@ function a11yProps(index: any) {
 }
 
 const Communication = () => {
-  const { userPhoto }: any = useSelector(
+  const { userPhoto, uid }: any = useSelector(
     (state: RootState) => state.user.userInfo,
   );
   const [value, setValue] = React.useState(0);
+  const dispatch = useDispatch();
 
   const handleChange = (event: React.ChangeEvent<any>, newValue: number) => {
     setValue(newValue);
@@ -85,6 +87,10 @@ const Communication = () => {
   const onNotificationHandler = () => {
     console.log("Clicked on notification icon");
   };
+
+  useEffect(() => {
+    dispatch(fetchMyChats(uid));
+  }, []);
 
   return (
     <div>
