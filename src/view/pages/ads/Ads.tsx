@@ -13,7 +13,7 @@ function Ads() {
   };
   return (
     <div className={css.wrapper}>
-      <div className={css.item}>
+      <div className={css.searchWrapper}>
         <div className={css.city}>
           <div className={css.city_item}>Бишкек шаары</div>
           <div className={css.vector}>
@@ -49,7 +49,7 @@ function Ads() {
       <ModalWindow open={isModal} onClose={closeModal}>
         <div className={css.modal_wrapper}>
           <h3>Жарнама берүү</h3>
-          <div className={css.item}>
+          <div className={`${css.item} ${css.whatsapp}`}>
             <span>Написать с WhatsAppa</span>
             <div className={css.whatsapp_icon}>
               <img src="/img/whatsapp_icon.png" alt="whatsapp_icon" />
