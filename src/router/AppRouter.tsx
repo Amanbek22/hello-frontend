@@ -17,7 +17,7 @@ import Lesson from "../view/pages/lesson/Lesson";
 import Category from "../view/pages/category/Category";
 import EditProfile from "../view/pages/edit-profile/EditProfile";
 import Ads from "../view/pages/ads/Ads";
-import UserProfile from "../view/pages/userProfile/UserProfile";
+import UserProfile from "../view/pages/user-profile/UserProfile";
 import Profile from "../view/pages/profile/Profile";
 import Communication from "../view/pages/communication/Communication";
 import Chat from "../view/pages/chat/Chat";
