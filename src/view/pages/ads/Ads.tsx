@@ -1,6 +1,11 @@
 import css from "./ads.module.css";
 import ModalWindow from "../../components/modal/Modal";
-import React, { useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  ChangeEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { createStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -104,6 +109,7 @@ function Ads() {
   const [secondSelect, setSecondSelect] = useState<any>("");
   const [thirdSelect, setThirdSelect] = useState<any>("");
   const [city, setCity] = useState<any>("");
+  const [search, setSearch] = useState<string>("");
 
   const { categories, states }: any = useSelector(
     (state: RootState) => state.ads,
@@ -135,6 +141,10 @@ function Ads() {
     event: React.ChangeEvent<{ value: any }>,
   ) => {
     setThirdSelect(event.target.value as string);
+  };
+
+  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
   };
 
   const openModal = () => {
@@ -191,10 +201,14 @@ function Ads() {
             </Select>
           </div>
           <div className={css.search}>
-            <img
-              src="/img/search.png"
-              className={css.select__icon}
-              alt="search"
+            <div className={css.img}>
+              <img src="/img/search.png" alt="search" />
+            </div>
+            <input
+              type="search"
+              className={css.search__input}
+              value={search}
+              onChange={onSearchChange}
             />
           </div>
         </div>
