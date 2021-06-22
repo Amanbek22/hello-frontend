@@ -86,12 +86,15 @@
 }
 
 .message__text{
+    word-break: break-word;
+    line-height: 20px;
     font-size: 14px;
     color: #0B0D34;
     white-space: normal !important;
 }
 
 .icon__check{
+    margin-left: 5px;
     align-self: flex-end;
     color: #7E7E7E;
 }

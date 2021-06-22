@@ -4,7 +4,7 @@ const initialState = {
   loading: false,
   error: null,
   chatRoom: [],
-  myChats: [],
+  myChats: [{ author: {} }] as any,
 };
 
 const chatSlice = createSlice({
@@ -27,6 +27,11 @@ const chatSlice = createSlice({
       state.myChats = action.payload;
       state.error = null;
       state.loading = false;
+    },
+    setMyChatsAuthor(state, action: PayloadAction<any>) {
+      state.error = null;
+      state.loading = false;
+      state.myChats[action.payload.index].author = action.payload.result;
     },
   },
 });

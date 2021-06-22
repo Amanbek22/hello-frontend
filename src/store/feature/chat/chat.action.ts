@@ -1,12 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
   fetchData,
+  getData,
   setData,
   updateData,
 } from "../../../firebase/firebase.actions";
 import { db } from "../../../firebase/firebase.actions";
 import chatSlice from "./chat.slice";
 import { ChatModalType } from "../../../models/type";
+import { RootState } from "../../rootReducer";
 
 export const fetchChatRoom = createAsyncThunk(
   "chat/ChatRoom",
@@ -83,14 +85,38 @@ const updateChat = createAsyncThunk(
 
 export const fetchMyChats = createAsyncThunk(
   "chat/myChats",
-  async (id: string, { dispatch }) => {
+  async (id: string, { dispatch, getState }) => {
     dispatch(chatSlice.actions.setLoading(true));
+    const { user }: any = getState() as { state: RootState };
+    const uid: any = user.userInfo?.uid;
     try {
       const res = await db
         .collection("chats")
         .where("user", "array-contains", id);
       const result = await fetchData(res);
       dispatch(chatSlice.actions.setMyChats(result));
+      result.map((item: any, index: number) =>
+        dispatch(
+          fetchMyChatsAuthor({
+            doc: item.user[1] === uid ? item.user[0] : item.user[1],
+            index: index,
+          }),
+        ),
+      );
+    } catch (e) {
+      dispatch(chatSlice.actions.setError(e));
+    }
+  },
+);
+
+const fetchMyChatsAuthor = createAsyncThunk(
+  "chat/myChatsAuthor",
+  async ({ doc, index }: any, { dispatch }) => {
+    dispatch(chatSlice.actions.setLoading(true));
+    try {
+      const res = await getData({ path: "users", doc: doc });
+      const result = JSON.parse(JSON.stringify(res));
+      dispatch(chatSlice.actions.setMyChatsAuthor({ result, index }));
     } catch (e) {
       dispatch(chatSlice.actions.setError(e));
     }

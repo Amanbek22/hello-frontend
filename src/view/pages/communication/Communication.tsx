@@ -11,6 +11,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import TabPanel from "../../components/TabPanel";
 import { fetchMyChats } from "../../../store/feature/chat/chat.action";
+import Preloader from "../../preloader/preloader";
 
 interface StyledTabsProps {
   value: number;
@@ -79,6 +80,7 @@ const Communication = () => {
   );
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
+  const { loading }: any = useSelector((state: RootState) => state.chat);
 
   const handleChange = (event: React.ChangeEvent<any>, newValue: number) => {
     setValue(newValue);
@@ -93,30 +95,33 @@ const Communication = () => {
   }, []);
 
   return (
-    <div>
-      <CommunicationCard onClick={onNotificationHandler} img={userPhoto} />
-      <div className={css.wrapper}>
-        <div className={css.tabs}>
-          <StyledTabs
-            value={value}
-            onChange={handleChange}
-            aria-label="styled tabs example"
-          >
-            <StyledTab label="Маектер" {...a11yProps(0)} />
-            <StyledTab label="Достор" {...a11yProps(1)} />
-          </StyledTabs>
-          <Divider />
+    <>
+      {loading && <Preloader absolute />}
+      <div>
+        <CommunicationCard onClick={onNotificationHandler} img={userPhoto} />
+        <div className={css.wrapper}>
+          <div className={css.tabs}>
+            <StyledTabs
+              value={value}
+              onChange={handleChange}
+              aria-label="styled tabs example"
+            >
+              <StyledTab label="Маектер" {...a11yProps(0)} />
+              <StyledTab label="Достор" {...a11yProps(1)} />
+            </StyledTabs>
+            <Divider />
+          </div>
+        </div>
+        <div className={css.content__wrapper}>
+          <TabPanel index={0} value={value}>
+            <Connect />
+          </TabPanel>
+          <TabPanel index={1} value={value}>
+            <Friends />
+          </TabPanel>
         </div>
       </div>
-      <div className={css.content__wrapper}>
-        <TabPanel index={0} value={value}>
-          <Connect />
-        </TabPanel>
-        <TabPanel index={1} value={value}>
-          <Friends />
-        </TabPanel>
-      </div>
-    </div>
+    </>
   );
 };
 

@@ -14,30 +14,12 @@
   display: flex;
 }
 
-.city_item {
-  width: 128px;
-  height: 21px;
-  font-family: Roboto, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 21px;
-  color: #21a95d;
-  margin-right: 16px;
-}
-
-.vector {
-  width: 12px;
-  height: 7.41px;
-  margin-right: 51px;
-}
-
-.vector > img {
-  width: 100%;
-  height: 100%;
+.searchWrapper{
+  align-items: center;
 }
 
 .search {
+  cursor: pointer;
   width: 17.49px;
   height: 17.49px;
 }
@@ -177,6 +159,49 @@
   margin-left: 22.5px;
   width: 100%;
   height: 100%;
+}
+
+
+
+.sort{
+  display: flex;
+  align-items: center;
+}
+
+.sort__icon{
+  color: #21a95d;
+  margin-right: 20px;
+}
+
+.select__root{
+  background-color: transparent !important;
+}
+
+.select{
+  max-height: 250px !important;
+  width: 300px !important;
+  padding: 20px !important;
+}
+
+.selected{
+  background-color: #FFFFFF !important;
+}
+
+.select_icon{
+  top: calc(50%);
+  transform: translateY(-50%);
+  right: 5px;
+  position: absolute;
+  pointer-events: none;
+}
+
+.content__wrapper{
+  padding: 2% 12%;
+  width: 100%;
+}
+
+.content{
+  margin-top: 40px;
 }
 
 @media (max-width: 992px) {

@@ -5,17 +5,29 @@ import UserCard from "./UserCard";
 import { Link } from "react-router-dom";
 
 const Connect = () => {
-  const user: any = useSelector((state: RootState) => state.user.userInfo);
+  const { myChats }: any = useSelector((state: RootState) => state.chat);
+  const { userInfo }: any = useSelector((state: RootState) => state.user);
   return (
     <>
-      <Link to={`/chat/${user.uid}`}>
-        <UserCard
-          img={user.userPhoto}
-          message={user.message}
-          name={user.userName}
-          time={user.time}
-        />
-      </Link>
+      {myChats?.map((chat: any, index: any) => (
+        <Link
+          to={
+            userInfo?.uid === chat.user?.[1]
+              ? `/chat/${chat.user?.[0]}`
+              : `/chat/${chat.user?.[1]}`
+          }
+        >
+          <UserCard
+            key={index}
+            uid={userInfo?.uid}
+            authorUid={chat.lastMessageSender}
+            img={chat.author?.userPhoto}
+            message={chat.lastMessage}
+            name={chat.author?.userName}
+            time={chat.lastMessageTime?.seconds}
+          />
+        </Link>
+      ))}
     </>
   );
 };
