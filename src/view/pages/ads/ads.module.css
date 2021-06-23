@@ -5,6 +5,11 @@
   background: #f2f2f2;
 }
 
+a{
+  text-decoration: none;
+  color: #21a95d;
+}
+
 .city,
 .item,
 .searchWrapper,
@@ -212,10 +217,6 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .sort__icon{
   color: #21a95d;
   margin-right: 20px;
-}
-
-.select__root{
-  background-color: transparent !important;
 }
 
 .select{

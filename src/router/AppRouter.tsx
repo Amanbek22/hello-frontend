@@ -24,6 +24,7 @@ import Chat from "../view/pages/chat/Chat";
 import NewsFull from "../view/pages/news-full/NewsFull";
 import Dashboard from "../view/pages/dashboard/Dashboard";
 import Friendship from "../view/pages/friendship/Friendship";
+import AddAdvert from "../view/pages/add-advert/AddAdvert";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
@@ -84,6 +85,7 @@ const AppRouter = () => {
         <PrivateRoute exact path="/dashboard" component={Dashboard} />
         <PrivateRoute exact path="/friendship" component={Friendship} />
         <PrivateRoute exact path="/test/:uuid/:id" component={Test} />
+        <PrivateRoute exact path="/add-advert" component={AddAdvert} />
       </Switch>
       <Footer />
     </>

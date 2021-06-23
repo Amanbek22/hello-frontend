@@ -1,11 +1,6 @@
 import css from "./ads.module.css";
 import ModalWindow from "../../components/modal/Modal";
-import React, {
-  ChangeEvent,
-  ChangeEventHandler,
-  useEffect,
-  useState,
-} from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { createStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -17,11 +12,9 @@ import Relax from "./components/Relax/Relax";
 import SortIcon from "@material-ui/icons/Sort";
 import { useDispatch, useSelector } from "react-redux";
 import { InputBase, MenuItem, Select } from "@material-ui/core";
-import {
-  fetchAdsCategories,
-  fetchStates,
-} from "../../../store/feature/ads/ads.action";
+import { fetchAdsCategories } from "../../../store/feature/ads/ads.action";
 import { RootState } from "../../../store/rootReducer";
+import { Link } from "react-router-dom";
 
 function a11yProps(index: any) {
   return {
@@ -111,9 +104,8 @@ function Ads() {
   const [city, setCity] = useState<any>("");
   const [search, setSearch] = useState<string>("");
 
-  const { categories, states }: any = useSelector(
-    (state: RootState) => state.ads,
-  );
+  const { categories }: any = useSelector((state: RootState) => state.ads);
+  const { states }: any = useSelector((state: RootState) => state.data);
 
   //functions
 
@@ -156,7 +148,6 @@ function Ads() {
 
   useEffect(() => {
     dispatch(fetchAdsCategories());
-    dispatch(fetchStates());
   }, []);
   return (
     <>
@@ -397,7 +388,7 @@ function Ads() {
             </div>
           </div>
           <div className={css.item}>
-            <span>Написать здесь</span>
+            <Link to="/add-advert">Написать здесь</Link>
             <div className={css.list_icon}>
               <img src="/img/list_icon.png" alt="list_icon" />
             </div>
