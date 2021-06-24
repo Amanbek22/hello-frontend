@@ -14,10 +14,14 @@ import { CityModalType } from "../../../models/type";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
 import { Field, Form } from "react-final-form";
-import { fetchAdsCategories } from "../../../store/feature/ads/ads.action";
+import {
+  createAd,
+  fetchAdsCategories,
+} from "../../../store/feature/ads/ads.action";
 import { CssTextField } from "../authentication/components/phone.form";
 import AddPictures from "./components/AddPictures";
 import ModalWindow from "../../components/modal/Modal";
+import firebase from "../../../firebase/firebase";
 
 const useStyles = makeStyles({
   label: {
@@ -74,21 +78,56 @@ const AddAdvert = () => {
   const cities: CityModalType[] = useSelector(
     (state: RootState) => state.data.states,
   );
+  const { uid }: any = useSelector((state: RootState) => state.user.userInfo);
 
-  const submitHandler = (values: FormEvent) => {
+  const submitHandler = () => {
     setIsModal(true);
     //промись вернуть, чтобы был ресет формы
   };
-  const onConfirmHandler = (values: FormEvent) => {
-    console.log(values);
-    closeModal();
-  };
 
-  const openModal = () => {
-    setIsModal(true);
-  };
   const closeModal = () => {
     setIsModal(false);
+  };
+  const createAdvert = (values: any, images: any) => {
+    const data = {
+      ...values,
+      category: parseInt(values.category),
+      state: parseInt(values.state),
+      authorUid: uid,
+      costText: values.cost ? `${values.cost} сом` : "",
+      addressText: cities.filter((state: any) => state.id === values.state)[0]
+        .name,
+      categoryText: categories.filter(
+        (category: any) => category.id === values.category,
+      )[0].name,
+      date: firebase.firestore.FieldValue.serverTimestamp(),
+      images: images,
+      active: 0,
+      views: 0,
+      ref: null,
+    };
+    dispatch(createAd(data));
+  };
+
+  const onConfirmHandler = async (values: FormEvent | any) => {
+    closeModal();
+    const images: string[] = [];
+    values?.images?.map(async (image: any, index: number) => {
+      const payload = new FormData();
+      payload.append("image", image[0]);
+      payload.append("code", "0");
+      fetch("http://176.126.164.190:8000/api/image-create/", {
+        method: "POST",
+        body: payload,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          images.push(data.image);
+          if (values.images.length === index + 1) {
+            createAdvert(values, images);
+          }
+        });
+    });
   };
 
   useEffect(() => {
@@ -117,11 +156,8 @@ const AddAdvert = () => {
                 {(props) => <AddPictures {...props} />}
               </Field>
               <div className={css.form}>
-                <Field
-                  name="name"
-                  validate={(value) => (value ? undefined : "Required")}
-                >
-                  {(props) => <Input {...props} label="Название" />}
+                <Field name="name">
+                  {(props) => <Input {...props} required label="Название" />}
                 </Field>
                 <Field name="category">
                   {(props) => (
@@ -133,7 +169,7 @@ const AddAdvert = () => {
                     />
                   )}
                 </Field>
-                <Field name="address">
+                <Field name="state">
                   {(props) => (
                     <CustomSelect
                       required
@@ -204,6 +240,7 @@ const Input = ({ label, ...props }: any) => {
 const CostInput = ({ label, ...props }: any) => {
   return (
     <CssTextField
+      type="number"
       label={label}
       variant="outlined"
       value={props.input.value}
@@ -256,7 +293,7 @@ const CustomSelect = ({ label, input, array, ...props }: any) => {
         {array?.map((el: any) => (
           <MenuItem
             key={el.id}
-            value={el.name}
+            value={el.id}
             classes={{ selected: css.selected }}
           >
             {el.name}

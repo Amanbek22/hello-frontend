@@ -1,8 +1,7 @@
 import React from "react";
-import AdCard from "../../../../components/AdCard/AdCard";
 
 const Advertisement = () => {
-  return <AdCard />;
+  return <h1>Ads</h1>;
 };
 
 export default Advertisement;

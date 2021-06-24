@@ -26,7 +26,6 @@ import {
 import firebase from "../../../firebase/firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { db } from "../../../firebase/firebase.actions";
-import { type } from "os";
 
 const MyButton = withStyles({
   root: {

@@ -7,10 +7,11 @@ const AddPictures = ({ input }: any) => {
   const [value, setValue] = useState<any>([]);
   const [images, setImages] = useState<any>([]);
 
+  input.onChange(images);
+
   const handleChange = (target: any) => {
     if (value.length < 5) {
       setImages((prev: any) => [target.files, ...prev]);
-      input.onChange(images);
       const reader = new FileReader();
       reader.readAsDataURL(target.files[0]);
       reader.onload = (e: any) => {

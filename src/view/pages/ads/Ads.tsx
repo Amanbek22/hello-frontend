@@ -103,7 +103,6 @@ function Ads() {
   const [thirdSelect, setThirdSelect] = useState<any>("");
   const [city, setCity] = useState<any>("");
   const [search, setSearch] = useState<string>("");
-
   const { categories }: any = useSelector((state: RootState) => state.ads);
   const { states }: any = useSelector((state: RootState) => state.data);
 
@@ -282,9 +281,9 @@ function Ads() {
           </Select>
           <Select
             id="second-select"
-            value={secondSelect || 0}
+            value={secondSelect || "date"}
             onChange={handleSecondSelectChange}
-            defaultValue={0}
+            defaultValue={"date"}
             input={<SelectInput />}
             MenuProps={{
               classes: { paper: css.select },
@@ -306,16 +305,22 @@ function Ads() {
               />
             )}
           >
-            <MenuItem classes={{ selected: css.selected }} value={0}>
+            <MenuItem classes={{ selected: css.selected }} value={"date"}>
               Жаңылар биринчи
             </MenuItem>
-            <MenuItem classes={{ selected: css.selected }} value={1}>
+            <MenuItem
+              classes={{ selected: css.selected }}
+              value={"date reverse"}
+            >
               Эскилер биринчи
             </MenuItem>
-            <MenuItem classes={{ selected: css.selected }} value={2}>
+            <MenuItem
+              classes={{ selected: css.selected }}
+              value={"cost reverse"}
+            >
               Арзандары биринчи{" "}
             </MenuItem>
-            <MenuItem classes={{ selected: css.selected }} value={3}>
+            <MenuItem classes={{ selected: css.selected }} value={"cost"}>
               Кымбаттары биринчи{" "}
             </MenuItem>
           </Select>
@@ -365,7 +370,7 @@ function Ads() {
 
         <div className={css.content}>
           <TabPanel index={0} value={value}>
-            <Ad />
+            <Ad id={firstSelect} order={secondSelect} />
           </TabPanel>
           <TabPanel index={1} value={value}>
             <Passengers />

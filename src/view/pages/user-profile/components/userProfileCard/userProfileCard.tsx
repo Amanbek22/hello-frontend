@@ -18,27 +18,6 @@ const WriteButton = withStyles({
   },
 })(Button);
 
-export const GreenButton = withStyles({
-  root: {
-    boxShadow: "none",
-    textTransform: "none",
-    fontSize: 14,
-    padding: "10px 36px",
-    color: "#fff",
-    backgroundColor: "#21A95D",
-    boxSizing: "border-box",
-    lineHeight: 1,
-    "&:hover": {
-      backgroundColor: "#33a921",
-      boxShadow: "none",
-    },
-    "&:active": {
-      boxShadow: "none",
-      backgroundColor: "#21A95D",
-    },
-  },
-})(Button);
-
 const IButton = withStyles({
   root: {
     boxShadow: "none",
@@ -136,7 +115,6 @@ const UserProfileCard: React.FC<IProps> = ({
         </PopoverElement>
       </div>
       <div>
-        <GreenButton>Достошуу</GreenButton>
         <WriteButton onClick={() => toChat()}>Жазуу</WriteButton>
       </div>
     </Paper>

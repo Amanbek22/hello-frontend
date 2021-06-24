@@ -18,34 +18,57 @@ const CardBody = styled.div`
   padding: 14px 15px 31px 19px;
 `;
 
-const AdCard = () => {
+interface IProps {
+  img: string | undefined;
+  name: string;
+  date: any;
+  costText: string;
+  description: any;
+  views: number;
+}
+
+const AdCard: React.FC<IProps> = ({
+  img,
+  name,
+  date,
+  costText,
+  description,
+  views,
+}) => {
+  const time = new Date(parseInt(date) * 1000)
+    .toString()
+    .split(" ")
+    .slice(1, -2)
+    .join(" ");
+
   return (
     <Card>
-      <img
-        src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1873&q=80"
-        height="188"
-        width="100%"
-        alt=""
-      />
+      <div className={css.image__wrapper}>
+        {img ? (
+          <img
+            src={img}
+            height="188"
+            width="100%"
+            className={css.image}
+            alt="image"
+          />
+        ) : (
+          <div className={css.image} />
+        )}
+      </div>
       <CardBody>
         <div className={css.view}>
           <div className={css.viewLeft}>
             <VisibilityOutlinedIcon />
-            <p>7</p>
+            <p>{views}</p>
           </div>
           <div className={css.viewRight}>
-            <p>14 май 2021</p>
-            <p>16:36</p>
+            <p>{time}</p>
           </div>
         </div>
-        <h1 className={css.mainText}>Квартиры на продажу</h1>
-        <h3 className={css.subText}>Договорная</h3>
-        <p className={css.description}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio
-          fuga impedit quod, sint suscipit temporibus? Commodi consequatur cum,
-          deleniti doloremque facilis mollitia odio recusandae, repellat tempore
-          tenetur, totam voluptatem. Maxime.
-        </p>
+        <h1 className={css.mainText}>{name}</h1>
+        <h3 className={css.subText}>{costText === " сом" ? "" : costText}</h3>
+        <p className={css.description}>{description}</p>
       </CardBody>
     </Card>
   );

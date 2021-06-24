@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import css from "../chat.module.css";
 import DoneAllIcon from "@material-ui/icons/DoneAll";
 
