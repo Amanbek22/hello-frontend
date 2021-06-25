@@ -14,7 +14,11 @@ const Message: React.FC<IProps> = ({ id, uid, text, time }) => {
     .toString()
     .split(" ")
     .slice(4, -2)
-    .join(" ");
+    .join(" ")
+    .split(":")
+    .slice(0, -1)
+    .join(":");
+
   return (
     <div className={id === uid ? css.message__right : css.message__left}>
       <span className={css.time}>{date}</span>

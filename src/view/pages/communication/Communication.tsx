@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import css from "./communication.module.css";
 import CommunicationCard from "./components/CommunicationCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
 import { Divider } from "@material-ui/core";
 import Friends from "./components/Friends";
@@ -10,6 +10,8 @@ import { createStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import TabPanel from "../../components/TabPanel";
+import { fetchMyChats } from "../../../store/feature/chat/chat.action";
+import Preloader from "../../preloader/preloader";
 
 interface StyledTabsProps {
   value: number;
@@ -73,10 +75,12 @@ function a11yProps(index: any) {
 }
 
 const Communication = () => {
-  const { userPhoto }: any = useSelector(
+  const { userPhoto, uid }: any = useSelector(
     (state: RootState) => state.user.userInfo,
   );
   const [value, setValue] = React.useState(0);
+  const dispatch = useDispatch();
+  const { loading }: any = useSelector((state: RootState) => state.chat);
 
   const handleChange = (event: React.ChangeEvent<any>, newValue: number) => {
     setValue(newValue);
@@ -86,31 +90,38 @@ const Communication = () => {
     console.log("Clicked on notification icon");
   };
 
+  useEffect(() => {
+    dispatch(fetchMyChats(uid));
+  }, []);
+
   return (
-    <div>
-      <CommunicationCard onClick={onNotificationHandler} img={userPhoto} />
-      <div className={css.wrapper}>
-        <div className={css.tabs}>
-          <StyledTabs
-            value={value}
-            onChange={handleChange}
-            aria-label="styled tabs example"
-          >
-            <StyledTab label="Маектер" {...a11yProps(0)} />
-            <StyledTab label="Достор" {...a11yProps(1)} />
-          </StyledTabs>
-          <Divider />
+    <>
+      {loading && <Preloader absolute />}
+      <div>
+        <CommunicationCard onClick={onNotificationHandler} img={userPhoto} />
+        <div className={css.wrapper}>
+          <div className={css.tabs}>
+            <StyledTabs
+              value={value}
+              onChange={handleChange}
+              aria-label="styled tabs example"
+            >
+              <StyledTab label="Маектер" {...a11yProps(0)} />
+              <StyledTab label="Достор" {...a11yProps(1)} />
+            </StyledTabs>
+            <Divider />
+          </div>
+        </div>
+        <div className={css.content__wrapper}>
+          <TabPanel index={0} value={value}>
+            <Connect />
+          </TabPanel>
+          <TabPanel index={1} value={value}>
+            <Friends />
+          </TabPanel>
         </div>
       </div>
-      <div className={css.content__wrapper}>
-        <TabPanel index={0} value={value}>
-          <Connect />
-        </TabPanel>
-        <TabPanel index={1} value={value}>
-          <Friends />
-        </TabPanel>
-      </div>
-    </div>
+    </>
   );
 };
 

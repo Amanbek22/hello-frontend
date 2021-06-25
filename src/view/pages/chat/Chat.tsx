@@ -1,4 +1,10 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  useEffect,
+  useState,
+  useRef,
+  useLayoutEffect,
+} from "react";
 import css from "./chat.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
@@ -16,9 +22,10 @@ import Preloader from "../../preloader/preloader";
 import {
   createMessage,
   fetchChatRoom,
-  fetchMessages,
 } from "../../../store/feature/chat/chat.action";
 import firebase from "../../../firebase/firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { db } from "../../../firebase/firebase.actions";
 
 const MyButton = withStyles({
   root: {
@@ -52,7 +59,7 @@ const MyTextField = withStyles({
         content: "none",
       },
       "& .MuiFilledInput-input": {
-        padding: "15px 20px",
+        padding: "15px 30px 15px 20px",
         "&::placeholder": {
           fontSize: 14,
         },
@@ -69,16 +76,21 @@ const Chat = () => {
   const history = useHistory();
   const { uid } = useParams<{ uid: string }>();
   const dispatch = useDispatch();
-  const { visitor, loading }: any = useSelector(
-    (state: RootState) => state.visitor,
-  );
+  const { visitor }: any = useSelector((state: RootState) => state.visitor);
   const user: any = useSelector((state: RootState) => state.user.userInfo);
-  const { chatRoom, messages }: any = useSelector(
-    (state: RootState) => state.chat,
-  );
+  const { chatRoom }: any = useSelector((state: RootState) => state.chat);
   const query = useQuery();
   const [blackList, setBlackList] = useState<boolean>(false);
   const [message, setMessage] = useState<string>("");
+  const messagesRef = useRef<HTMLDivElement>(null);
+
+  const [messages, loading] = useCollectionData(
+    db
+      .collection("chats")
+      .doc(chatRoom[0]?.id)
+      .collection("messages")
+      .orderBy("time"),
+  );
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value);
@@ -92,6 +104,20 @@ const Chat = () => {
     };
     dispatch(createMessage({ doc: chatRoom[0]?.id, data }));
     setMessage("");
+  };
+
+  const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      if (message !== "") {
+        const data = {
+          messageText: message,
+          time: firebase.firestore.FieldValue.serverTimestamp(),
+          senderUid: user.uid,
+        };
+        dispatch(createMessage({ doc: chatRoom[0]?.id, data }));
+        setMessage("");
+      }
+    }
   };
 
   const onBlackList = () => {
@@ -129,15 +155,17 @@ const Chat = () => {
   useEffect(() => {
     dispatch(fetchVisitor(uid));
     dispatch(fetchChatRoom({ user1: uid, user2: user.uid }));
-  }, []);
-
-  useEffect(() => {
-    dispatch(fetchMessages(chatRoom[0]?.id));
-  }, [chatRoom]);
+  }, [uid]);
 
   useEffect(() => {
     setBlackList(Boolean(query.get("black-list")));
   }, [query]);
+
+  useLayoutEffect(() => {
+    if (messagesRef.current) {
+      messagesRef.current.scrollTo(0, 99999);
+    }
+  }, [messages]);
 
   return (
     <>
@@ -152,34 +180,35 @@ const Chat = () => {
         />
       </div>
 
-      <div className={css.box}>
-        {messages?.map((message: any) => (
+      <div className={css.box} ref={messagesRef}>
+        {messages?.map((message: any, index: number) => (
           <Message
-            key={message.id}
+            key={index}
             id={user.uid}
             uid={message.senderUid}
             text={message.messageText}
-            time={message.time.seconds}
+            time={message.time?.seconds}
           />
         ))}
-        <div className={css.input__wrapper}>
-          <MyTextField
-            value={message}
-            onChange={onChangeHandler}
-            variant="filled"
-            placeholder="Бул жерге жазыныз"
-          />
-          <AttachFileRoundedIcon className={css.attach__icon} />
-          <input
-            onChange={({ target }) => setFile(target)}
-            type="file"
-            accept="image/*,image/jpeg"
-            className={css.input}
-          />
-          <MyButton onClick={onSubmitHandler} disabled={!message}>
-            <SendRoundedIcon className={css.send__icon} />
-          </MyButton>
-        </div>
+      </div>
+      <div className={css.input__wrapper}>
+        <MyTextField
+          value={message}
+          onChange={onChangeHandler}
+          onKeyPress={onKeyPressHandler}
+          variant="filled"
+          placeholder="Бул жерге жазыныз"
+        />
+        <AttachFileRoundedIcon className={css.attach__icon} />
+        <input
+          onChange={({ target }) => setFile(target)}
+          type="file"
+          accept="image/*,image/jpeg"
+          className={css.input}
+        />
+        <MyButton onClick={onSubmitHandler} disabled={!message}>
+          <SendRoundedIcon className={css.send__icon} />
+        </MyButton>
       </div>
 
       <ModalWindow open={blackList} onClose={onBlackList}>
