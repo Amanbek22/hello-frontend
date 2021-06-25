@@ -62,7 +62,6 @@ const NewsFull = () => {
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setMessage(e.target.value);
   };
-
   const onCommentCreator = () => {
     if (message) {
       const data = {
@@ -73,6 +72,20 @@ const NewsFull = () => {
       dispatch(createComments({ doc: nid, data: data }));
     }
     setMessage("");
+  };
+
+  const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      if (message) {
+        const data = {
+          authorUid: session.uid,
+          commentText: message,
+          date: firebase.firestore.FieldValue.serverTimestamp(),
+        };
+        dispatch(createComments({ doc: nid, data: data }));
+      }
+      setMessage("");
+    }
   };
 
   useEffect(() => {
@@ -144,6 +157,7 @@ const NewsFull = () => {
               onChange={onChangeHandler}
               variant="filled"
               placeholder="Бул жерге жазыныз"
+              onKeyPress={onKeyPressHandler}
             />
             <IconButton onClick={onCommentCreator}>
               <SendIcon className={css.send__icon} />

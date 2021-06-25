@@ -9,7 +9,6 @@ import css from "./chat.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
 import ChatCard from "./components/ChatCard";
-import { useLocation } from "react-router-dom";
 import { useHistory, useParams } from "react-router";
 import ModalWindow from "../../components/modal/Modal";
 import BlackList from "../../components/BlackList/BlackList";
@@ -68,10 +67,6 @@ const MyTextField = withStyles({
   },
 })(TextField);
 
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-};
-
 const Chat = () => {
   const history = useHistory();
   const { uid } = useParams<{ uid: string }>();
@@ -79,9 +74,8 @@ const Chat = () => {
   const { visitor }: any = useSelector((state: RootState) => state.visitor);
   const user: any = useSelector((state: RootState) => state.user.userInfo);
   const { chatRoom }: any = useSelector((state: RootState) => state.chat);
-  const query = useQuery();
   const [blackList, setBlackList] = useState<boolean>(false);
-  const [message, setMessage] = useState<string>("");
+  const [value, setValue] = useState<string>("");
   const messagesRef = useRef<HTMLDivElement>(null);
 
   const [messages, loading] = useCollectionData(
@@ -93,38 +87,38 @@ const Chat = () => {
   );
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setMessage(e.target.value);
+    setValue(e.target.value);
   };
-
   const onSubmitHandler = () => {
     const data = {
-      messageText: message,
+      messageText: value,
       time: firebase.firestore.FieldValue.serverTimestamp(),
       senderUid: user.uid,
     };
     dispatch(createMessage({ doc: chatRoom[0]?.id, data }));
-    setMessage("");
+    setValue("");
   };
 
   const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
-      if (message !== "") {
+      if (value !== "") {
         const data = {
-          messageText: message,
+          messageText: value,
           time: firebase.firestore.FieldValue.serverTimestamp(),
           senderUid: user.uid,
         };
         dispatch(createMessage({ doc: chatRoom[0]?.id, data }));
-        setMessage("");
+        setValue("");
       }
     }
   };
 
-  const onBlackList = () => {
-    history.push({
-      pathname: history.location.pathname,
-      search: !blackList ? `?black-list=true` : "",
-    });
+  const openBlackListModal = () => {
+    setBlackList(true);
+  };
+
+  const closeBlackListModal = () => {
+    setBlackList(false);
   };
 
   const goBack = () => {
@@ -157,10 +151,6 @@ const Chat = () => {
     dispatch(fetchChatRoom({ user1: uid, user2: user.uid }));
   }, [uid]);
 
-  useEffect(() => {
-    setBlackList(Boolean(query.get("black-list")));
-  }, [query]);
-
   useLayoutEffect(() => {
     if (messagesRef.current) {
       messagesRef.current.scrollTo(0, 99999);
@@ -173,7 +163,7 @@ const Chat = () => {
       <div>
         <ChatCard
           img={visitor?.userPhoto}
-          addToBlackList={onBlackList}
+          addToBlackList={openBlackListModal}
           goToUserProfile={goToUserProfile}
           clickPhoto={onClickPhoto}
           closeConnect={onCloseConnect}
@@ -193,7 +183,7 @@ const Chat = () => {
       </div>
       <div className={css.input__wrapper}>
         <MyTextField
-          value={message}
+          value={value}
           onChange={onChangeHandler}
           onKeyPress={onKeyPressHandler}
           variant="filled"
@@ -206,12 +196,12 @@ const Chat = () => {
           accept="image/*,image/jpeg"
           className={css.input}
         />
-        <MyButton onClick={onSubmitHandler} disabled={!message}>
+        <MyButton onClick={onSubmitHandler} disabled={!value}>
           <SendRoundedIcon className={css.send__icon} />
         </MyButton>
       </div>
 
-      <ModalWindow open={blackList} onClose={onBlackList}>
+      <ModalWindow open={blackList} onClose={closeBlackListModal}>
         <BlackList addToBlackList={() => "added"} goBack={goBack} />
       </ModalWindow>
     </>

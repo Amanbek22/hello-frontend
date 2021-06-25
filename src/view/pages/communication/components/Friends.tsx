@@ -11,15 +11,15 @@ const Friends = () => {
       {myChats.map((chat: any, index: any) => (
         <Link
           to={
-            userInfo?.uid === chat.user[1]
-              ? `/chat/${chat.user[0]}`
-              : `/chat/${chat.user[1]}`
+            userInfo?.uid === chat.user?.[1]
+              ? `/chat/${chat.user?.[0]}`
+              : `/chat/${chat.user?.[1]}`
           }
         >
           <UserCard
             key={index}
             uid={userInfo?.uid}
-            authorUid={chat.author?.uid}
+            authorUid={chat.lastMessageSender}
             img={chat.author?.userPhoto}
             message={chat.lastMessage}
             name={chat.author?.userName}

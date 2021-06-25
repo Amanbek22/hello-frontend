@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import css from "./profile.module.css";
 import ProfileCard from "./components/ProfileCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,7 +6,6 @@ import { RootState } from "../../../store/rootReducer";
 import { useHistory } from "react-router";
 import { Logout } from "../../../firebase/firebase";
 import userSlice from "../../../store/feature/user/user.slice";
-import { useLocation } from "react-router-dom";
 import ModalWindow from "../../components/modal/Modal";
 import LogoutModal from "../../components/Logout/LogoutModal";
 import { createStyles, withStyles } from "@material-ui/core/styles";
@@ -60,10 +59,6 @@ const StyledTab = withStyles(() =>
   }),
 )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-};
-
 function a11yProps(index: any) {
   return {
     id: `full-width-tab-${index}`,
@@ -76,7 +71,6 @@ const Profile = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [logout, setLogout] = useState<boolean>(false);
-  const query = useQuery();
   const { login, userName, userPhoto, userAddressText }: any = useSelector(
     (state: RootState) => state.user.userInfo,
   );
@@ -102,20 +96,21 @@ const Profile = () => {
     history.goBack();
   };
 
-  const onLogoutModal = () => {
-    history.push({
-      pathname: history.location.pathname,
-      search: !logout ? `?logout=true` : "",
-    });
-  };
-
   const onDashboard = () => {
     history.push("/dashboard");
   };
 
-  useEffect(() => {
-    setLogout(Boolean(query.get("logout")));
-  }, [query]);
+  const onAdvertisement = () => {
+    history.push("/add-advert");
+  };
+
+  const openModal = () => {
+    setLogout(true);
+  };
+
+  const closeModal = () => {
+    setLogout(false);
+  };
 
   return (
     <>
@@ -126,7 +121,7 @@ const Profile = () => {
         city={userAddressText}
         onLogout={onLogoutHandler}
         onEditProfile={onProfileEdit}
-        onLogoutModal={onLogoutModal}
+        onLogoutModal={openModal}
         logout={logout}
         onDashboard={onDashboard}
       />
@@ -143,7 +138,7 @@ const Profile = () => {
         </StyledTabs>
       </div>
       <TabPanel value={value} index={0}>
-        <ProfileAdvertisement />
+        <ProfileAdvertisement onClick={onAdvertisement} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <ProfileNews />
@@ -155,7 +150,7 @@ const Profile = () => {
         <ProfileFollowers />
       </TabPanel>
 
-      <ModalWindow open={logout} onClose={onLogoutModal}>
+      <ModalWindow open={logout} onClose={closeModal}>
         <LogoutModal onLogout={onLogoutHandler} goBack={goBack} />
       </ModalWindow>
     </>

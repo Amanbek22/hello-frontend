@@ -14,9 +14,6 @@ const Friendship = () => {
   const onFriendRefuse = () => {
     console.log("refuse");
   };
-
-  console.log(user);
-
   return (
     <div className={css.container}>
       <div className={css.wrapper}>

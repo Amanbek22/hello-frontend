@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   error: null,
   visitor: null,
+  ads: [],
 };
 
 const visitorSlice = createSlice({
@@ -19,6 +20,11 @@ const visitorSlice = createSlice({
     },
     setVisitor(state, action: PayloadAction<any>) {
       state.visitor = action.payload;
+      state.error = null;
+      state.loading = false;
+    },
+    setAds(state, action: PayloadAction<any>) {
+      state.ads = action.payload;
       state.error = null;
       state.loading = false;
     },
