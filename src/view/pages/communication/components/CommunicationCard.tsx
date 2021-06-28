@@ -22,9 +22,10 @@ const MyBadge = withStyles({
 interface IProps {
   onClick: () => void;
   img: string | undefined;
+  badge: number;
 }
 
-const CommunicationCard: React.FC<IProps> = ({ onClick, img }) => {
+const CommunicationCard: React.FC<IProps> = ({ onClick, img, badge }) => {
   return (
     <div className={css.card}>
       <div className={css.flex}>
@@ -34,7 +35,7 @@ const CommunicationCard: React.FC<IProps> = ({ onClick, img }) => {
           <div className={css.avatar} />
         )}
         <IconButton onClick={() => onClick()} className={css.ibutton}>
-          <MyBadge badgeContent={1}>
+          <MyBadge badgeContent={badge}>
             <NotificationsNoneOutlinedIcon className={css.icon} />
           </MyBadge>
         </IconButton>

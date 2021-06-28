@@ -5,7 +5,7 @@ import css from "./courseCard.module.css";
 function courseCard(props: BilimModalType) {
   return (
     <Link
-      to={`course/${props.id}`}
+      to={`/course/${props.id}`}
       className={css.content}
       style={{ background: props.color }}
     >

@@ -10,6 +10,7 @@ const Friends = () => {
     <>
       {myChats.map((chat: any, index: any) => (
         <Link
+          key={index}
           to={
             userInfo?.uid === chat.user?.[1]
               ? `/chat/${chat.user?.[0]}`

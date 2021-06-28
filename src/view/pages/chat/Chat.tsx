@@ -13,7 +13,7 @@ import { useHistory, useParams } from "react-router";
 import ModalWindow from "../../components/modal/Modal";
 import BlackList from "../../components/BlackList/BlackList";
 import Message from "./components/Message";
-import { Button, TextField, withStyles } from "@material-ui/core";
+import { Button, Divider, TextField, withStyles } from "@material-ui/core";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import AttachFileRoundedIcon from "@material-ui/icons/AttachFileRounded";
 import { fetchVisitor } from "../../../store/feature/visitor/visitor.action";
@@ -23,7 +23,7 @@ import {
   fetchChatRoom,
 } from "../../../store/feature/chat/chat.action";
 import firebase from "../../../firebase/firebase";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 import { db } from "../../../firebase/firebase.actions";
 
 const MyButton = withStyles({
@@ -75,10 +75,13 @@ const Chat = () => {
   const user: any = useSelector((state: RootState) => state.user.userInfo);
   const { chatRoom }: any = useSelector((state: RootState) => state.chat);
   const [blackList, setBlackList] = useState<boolean>(false);
+  const [imageModal, setImageModal] = useState<boolean>(false);
   const [value, setValue] = useState<string>("");
+  const [imageValue, setImageValue] = useState<string>("");
+  const [image, setImage] = useState<string>("");
   const messagesRef = useRef<HTMLDivElement>(null);
 
-  const [messages, loading] = useCollectionData(
+  const [snapshot, loading] = useCollection(
     db
       .collection("chats")
       .doc(chatRoom[0]?.id)
@@ -100,17 +103,55 @@ const Chat = () => {
   };
 
   const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      if (value !== "") {
-        const data = {
-          messageText: value,
+    if (e.key === "Enter" && value !== "") {
+      const data = {
+        messageText: value,
+        messageType: 1,
+        time: firebase.firestore.FieldValue.serverTimestamp(),
+        senderUid: user.uid,
+      };
+      dispatch(createMessage({ doc: chatRoom[0]?.id, data }));
+      setValue("");
+    }
+  };
+
+  const onConfirmHandler = () => {
+    setImageModal(false);
+    const payload = new FormData();
+    payload.append("image", imageValue[0]);
+    payload.append("code", "0");
+    fetch("http://176.126.164.190:8000/api/image-create/", {
+      method: "POST",
+      body: payload,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const postData = {
+          messageText: data.image,
+          messageType: 2,
           time: firebase.firestore.FieldValue.serverTimestamp(),
           senderUid: user.uid,
         };
-        dispatch(createMessage({ doc: chatRoom[0]?.id, data }));
-        setValue("");
-      }
-    }
+        dispatch(createMessage({ doc: chatRoom[0]?.id, data: postData }));
+        setImageValue("");
+      });
+  };
+
+  const setFile = (target: any) => {
+    setImageValue(target.files);
+    const reader = new FileReader();
+    reader.readAsDataURL(target.files[0]);
+    reader.onload = (e: any) => {
+      const file = e.target.result;
+      setImage(file);
+      setImageModal(true);
+    };
+  };
+
+  const closeImageModal = () => {
+    setImageModal(false);
+    setImage("");
+    setImageValue("");
   };
 
   const openBlackListModal = () => {
@@ -137,15 +178,6 @@ const Chat = () => {
     console.log("Clicked on 'Маекти Очуруу'");
   };
 
-  const setFile = (target: any) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(target.files[0]);
-    reader.onload = (e: any) => {
-      const file = e.target.result;
-      console.log(file);
-    };
-  };
-
   useEffect(() => {
     dispatch(fetchVisitor(uid));
     dispatch(fetchChatRoom({ user1: uid, user2: user.uid }));
@@ -155,7 +187,7 @@ const Chat = () => {
     if (messagesRef.current) {
       messagesRef.current.scrollTo(0, 99999);
     }
-  }, [messages]);
+  }, [snapshot]);
 
   return (
     <>
@@ -171,13 +203,17 @@ const Chat = () => {
       </div>
 
       <div className={css.box} ref={messagesRef}>
-        {messages?.map((message: any, index: number) => (
+        {snapshot?.docs.map((doc: any) => (
           <Message
-            key={index}
+            key={doc.id}
             id={user.uid}
-            uid={message.senderUid}
-            text={message.messageText}
-            time={message.time?.seconds}
+            docId={doc.id}
+            uid={doc.data().senderUid}
+            text={doc.data().messageText}
+            time={doc.data().time?.seconds}
+            type={doc.data().messageType}
+            read={doc.data().read}
+            chatId={chatRoom[0]?.id}
           />
         ))}
       </div>
@@ -203,6 +239,15 @@ const Chat = () => {
 
       <ModalWindow open={blackList} onClose={closeBlackListModal}>
         <BlackList addToBlackList={() => "added"} goBack={goBack} />
+      </ModalWindow>
+      <ModalWindow open={imageModal} onClose={closeImageModal}>
+        <>
+          <img src={image} alt="image" className={css.image_modal} />
+          <Divider />
+          <button className={css.image_confirm} onClick={onConfirmHandler}>
+            Подтвердить
+          </button>
+        </>
       </ModalWindow>
     </>
   );
