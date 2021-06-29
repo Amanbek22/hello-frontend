@@ -74,6 +74,7 @@ const updateChat = createAsyncThunk(
       lastMessageRead: false,
       lastMessageSender: data.senderUid,
       lastMessageTime: data.time,
+      lastMessageType: data.messageType,
     };
     try {
       await updateData({ path: "chats", doc: doc, data: postData });

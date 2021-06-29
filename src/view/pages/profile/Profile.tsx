@@ -15,7 +15,7 @@ import TabPanel from "../../components/TabPanel";
 import ProfileAdvertisement from "./components/Content/ProfileAdvertisement";
 import ProfileNews from "./components/Content/ProfileNews";
 import ProfileCourses from "./components/Content/ProfileCourses";
-import ProfileFollowers from "./components/Content/ProfileFollowers";
+import ProfilePassengers from "./components/Content/ProfilePassengers";
 
 interface StyledTabsProps {
   value: number;
@@ -77,7 +77,6 @@ const Profile = () => {
   const [value, setValue] = React.useState(0);
 
   //functions
-
   const handleChange = (event: React.ChangeEvent<any>, newValue: number) => {
     setValue(newValue);
   };
@@ -147,7 +146,7 @@ const Profile = () => {
         <ProfileCourses />
       </TabPanel>
       <TabPanel value={value} index={3}>
-        <ProfileFollowers />
+        <ProfilePassengers />
       </TabPanel>
 
       <ModalWindow open={logout} onClose={closeModal}>

@@ -67,3 +67,10 @@
 .popoverText:last-child{
     margin-bottom: 10px;
 }
+
+.ad_wrapper{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}

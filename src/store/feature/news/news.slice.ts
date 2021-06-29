@@ -8,6 +8,7 @@ const initialState = {
   singleNews: [],
   author: null,
   comments: [{ author: {} }] as any,
+  topNews: [],
 };
 
 const newsSlice = createSlice({
@@ -45,6 +46,10 @@ const newsSlice = createSlice({
     setCommentsAuthor(state, action: PayloadAction<any>) {
       state.loading = false;
       state.comments[action.payload.index].author = action.payload.result;
+    },
+    setTopNews(state, action: PayloadAction<any>) {
+      state.loading = false;
+      state.topNews = action.payload;
     },
   },
 });

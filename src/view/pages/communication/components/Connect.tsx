@@ -26,6 +26,7 @@ const Connect = () => {
             message={chat.lastMessage}
             name={chat.author?.userName}
             time={chat.lastMessageTime?.seconds}
+            type={chat.lastMessageType}
           />
         </Link>
       ))}

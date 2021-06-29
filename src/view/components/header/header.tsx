@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Css from "./header.module.css";
 import { useState } from "react";
 import MenuBurger from "../menuBurger/menuBurger";
@@ -23,6 +23,7 @@ const useStyles = makeStyles(() => ({
 
 const Header = ({ isAuth, img, name }: PropsType) => {
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
   const [openSel, setOpenSel] = useState(false);
   const [lan, setLan] = useState<any>(() => localStorage.getItem("i18nextLng"));
   const { t } = useTranslation();
@@ -45,7 +46,13 @@ const Header = ({ isAuth, img, name }: PropsType) => {
   };
   const classes = useStyles();
   return (
-    <header>
+    <header
+      style={
+        pathname === "/"
+          ? { backgroundColor: "#0b0d34", color: "#ffffff" }
+          : { backgroundColor: "#ffffff", color: "#000000" }
+      }
+    >
       <MenuBurger open={open} setOpen={setOpen} />
       <div className={Css.header_burger} onClick={() => setOpen(!open)}>
         <span />

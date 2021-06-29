@@ -33,7 +33,7 @@
     font-weight: normal;
     font-size: 18px;
     line-height: 26px;
-    color: #21A95D;
+    color: #21A95D !important;
 }
 
 .image{

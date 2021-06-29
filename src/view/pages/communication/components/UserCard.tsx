@@ -9,6 +9,7 @@ interface IProps {
   time: string;
   uid: any;
   authorUid: string;
+  type: number;
 }
 
 const UserCard: React.FC<IProps> = ({
@@ -18,6 +19,7 @@ const UserCard: React.FC<IProps> = ({
   time,
   uid,
   authorUid,
+  type,
 }) => {
   const date = new Date(parseInt(time) * 1000)
     .toString()
@@ -41,7 +43,11 @@ const UserCard: React.FC<IProps> = ({
             <p className={css.name}>{name}</p>
             <p className={css.you}>
               <span>{uid === authorUid ? "Вы:" : "Не вы:"}</span>
-              <span className={css.message}>{message}</span>
+              {type === 1 ? (
+                <span className={css.message}>{message}</span>
+              ) : (
+                <img src={message} alt="message" className={css.message_img} />
+              )}
             </p>
           </div>
         </div>

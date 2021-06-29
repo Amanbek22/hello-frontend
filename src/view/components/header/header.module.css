@@ -1,14 +1,16 @@
+a{
+  color: currentColor !important;
+}
+
 header {
   display: flex;
   padding: 24px 12%;
   justify-content: space-between;
   align-items: center;
-  background: #0b0d34;
   font-family: Roboto, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
-  color: #ffffff;
   position: sticky;
   top: 0;
   width: 100%;
@@ -23,14 +25,12 @@ header {
   display: flex;
   font-family: Roboto, sans-serif;
   font-size: 18px;
-  color: #ffffff;
   margin-left: 45px;
 }
 .header_menu > * {
   margin-right: 20px;
 }
 .item {
-  color: #ffffff;
   cursor: pointer;
 }
 .vector {
@@ -58,7 +58,6 @@ header {
   border-radius: 5px;
   font-family: "Roboto", sans-serif;
   font-size: 14px;
-  color: #ffffff;
   cursor: pointer;
 }
 .btn:focus {
@@ -75,7 +74,6 @@ header {
   display: flex;
   align-items: center;
   font-size: 16px;
-  color: #FFFFFF;
 }
 .user > span {
   margin-left: 5px;
@@ -100,7 +98,6 @@ header {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #FFFFFF;
 }
 
 .avatar {
@@ -128,7 +125,7 @@ header {
   .header_burger > span:before,
   .header_burger > span:after {
     content: "";
-    background-color: #ffffff;
+    background-color: currentColor !important;
     position: absolute;
     width: 28px;
     height: 3px;
@@ -141,7 +138,7 @@ header {
   }
   .header_burger > span {
     position: absolute;
-    background-color: #ffffff;
+    background-color: currentColor !important;
     width: 28px;
     height: 3px;
     top: 50%;

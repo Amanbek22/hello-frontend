@@ -53,6 +53,7 @@ const NewsFull = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { nid } = useParams<{ nid: string }>();
+  const { id } = useParams<{ id: string }>();
   const { loading, singleNews, author, comments }: any = useSelector(
     (state: RootState) => state.news,
   );
@@ -89,10 +90,10 @@ const NewsFull = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchSingleNews(nid));
-    dispatch(fetchComments(nid));
+    dispatch(fetchSingleNews({ id, nid }));
+    dispatch(fetchComments({ id, doc: nid }));
     dispatch(fetchAuthor(singleNews.authorUid));
-  }, [singleNews.length]);
+  }, [singleNews.length, nid]);
 
   return (
     <div className={`${css.container}`}>

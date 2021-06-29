@@ -91,6 +91,7 @@ const AddAdvert = () => {
   const createAdvert = (values: any, images: any) => {
     const data = {
       ...values,
+      cost: values.cost ? values.cost : "",
       category: parseInt(values.category),
       state: parseInt(values.state),
       authorUid: uid,

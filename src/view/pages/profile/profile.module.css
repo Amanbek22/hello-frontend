@@ -111,7 +111,28 @@
     font-size: 20px;
 }
 
-.adGrid{
+.content_container{
+    padding: 0% 14%;
+}
+
+.ad_wrapper{
+    margin-top: 20px;
     display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+
+.cards {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.news_wrapper{
+    margin: 4% 0 0 0;
+    display: flex;
+    flex-direction: column;
 }
 

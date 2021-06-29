@@ -5,6 +5,7 @@ import newsSlice from "./feature/news/news.slice";
 import visitorSlice from "./feature/visitor/visitor.slice";
 import chatSlice from "./feature/chat/chat.slice";
 import adsSlice from "./feature/ads/ads.slice";
+import personalSlice from "./feature/personal/personal.slice";
 
 const rootReducer = combineReducers({
   user: userSlice.reducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   visitor: visitorSlice.reducer,
   chat: chatSlice.reducer,
   ads: adsSlice.reducer,
+  personal: personalSlice.reducer,
 });
 export type RootState = ReturnType<typeof rootReducer>;
 

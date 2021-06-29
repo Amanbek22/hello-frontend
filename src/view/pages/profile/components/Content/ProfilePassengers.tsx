@@ -1,12 +1,12 @@
 import React from "react";
 import css from "../../profile.module.css";
 
-const ProfileFollowers: React.FC = () => {
+const ProfilePassengers: React.FC = () => {
   return (
-    <div className={css.adGrid}>
+    <div className={css.content_container}>
       <h1>Followers</h1>
     </div>
   );
 };
 
-export default ProfileFollowers;
+export default ProfilePassengers;
