@@ -8,6 +8,7 @@ import { Provider as ReduxStoreProvider } from "react-redux";
 import theme from "./theme";
 import { store } from "./store/configureStore";
 import AppRouter from "./router/AppRouter";
+import i18n from "./i18next/i18n";
 
 ReactDOM.render(
   <ReduxStoreProvider store={store}>
