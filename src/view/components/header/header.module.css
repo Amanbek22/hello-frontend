@@ -33,27 +33,22 @@ header {
   color: #ffffff;
   cursor: pointer;
 }
-.flag {
-  width: 29.33px;
-  height: 17.33px;
-  border-radius: 2px;
-}
 .vector {
   width: 12px;
   height: 7.41px;
 }
-.menu {
+.box_option{
   display: flex;
   align-items: center;
-  height: 100%;
-  cursor: pointer;
-  margin-left: 15px;
 }
-
-.lang {
+.flag{
+  margin: 0 10% 0 0;
+  width: 30px;
+  height: 30px;
+}
+.lang{
   margin: 0 5%;
 }
-
 .btn {
   width: 117px;
   height: 36px;
