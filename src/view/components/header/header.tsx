@@ -15,7 +15,7 @@ interface PropsType {
   name: string | null;
   img: string | undefined;
 }
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   select: {
     color: "#FFFFFF",
   },
@@ -59,14 +59,14 @@ const Header = ({ isAuth, img, name }: PropsType) => {
             {t("header.news")}
           </NavLink>
           <NavLink activeClassName={Css.active} className={Css.item} to="/ads">
-            {t("header.chatskg")}
+            {t("header.posts")}
           </NavLink>
           <NavLink
             activeClassName={Css.active}
             className={Css.item}
             to="/communication"
           >
-            {t("header.posts")}
+            {t("header.chatskg")}
           </NavLink>
           <div className={Css.item}>{t("header.contacts")}</div>
         </div>
@@ -78,7 +78,7 @@ const Header = ({ isAuth, img, name }: PropsType) => {
               open={openSel}
               onClose={handleCloseSelect}
               onOpen={handleOpenSelect}
-              value={lan}
+              value={lan ? lan : "KG"}
               onChange={onChange}
               className={classes.select}
               disableUnderline

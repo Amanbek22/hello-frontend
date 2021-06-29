@@ -12,7 +12,7 @@ i18n.use(initReactI18next).init({
     RU: { translation: translationRu },
     KG: { translation: translationKg },
   },
-  lng: lng,
+  lng: lng ? lng : "KG",
   interpolation: { escapeValue: false },
 });
 
