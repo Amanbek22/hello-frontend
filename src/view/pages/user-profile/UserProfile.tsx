@@ -10,8 +10,10 @@ import Preloader from "../../preloader/preloader";
 import ModalWindow from "../../components/modal/Modal";
 import BlackList from "../../components/BlackList/BlackList";
 import Application from "./components/userProfileCard/Application/Application";
-import { useLocation } from "react-router-dom";
-import { fetchVisitor } from "../../../store/feature/visitor/visitor.action";
+import {
+  fetchVisitor,
+  fetchVisitorAds,
+} from "../../../store/feature/visitor/visitor.action";
 import { createStyles, withStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -68,18 +70,13 @@ const StyledTab = withStyles(() =>
   }),
 )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-};
-
 const UserProfile = () => {
   const dispatch = useDispatch();
   const { uid } = useParams<{ uid: string }>();
-  const { loading, visitor }: any = useSelector(
+  const { loading, visitor, ads }: any = useSelector(
     (state: RootState) => state.visitor,
   );
   const history = useHistory();
-  const query = useQuery();
   const [application, setApplication] = useState<boolean>(false);
   const [blackList, setBlackList] = useState<boolean>(false);
 
@@ -91,17 +88,17 @@ const UserProfile = () => {
     setValue(newValue);
   };
 
-  const onBlackList = () => {
-    history.push({
-      pathname: history.location.pathname,
-      search: !blackList ? `?black-list=true` : "",
-    });
+  const openApplicationModal = () => {
+    setApplication(true);
   };
-  const onApplication = () => {
-    history.push({
-      pathname: history.location.pathname,
-      search: !application ? `?application=true` : "",
-    });
+  const closeApplicationModal = () => {
+    setApplication(false);
+  };
+  const openBlackListModal = () => {
+    setBlackList(true);
+  };
+  const closeBlackListModal = () => {
+    setBlackList(false);
   };
 
   const goBack = () => {
@@ -113,12 +110,8 @@ const UserProfile = () => {
 
   useEffect(() => {
     dispatch(fetchVisitor(uid));
+    dispatch(fetchVisitorAds(uid));
   }, [uid]);
-
-  useEffect(() => {
-    setApplication(Boolean(query.get("application")));
-    setBlackList(Boolean(query.get("black-list")));
-  }, [query]);
 
   return (
     <>
@@ -130,8 +123,8 @@ const UserProfile = () => {
           city={visitor?.userAddressText}
           photoCount={visitor?.images === undefined ? 0 : visitor.images}
           profession={visitor?.bio}
-          onApplication={onApplication}
-          onBlackList={onBlackList}
+          onApplication={openApplicationModal}
+          onBlackList={openBlackListModal}
           toChat={goToChat}
         />
         <StyledTabs
@@ -144,17 +137,17 @@ const UserProfile = () => {
         </StyledTabs>
 
         <TabPanel index={0} value={value}>
-          <Advertisement />
+          <Advertisement ads={ads} />
         </TabPanel>
 
         <TabPanel index={1} value={value}>
           <Photos />
         </TabPanel>
       </div>
-      <ModalWindow open={blackList} onClose={onBlackList}>
+      <ModalWindow open={blackList} onClose={closeBlackListModal}>
         <BlackList addToBlackList={() => "added"} goBack={goBack} />
       </ModalWindow>
-      <ModalWindow open={application} onClose={onApplication}>
+      <ModalWindow open={application} onClose={closeApplicationModal}>
         <Application />
       </ModalWindow>
     </>

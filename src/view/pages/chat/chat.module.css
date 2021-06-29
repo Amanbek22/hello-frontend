@@ -93,6 +93,12 @@
     white-space: normal !important;
 }
 
+.message__img{
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+}
+
 .icon__check{
     margin-left: 5px;
     align-self: flex-end;
@@ -135,5 +141,18 @@ input[type=file], /* FF, IE7+, chrome (except button) */
 input[type=file]::-webkit-file-upload-button { /* chromes and blink button */
     cursor: pointer;
 }
+
+.image_modal{
+    margin: 20px;
+}
+
+.image_confirm{
+    margin-top: 20px;
+    color: #21a95d;
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+}
+
 
 

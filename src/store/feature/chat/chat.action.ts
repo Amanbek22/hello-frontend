@@ -4,8 +4,9 @@ import {
   getData,
   setData,
   updateData,
+  db,
 } from "../../../firebase/firebase.actions";
-import { db } from "../../../firebase/firebase.actions";
+
 import chatSlice from "./chat.slice";
 import { ChatModalType } from "../../../models/type";
 import { RootState } from "../../rootReducer";
@@ -45,7 +46,6 @@ export const createMessage = createAsyncThunk(
   "chat/createMessage",
   async ({ doc, data }: any, { dispatch }) => {
     const postData = {
-      messageType: 1,
       read: false,
       replyUid: null,
       receiverUid: null,
@@ -120,5 +120,33 @@ const fetchMyChatsAuthor = createAsyncThunk(
     } catch (e) {
       dispatch(chatSlice.actions.setError(e));
     }
+  },
+);
+
+export const updateSingleMessage = createAsyncThunk(
+  "chat/readOneMessage",
+  async ({ doc, subDoc }: any, { dispatch }) => {
+    try {
+      await db
+        .collection("chats")
+        .doc(doc)
+        .collection("messages")
+        .doc(subDoc)
+        .update({ read: true });
+      dispatch(updateLastMessage(doc));
+    } catch (e) {
+      dispatch(chatSlice.actions.setError(e));
+    }
+  },
+);
+
+const updateLastMessage = createAsyncThunk(
+  "chat/lastMessage",
+  async (doc: string) => {
+    await updateData({
+      path: "chats",
+      doc: doc,
+      data: { lastMessageRead: true },
+    });
   },
 );

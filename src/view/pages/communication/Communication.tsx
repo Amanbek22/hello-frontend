@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import css from "./communication.module.css";
 import CommunicationCard from "./components/CommunicationCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -80,7 +80,9 @@ const Communication = () => {
   );
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
-  const { loading }: any = useSelector((state: RootState) => state.chat);
+  const { loading, myChats }: any = useSelector(
+    (state: RootState) => state.chat,
+  );
 
   const handleChange = (event: React.ChangeEvent<any>, newValue: number) => {
     setValue(newValue);
@@ -98,7 +100,16 @@ const Communication = () => {
     <>
       {loading && <Preloader absolute />}
       <div>
-        <CommunicationCard onClick={onNotificationHandler} img={userPhoto} />
+        <CommunicationCard
+          badge={
+            myChats?.filter(
+              (chat: any) =>
+                !chat.lastMessageRead && uid !== chat.lastMessageSender,
+            ).length
+          }
+          onClick={onNotificationHandler}
+          img={userPhoto}
+        />
         <div className={css.wrapper}>
           <div className={css.tabs}>
             <StyledTabs

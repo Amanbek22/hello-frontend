@@ -1,39 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import css from "./feedback.module.css";
-import { useHistory } from "react-router";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ModalWindow from "../../../../components/modal/Modal";
-
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search);
-};
+import EvaluationModal from "../../../../components/EvaluationModal/EvaluationModal";
 
 function Feedback() {
-  const history = useHistory();
-  const query = useQuery();
   const [feedback, setFeedback] = useState(false);
   const [like, setLike] = useState(false);
-  useEffect(() => {
-    setLike(Boolean(query.get("like")));
-    setFeedback(Boolean(query.get("feedback")));
-  }, [query]);
-  const onFeedBack = () => {
-    history.push({
-      pathname: history.location.pathname,
-      search: !feedback ? `?feedback=true` : "",
-    });
+
+  const openFeedbackModal = () => {
+    setFeedback(true);
   };
-  const onLike = () => {
-    history.push({
-      pathname: history.location.pathname,
-      search: !like ? `?like=true` : "",
-    });
+  const closeFeedbackModal = () => {
+    setFeedback(false);
   };
+  const openLikeModal = () => {
+    setLike(true);
+  };
+  const closeLikeModal = () => {
+    setLike(false);
+  };
+
   return (
     <div className={css.wrapper}>
-      <img onClick={onLike} src="/img/like.png" alt="Like" />
-      <img onClick={onFeedBack} src="/img/message.png" alt="Feedback" />
-      <ModalWindow open={feedback} onClose={onFeedBack}>
+      <img onClick={openLikeModal} src="/img/like.png" alt="Like" />
+      <img onClick={openFeedbackModal} src="/img/message.png" alt="Feedback" />
+      <ModalWindow open={feedback} onClose={closeFeedbackModal}>
         <>
           <Link to="#" className={css.link}>
             Оставить отзыв
@@ -43,8 +35,8 @@ function Feedback() {
           </Link>
         </>
       </ModalWindow>
-      <ModalWindow open={like} onClose={onLike}>
-        This is like
+      <ModalWindow open={like} onClose={closeLikeModal}>
+        <EvaluationModal />
       </ModalWindow>
     </div>
   );

@@ -26,10 +26,14 @@ const GreenButton = withStyles({
   },
 })(Button);
 
-const ProfileAdvertisement: React.FC = () => {
+interface IProps {
+  onClick: () => void;
+}
+
+const ProfileAdvertisement: React.FC<IProps> = ({ onClick }) => {
   return (
     <div className={css.adGrid}>
-      <GreenButton>Жарнама берүү</GreenButton>
+      <GreenButton onClick={onClick}>Жарнама берүү</GreenButton>
     </div>
   );
 };

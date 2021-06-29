@@ -30,6 +30,17 @@
   margin-top: 15px;
 }
 
+.cards {
+  margin: 5% 12%;
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: scroll;
+}
+
+.cards::-webkit-scrollbar {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .title_wrapper {
     width: 90%;
