@@ -14,6 +14,10 @@
     font-weight: bold;
     font-size: 48px;
     line-height: 56px;
+    white-space: nowrap;
+    width: 1200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .text{
     background: rgba(0, 0, 0, 0.3);
@@ -23,6 +27,9 @@
     font-weight: normal;
     font-size: 18px;
     line-height: 28px;
+    height: 135px;
+    overflow: hidden;
+
 }
 
 .slide{
@@ -36,4 +43,9 @@
     width: 100%;
     height: 615px;
     z-index: -1;
+}
+
+
+.link{
+
 }

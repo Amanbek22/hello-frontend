@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Css from "./header.module.css";
 import { useState } from "react";
 import MenuBurger from "../menuBurger/menuBurger";
@@ -12,8 +12,16 @@ interface PropsType {
 const Header = ({ isAuth, img, name }: PropsType) => {
   const [open, setOpen] = useState(false);
 
+  const { pathname } = useLocation();
+
   return (
-    <header>
+    <header
+      style={
+        pathname === "/"
+          ? { backgroundColor: "#0b0d34", color: "#ffffff" }
+          : { backgroundColor: "#ffffff", color: "#000000" }
+      }
+    >
       <MenuBurger open={open} setOpen={setOpen} />
       <div className={Css.header_burger} onClick={() => setOpen(!open)}>
         <span />
@@ -30,15 +38,15 @@ const Header = ({ isAuth, img, name }: PropsType) => {
           >
             Жаңылыктар
           </NavLink>
-          <NavLink activeClassName={Css.active} className={Css.item} to="/ads">
-            Жарнамалар
-          </NavLink>
           <NavLink
             activeClassName={Css.active}
             className={Css.item}
             to="/communication"
           >
             Маектер
+          </NavLink>
+          <NavLink activeClassName={Css.active} className={Css.item} to="/ads">
+            Жарнамалар
           </NavLink>
           <div className={Css.item}>Байланыш</div>
         </div>

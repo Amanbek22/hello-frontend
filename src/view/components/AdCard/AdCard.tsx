@@ -44,9 +44,9 @@ const AdCard: React.FC<IProps> = ({
   return (
     <Card>
       <div className={css.image__wrapper}>
-        {img ? (
+        {img?.[0] ? (
           <img
-            src={img}
+            src={img?.[0]}
             height="188"
             width="100%"
             className={css.image}

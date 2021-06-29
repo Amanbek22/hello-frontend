@@ -28,7 +28,7 @@ const Ad: React.FC<IProps> = ({ id, order }) => {
       {ads?.map((ad: any) => (
         <AdCard
           key={ad.id}
-          img={ad.images[0]}
+          img={ad.images}
           name={ad.name}
           date={ad.date?.seconds}
           costText={ad.costText}

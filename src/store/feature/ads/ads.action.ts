@@ -6,6 +6,7 @@ import {
   setData,
   db,
 } from "../../../firebase/firebase.actions";
+import { type } from "os";
 
 export const fetchAdsCategories = createAsyncThunk(
   "ads/categories",

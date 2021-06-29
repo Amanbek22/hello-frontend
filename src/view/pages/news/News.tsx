@@ -1,5 +1,5 @@
 import Css from "./news.module.css";
-import NewsItem from "./components/NewsItem/NewsItem";
+import NewsItem from "../../components/NewsItem/NewsItem";
 import "../../components/Slider/news.css";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

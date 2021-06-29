@@ -39,12 +39,29 @@ export const fetchNews = createAsyncThunk(
 
 export const fetchSingleNews = createAsyncThunk(
   "news/singleNews",
-  async (id: string, { dispatch }) => {
+  async ({ id, nid }: any, { dispatch, getState }) => {
     dispatch(newsSlice.actions.setLoading(true));
+    const { news }: any = getState() as { state: RootState };
+    const { user }: any = getState() as { state: RootState };
+    const uid = user.userInfo.uid;
+    const views = news.singleNews.views + 1;
     try {
-      const res = await getData({ path: "news", doc: id });
+      const res =
+        id !== "top"
+          ? await getData({ path: "news", doc: nid })
+          : await getData({ path: "topnews", doc: nid });
       const result = JSON.parse(JSON.stringify(res));
       dispatch(newsSlice.actions.setSingleNews(result));
+      const newsId = JSON.parse(localStorage.getItem(uid) || "[]");
+      if (!newsId.includes(nid) && views) {
+        newsId.push(nid);
+        localStorage.setItem(uid, JSON.stringify(newsId));
+        await updateData({
+          path: "news",
+          doc: nid,
+          data: { views: views },
+        });
+      }
     } catch (e) {
       dispatch(newsSlice.actions.setError(e));
     }
@@ -67,15 +84,23 @@ export const fetchAuthor = createAsyncThunk(
 
 export const fetchComments = createAsyncThunk(
   "news/comments",
-  async (doc: string, { dispatch }) => {
+  async ({ doc, id }: any, { dispatch }) => {
     dispatch(newsSlice.actions.setLoading(true));
     try {
-      const res = await getData({
-        path: "news",
-        doc: doc,
-        path2: "comments",
-        order: "date",
-      });
+      const res =
+        id !== "top"
+          ? await getData({
+              path: "news",
+              doc: doc,
+              path2: "comments",
+              order: "date",
+            })
+          : await getData({
+              path: "topnews",
+              doc: doc,
+              path2: "comments",
+              order: "date",
+            });
       const result = JSON.parse(JSON.stringify(res));
       dispatch(newsSlice.actions.setComments(result));
       result.map((item: any, index: number) =>
@@ -111,6 +136,20 @@ export const createComments = createAsyncThunk(
       await setData({ path: "news", doc: doc, path2: "comments", data: data });
       await updateData({ path: "news", doc: doc, data: { comments: comment } });
       dispatch(fetchComments(doc));
+    } catch (e) {
+      dispatch(newsSlice.actions.setError(e));
+    }
+  },
+);
+
+export const fetchTopNews = createAsyncThunk(
+  "news/topNews",
+  async (_, { dispatch }) => {
+    dispatch(newsSlice.actions.setLoading(true));
+    try {
+      const res = await getData({ path: "topnews" });
+      const result = JSON.parse(JSON.stringify(res));
+      dispatch(newsSlice.actions.setTopNews(result));
     } catch (e) {
       dispatch(newsSlice.actions.setError(e));
     }
