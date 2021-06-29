@@ -1,0 +1,158 @@
+.card{
+    width: 100%;
+    height: 300px;
+    background-color: #1C4F42;
+    padding-top: 40px;
+    box-sizing: border-box;
+}
+
+.avatar{
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background-color: #7e7e7e;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon{
+    color: #fff;
+    height: 20px;
+}
+
+.popText{
+    display: block;
+    font-size: 18px;
+    color: #000;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+.popText:last-child{
+    margin-bottom: 0;
+}
+
+
+.box{
+    width: 800px;
+    min-height: 400px;
+    max-height: 600px;
+    margin: -140px auto 0;
+    background-color: #fff;
+    border-radius: 50px;
+    padding: 20px 80px;
+    overflow: auto;
+}
+
+.text{
+    font-size: 50px;
+}
+
+.message__right{
+    margin-left: auto;
+    min-width: 200px;
+    max-width: 600px;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px 10px 0 10px;
+    background-color: #F6F6F6;
+    margin-bottom: 10px;
+}
+
+.message__left{
+    min-width: 200px;
+    max-width: 600px;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 10px 10px 10px 0;
+    background-color: #F6F6F6;
+    margin-bottom: 10px;
+}
+
+.message__wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.time{
+    font-size: 10px;
+    line-height: 12px;
+    color: #7E7E7E;
+}
+
+.message__text{
+    word-break: break-word;
+    line-height: 20px;
+    font-size: 14px;
+    color: #0B0D34;
+    white-space: normal !important;
+}
+
+.message__img{
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+}
+
+.icon__check{
+    margin-left: 5px;
+    align-self: flex-end;
+    color: #7E7E7E;
+}
+
+.input__wrapper{
+    position: relative;
+    margin: 80px auto;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.send__icon{
+    color: #fff;
+}
+
+.attach__icon{
+    color: #7e7e7e;
+    position: absolute;
+    top: 12px;
+    right: 140px;
+    z-index: 3;
+
+}
+
+.input{
+    position: absolute;
+    top: 12px;
+    right: 140px;
+    z-index: 4;
+    width: 24px;
+    height: 32px;
+    opacity: 0;
+}
+
+input[type=file], /* FF, IE7+, chrome (except button) */
+input[type=file]::-webkit-file-upload-button { /* chromes and blink button */
+    cursor: pointer;
+}
+
+.image_modal{
+    margin: 20px;
+}
+
+.image_confirm{
+    margin-top: 20px;
+    color: #21a95d;
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+}
+
+
+

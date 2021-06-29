@@ -1,7 +1,11 @@
 /* eslint-disable no-console */
 import { loadState, saveState } from "./util/stateLoader";
 import { Action, applyMiddleware } from "redux";
-import { configureStore, ThunkAction } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  getDefaultMiddleware,
+  ThunkAction,
+} from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import rootReducer, { RootState } from "./rootReducer";
 
@@ -23,6 +27,9 @@ function setupStore() {
   ];
 
   const store = configureStore({
+    middleware: getDefaultMiddleware({
+      serializableCheck: false,
+    }),
     reducer: rootReducer,
     preloadedState: preloadedState,
     enhancers: enhancers,

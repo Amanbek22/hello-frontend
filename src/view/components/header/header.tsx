@@ -110,7 +110,7 @@ const Header = ({ isAuth, img, name }: PropsType) => {
           <button className={Css.btn}>{t("header.login")}</button>
         </Link>
       ) : (
-        <Link to="/my-profile">
+        <Link to="/profile">
           <div className={Css.user_info}>
             <p>{name}</p>
             {img && (

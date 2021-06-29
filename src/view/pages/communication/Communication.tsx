@@ -1,88 +1,138 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import css from "./communication.module.css";
 import CommunicationCard from "./components/CommunicationCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
-import styled from "styled-components";
 import { Divider } from "@material-ui/core";
 import Friends from "./components/Friends";
 import Connect from "./components/Connect";
+import { createStyles, withStyles } from "@material-ui/core/styles";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import TabPanel from "../../components/TabPanel";
+import { fetchMyChats } from "../../../store/feature/chat/chat.action";
+import Preloader from "../../preloader/preloader";
 
-const Tabs = styled.div`
-  margin: 0 auto;
-  padding: 0 100px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
+interface StyledTabsProps {
+  value: number;
+  onChange: (event: React.ChangeEvent<any>, newValue: number) => void;
+}
 
-const Tab = styled.button`
-  width: 118px;
-  box-sizing: border-box;
-  background: none;
-  border: none;
-  font-size: 18px;
-  cursor: pointer;
-  margin: 20px 0 22px 70px;
-  padding: 6px 20px;
-  color: #7e7e7e;
-  &:first-child {
-    margin-left: 0;
-  }
-  &:hover {
-    color: #21a95d;
-    border-bottom-color: #21a95d;
-  }
-  &.active {
-    width: 118px;
-    background-color: #21a95d;
-    color: #fff;
-    border-radius: 5px;
-    &:hover {
-      color: #fff;
-    }
-  }
-`;
+const StyledTabs = withStyles({
+  root: {
+    margin: "0 auto",
+    padding: "20px",
+    width: "100%",
+    "& .MuiTabs-fixed": {
+      display: "flex",
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+  },
+  indicator: {
+    backgroundColor: "transparent",
+  },
+})((props: StyledTabsProps) => (
+  <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />
+));
+
+interface StyledTabProps {
+  label: string;
+}
+
+const StyledTab = withStyles(() =>
+  createStyles({
+    root: {
+      width: 118,
+      height: 40,
+      background: "none",
+      border: "none",
+      fontSize: 18,
+      padding: "6px 20px",
+      color: "#7e7e7e",
+      borderRadius: 5,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginRight: 70,
+      textTransform: "none",
+      "&:last-child": {
+        marginRight: 0,
+      },
+    },
+    selected: {
+      backgroundColor: "#21a95d",
+      color: "#fff",
+    },
+  }),
+)((props: StyledTabProps) => <Tab disableRipple {...props} />);
+
+function a11yProps(index: any) {
+  return {
+    id: `full-width-tab-${index}`,
+    "aria-controls": `full-width-tabpanel-${index}`,
+  };
+}
 
 const Communication = () => {
-  const { userPhoto }: any = useSelector(
+  const { userPhoto, uid }: any = useSelector(
     (state: RootState) => state.user.userInfo,
   );
+  const [value, setValue] = React.useState(0);
+  const dispatch = useDispatch();
+  const { loading, myChats }: any = useSelector(
+    (state: RootState) => state.chat,
+  );
 
-  const [tabIndex, setTabIndex] = useState<number>(0);
+  const handleChange = (event: React.ChangeEvent<any>, newValue: number) => {
+    setValue(newValue);
+  };
 
   const onNotificationHandler = () => {
     console.log("Clicked on notification icon");
   };
 
+  useEffect(() => {
+    dispatch(fetchMyChats(uid));
+  }, []);
+
   return (
-    <div>
-      <CommunicationCard onClick={onNotificationHandler} img={userPhoto} />
-      <div className={css.box}>
+    <>
+      {loading && <Preloader absolute />}
+      <div>
+        <CommunicationCard
+          badge={
+            myChats?.filter(
+              (chat: any) =>
+                !chat.lastMessageRead && uid !== chat.lastMessageSender,
+            ).length
+          }
+          onClick={onNotificationHandler}
+          img={userPhoto}
+        />
         <div className={css.wrapper}>
           <div className={css.tabs}>
-            <Tabs>
-              <Tab
-                className={tabIndex === 0 ? "active" : ""}
-                onClick={() => setTabIndex(0)}
-              >
-                Мактер
-              </Tab>
-              <Tab
-                className={tabIndex === 1 ? "active" : ""}
-                onClick={() => setTabIndex(1)}
-              >
-                Достор
-              </Tab>
-            </Tabs>
+            <StyledTabs
+              value={value}
+              onChange={handleChange}
+              aria-label="styled tabs example"
+            >
+              <StyledTab label="Маектер" {...a11yProps(0)} />
+              <StyledTab label="Достор" {...a11yProps(1)} />
+            </StyledTabs>
             <Divider />
-            <div className={css.content__wrapper}>
-              {tabIndex === 0 ? <Connect /> : <Friends />}
-            </div>
           </div>
         </div>
+        <div className={css.content__wrapper}>
+          <TabPanel index={0} value={value}>
+            <Connect />
+          </TabPanel>
+          <TabPanel index={1} value={value}>
+            <Friends />
+          </TabPanel>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

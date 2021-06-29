@@ -1,0 +1,23 @@
+.slick-track{
+    height: 615px !important;
+}
+
+.slick-list{
+    height: 615px !important;
+}
+
+.slick-dots {
+    bottom: 30px !important;
+}
+.slick-dots button:before {
+    font-size: 12px !important;
+    color: #fff !important;
+    opacity: 0.5 !important;
+
+}
+.slick-active  button:before{
+    color: #21A95D !important;
+    opacity: 1 !important;
+    font-size: 12px !important;
+}
+

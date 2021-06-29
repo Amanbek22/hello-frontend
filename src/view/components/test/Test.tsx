@@ -1,7 +1,6 @@
 import css from "./test.module.css";
 import { TestModalType } from "../../../models/type";
 import { Link } from "react-router-dom";
-import React from "react";
 import { useParams } from "react-router";
 
 function Test({ description, icon, name, questions, id }: TestModalType) {

@@ -4,12 +4,30 @@ import { Divider } from "@material-ui/core";
 
 interface IProps {
   img: string | undefined;
-  message: string | undefined;
+  message: string;
   name: string;
-  time: string | undefined;
+  time: string;
+  uid: any;
+  authorUid: string;
 }
 
-const UserCard: React.FC<IProps> = ({ img, message, name, time }) => {
+const UserCard: React.FC<IProps> = ({
+  img,
+  message,
+  name,
+  time,
+  uid,
+  authorUid,
+}) => {
+  const date = new Date(parseInt(time) * 1000)
+    .toString()
+    .split(" ")
+    .slice(4, -2)
+    .join(" ")
+    .split(":")
+    .slice(0, -1)
+    .join(":");
+
   return (
     <>
       <div className={css.userCard}>
@@ -22,12 +40,12 @@ const UserCard: React.FC<IProps> = ({ img, message, name, time }) => {
           <div>
             <p className={css.name}>{name}</p>
             <p className={css.you}>
-              Вы:
-              <span className={css.message}>{message ? message : "Салам"}</span>
+              <span>{uid === authorUid ? "Вы:" : "Не вы:"}</span>
+              <span className={css.message}>{message}</span>
             </p>
           </div>
         </div>
-        <p className={css.time}>{time ? time : "19:36"}</p>
+        <p className={css.time}>{date}</p>
       </div>
       <Divider />
     </>

@@ -5,8 +5,12 @@ import userSlice from "./user.slice";
 export const fetchUser = createAsyncThunk(
   "user/new",
   async (user: any, { dispatch }) => {
-    dispatch(userSlice.actions.setLoading);
-    const res = await getData({ path: "users", doc: user.uid });
-    dispatch(userSlice.actions.setUserInfo(res));
+    dispatch(userSlice.actions.setLoading(true));
+    try {
+      const res = await getData({ path: "users", doc: user.uid });
+      dispatch(userSlice.actions.setUserInfo(res));
+    } catch (e) {
+      dispatch(userSlice.actions.setError(e));
+    }
   },
 );

@@ -1,11 +1,9 @@
-// import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { fetchInitialize } from "../store/feature/data/data.action";
 import { RootState } from "../store/rootReducer";
 import Footer from "../view/components/footer/Footer";
-// import { RootState } from "../store/rootReducer";
 import Header from "../view/components/header/header";
 import Auth from "../view/pages/authentication/Auth";
 import Main from "../view/pages/main/Main";
@@ -19,9 +17,14 @@ import Lesson from "../view/pages/lesson/Lesson";
 import Category from "../view/pages/category/Category";
 import EditProfile from "../view/pages/edit-profile/EditProfile";
 import Ads from "../view/pages/ads/Ads";
-import UserProfile from "../view/pages/userProfile/UserProfile";
+import UserProfile from "../view/pages/user-profile/UserProfile";
 import Profile from "../view/pages/profile/Profile";
 import Communication from "../view/pages/communication/Communication";
+import Chat from "../view/pages/chat/Chat";
+import NewsFull from "../view/pages/news-full/NewsFull";
+import Dashboard from "../view/pages/dashboard/Dashboard";
+import Friendship from "../view/pages/friendship/Friendship";
+import AddAdvert from "../view/pages/add-advert/AddAdvert";
 
 const AppRouter = () => {
   const session = useSelector((state: RootState) => state.user.userData);
@@ -47,8 +50,14 @@ const AppRouter = () => {
         <Route exact path="/">
           <Main />
         </Route>
-        <Route exact path="/news">
+        <Route exact path="/news/all">
           <News />
+        </Route>
+        <Route exact path="/news/:id">
+          <News />
+        </Route>
+        <Route exact path="/news/:id/:nid">
+          <NewsFull />
         </Route>
         <Route exact path="/lesson/:id/:vid">
           <Lesson />
@@ -68,12 +77,15 @@ const AppRouter = () => {
           path="/authentication"
           exact
         />
-        <PrivateRoute path="/dashboard" component={() => "This is dashboard"} />
         <PrivateRoute path="/edit-profile" component={EditProfile} />
-        <PrivateRoute path="/my-profile" component={Profile} />
-        <PrivateRoute path="/user-profile" component={UserProfile} />
-        <PrivateRoute path="/communication" component={Communication} />
+        <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/user/:uid" component={UserProfile} />
+        <PrivateRoute path="/communication/" component={Communication} />
+        <PrivateRoute path="/chat/:uid" component={Chat} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+        <PrivateRoute exact path="/friendship" component={Friendship} />
         <PrivateRoute exact path="/test/:uuid/:id" component={Test} />
+        <PrivateRoute exact path="/add-advert" component={AddAdvert} />
       </Switch>
       <Footer />
     </>
