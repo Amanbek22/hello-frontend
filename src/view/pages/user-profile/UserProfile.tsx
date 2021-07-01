@@ -113,10 +113,13 @@ const UserProfile = () => {
     dispatch(fetchVisitorAds(uid));
   }, [uid]);
 
+  if (loading) {
+    return <Preloader absolute />;
+  }
+
   return (
     <>
       <div className={css.container}>
-        {loading && <Preloader absolute />}
         <UserProfileCard
           name={visitor?.userName}
           img={visitor?.userPhoto}

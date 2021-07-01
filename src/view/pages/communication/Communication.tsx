@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import css from "./communication.module.css";
 import CommunicationCard from "./components/CommunicationCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -96,9 +96,11 @@ const Communication = () => {
     dispatch(fetchMyChats(uid));
   }, []);
 
+  if (loading) {
+    return <Preloader absolute={true} />;
+  }
   return (
     <>
-      {loading && <Preloader absolute />}
       <div>
         <CommunicationCard
           badge={

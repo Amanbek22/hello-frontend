@@ -89,6 +89,10 @@ const NewsFull = () => {
     }
   };
 
+  if (loading) {
+    return <Preloader absolute />;
+  }
+
   useEffect(() => {
     dispatch(fetchSingleNews({ id, nid }));
     dispatch(fetchComments({ id, doc: nid }));
@@ -127,7 +131,6 @@ const NewsFull = () => {
       </div>
       <Divider />
       <p className={css.comments__header}>Комментарии</p>
-      {loading && <Preloader />}
       {comments?.map((comment: any, index: number) => (
         <div key={index}>
           <UserCard

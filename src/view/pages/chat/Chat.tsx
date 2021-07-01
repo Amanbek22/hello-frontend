@@ -21,6 +21,7 @@ import Preloader from "../../preloader/preloader";
 import {
   createMessage,
   fetchChatRoom,
+  updateLastMessage,
 } from "../../../store/feature/chat/chat.action";
 import firebase from "../../../firebase/firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
@@ -181,7 +182,15 @@ const Chat = () => {
   useEffect(() => {
     dispatch(fetchVisitor(uid));
     dispatch(fetchChatRoom({ user1: uid, user2: user.uid }));
-  }, [uid]);
+    return () => {
+      if (
+        snapshot?.docs[snapshot?.docs.length - 1].data().senderUid &&
+        snapshot?.docs[snapshot?.docs.length - 1].data().senderUid !== user.uid
+      ) {
+        dispatch(updateLastMessage(chatRoom[0]?.id));
+      }
+    };
+  }, [snapshot]);
 
   useLayoutEffect(() => {
     if (messagesRef.current) {
@@ -189,9 +198,12 @@ const Chat = () => {
     }
   }, [snapshot]);
 
+  if (loading) {
+    return <Preloader absolute />;
+  }
+
   return (
     <>
-      {loading && <Preloader absolute />}
       <div>
         <ChatCard
           img={visitor?.userPhoto}

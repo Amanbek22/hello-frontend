@@ -246,6 +246,13 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   margin-top: 40px;
 }
 
+.alert{
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 999;
+}
+
 @media (max-width: 992px) {
   .wrapper {
     padding: 2% 5%;

@@ -62,7 +62,11 @@ const Header = ({ isAuth, img, name }: PropsType) => {
           <img className={Css.logo} src="/img/logo1.png" alt="logo1" />
         </Link>
         <div className={Css.header_menu}>
-          <NavLink activeClassName={Css.active} className={Css.item} to="/news">
+          <NavLink
+            activeClassName={Css.active}
+            className={Css.item}
+            to="/news/all"
+          >
             {t("header.news")}
           </NavLink>
           <NavLink activeClassName={Css.active} className={Css.item} to="/ads">
@@ -90,19 +94,19 @@ const Header = ({ isAuth, img, name }: PropsType) => {
               className={classes.select}
               disableUnderline
             >
-              <MenuItem value="RU" className={Css.lan}>
+              <MenuItem value="RU" className={Css.lang}>
                 <div className={Css.box_option}>
                   <img src="/img/flag_ru.svg" className={Css.flag} />
                   RU
                 </div>
               </MenuItem>
-              <MenuItem value="KG" className={Css.lan}>
+              <MenuItem value="KG" className={Css.lang}>
                 <div className={Css.box_option}>
                   <img src="/img/flag_kg.svg" className={Css.flag} />
                   KG
                 </div>
               </MenuItem>
-              <MenuItem value="EN" className={Css.lan}>
+              <MenuItem value="EN" className={Css.lang}>
                 <div className={Css.box_option}>
                   <img src="/img/flag_en.svg" className={Css.flag} />
                   En

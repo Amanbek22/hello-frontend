@@ -53,8 +53,10 @@ export const fetchSingleNews = createAsyncThunk(
       const result = JSON.parse(JSON.stringify(res));
       dispatch(newsSlice.actions.setSingleNews(result));
       const newsId = JSON.parse(localStorage.getItem(uid) || "[]");
-      if (!newsId.includes(nid) && views) {
-        newsId.push(nid);
+      const date = new Date();
+      const found = newsId.some((el: any) => el.id === nid);
+      if (!found && views) {
+        newsId.push({ time: date.getTime(), id: nid });
         localStorage.setItem(uid, JSON.stringify(newsId));
         await updateData({
           path: "news",
@@ -129,7 +131,6 @@ const fetchCommentsAuthor = createAsyncThunk(
 export const createComments = createAsyncThunk(
   "news/createComment",
   async ({ doc, data }: any, { dispatch, getState }) => {
-    dispatch(newsSlice.actions.setLoading(true));
     const { news }: any = getState() as { state: RootState };
     const comment = news.singleNews.comments + 1;
     try {
