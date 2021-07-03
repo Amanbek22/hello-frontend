@@ -11,12 +11,23 @@
 }
 
 .link {
-  color: #21a95d;
   font-size: 18px;
   padding: 15px 0;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: none;
+  background: none;
 }
 .link:first-child {
   border-bottom: 2px solid #e0e7ea;
+}
+.link:nth-child(2) {
+  color: #21a95d !important;
+}
+
+.like_btn{
+  background: none;
+  border: none;
 }
 
 @media screen and (max-width: 768px) {

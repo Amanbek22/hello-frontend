@@ -52,6 +52,10 @@ const Dashboard = () => {
     history.push("/friendship");
   };
 
+  const addReview = () => {
+    console.log();
+  };
+
   return (
     <>
       <div className={css.container}>
@@ -81,7 +85,7 @@ const Dashboard = () => {
         <ShareModal />
       </ModalWindow>
       <ModalWindow open={evaluation} onClose={closeEvaluationModal}>
-        <EvaluationModal />
+        <EvaluationModal onClick={addReview} />
       </ModalWindow>
     </>
   );

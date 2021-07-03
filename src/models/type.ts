@@ -10,6 +10,7 @@ export interface BilimModalType {
   testCount?: number;
   views?: number;
   likes?: number;
+  ownerUid?: string;
 }
 
 export interface VideoModalType {
