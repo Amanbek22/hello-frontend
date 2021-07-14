@@ -134,16 +134,16 @@ export const updateSingleMessage = createAsyncThunk(
         .collection("messages")
         .doc(subDoc)
         .update({ read: true });
-      dispatch(updateLastMessage(doc));
     } catch (e) {
       dispatch(chatSlice.actions.setError(e));
     }
   },
 );
 
-const updateLastMessage = createAsyncThunk(
+export const updateLastMessage = createAsyncThunk(
   "chat/lastMessage",
   async (doc: string) => {
+    console.log(1);
     await updateData({
       path: "chats",
       doc: doc,

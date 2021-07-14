@@ -5,6 +5,7 @@ const initialState = {
   error: null,
   categories: [],
   ads: [],
+  success: false,
 };
 
 const adsSlice = createSlice({
@@ -27,6 +28,11 @@ const adsSlice = createSlice({
       state.loading = false;
       state.error = null;
       state.ads = action.payload;
+    },
+    setSuccess(state, action: PayloadAction<any>) {
+      state.loading = false;
+      state.error = null;
+      state.success = action.payload;
     },
   },
 });

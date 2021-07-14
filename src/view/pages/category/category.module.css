@@ -41,6 +41,11 @@
   display: none;
 }
 
+.image{
+  width: 223px;
+  height: 200px;
+}
+
 @media (max-width: 768px) {
   .title_wrapper {
     width: 90%;

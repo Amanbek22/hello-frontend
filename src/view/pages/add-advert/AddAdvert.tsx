@@ -22,6 +22,8 @@ import { CssTextField } from "../authentication/components/phone.form";
 import AddPictures from "./components/AddPictures";
 import ModalWindow from "../../components/modal/Modal";
 import firebase from "../../../firebase/firebase";
+import { useHistory } from "react-router";
+import Preloader from "../../preloader/preloader";
 
 const useStyles = makeStyles({
   label: {
@@ -72,9 +74,12 @@ export const GreenButton = withStyles({
 
 const AddAdvert = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [isModal, setIsModal] = useState(false);
   const [error, setError] = useState(false);
-  const { categories }: any = useSelector((state: RootState) => state.ads);
+  const { categories, success, loading }: any = useSelector(
+    (state: RootState) => state.ads,
+  );
   const cities: CityModalType[] = useSelector(
     (state: RootState) => state.data.states,
   );
@@ -82,7 +87,6 @@ const AddAdvert = () => {
 
   const submitHandler = () => {
     setIsModal(true);
-    //промись вернуть, чтобы был ресет формы
   };
 
   const closeModal = () => {
@@ -91,7 +95,7 @@ const AddAdvert = () => {
   const createAdvert = (values: any, images: any) => {
     const data = {
       ...values,
-      cost: values.cost ? values.cost : "",
+      cost: values.cost ? parseInt(values.cost) : 0,
       category: parseInt(values.category),
       state: parseInt(values.state),
       authorUid: uid,
@@ -113,46 +117,47 @@ const AddAdvert = () => {
   const onConfirmHandler = async (values: FormEvent | any) => {
     closeModal();
     const images: string[] = [];
-    values?.images?.map(async (image: any, index: number) => {
-      const payload = new FormData();
-      payload.append("image", image[0]);
-      payload.append("code", "0");
-      fetch("http://176.126.164.190:8000/api/image-create/", {
-        method: "POST",
-        body: payload,
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          images.push(data.image);
-          if (values.images.length === index + 1) {
-            createAdvert(values, images);
-          }
-        });
-    });
+    if (values?.images.length > 0) {
+      values?.images?.map(async (image: any, index: number) => {
+        const payload = new FormData();
+        payload.append("image", image[0]);
+        payload.append("code", "0");
+        fetch("http://176.126.164.190:8000/api/image-create/", {
+          method: "POST",
+          body: payload,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            images.push(data.image);
+            if (values.images.length === index + 1) {
+              createAdvert(values, images);
+            }
+          });
+      });
+    } else {
+      createAdvert(values, images);
+    }
   };
-
   useEffect(() => {
     dispatch(fetchAdsCategories());
-  }, []);
+    if (success) {
+      history.push("/ads");
+    }
+  }, [success]);
+
+  if (loading) {
+    return <Preloader absolute />;
+  }
 
   return (
     <div className={css.container}>
       <h1 className={css.header}>Опубликовать объявление</h1>
       <Form
         onSubmit={submitHandler}
-        render={({ handleSubmit, form, submitting, values }) => {
+        render={({ handleSubmit, submitting, values }) => {
           setError(false);
           return (
-            <form
-              onSubmit={handleSubmit}
-              // onSubmit={(event) => {
-              //   const promise = handleSubmit(event);
-              //   promise?.then(() => {
-              //     form.reset();
-              //   });
-              //   return promise;
-              // }}
-            >
+            <form onSubmit={handleSubmit}>
               <Field name="images">
                 {(props) => <AddPictures {...props} />}
               </Field>

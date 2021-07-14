@@ -15,9 +15,12 @@ const ProfileNews: React.FC = () => {
     dispatch(fetchPersonalAds(uid));
   }, []);
 
+  if (loading) {
+    return <Preloader />;
+  }
+
   return (
     <div className={css.content_container}>
-      {loading && <Preloader />}
       <div className={css.news_wrapper}>
         {news.map((item: any) => (
           <NewsItem

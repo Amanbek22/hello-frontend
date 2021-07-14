@@ -37,6 +37,7 @@ const AddPictures = ({ input }: any) => {
           accept="image/*,image/jpeg"
           onChange={({ target }) => handleChange(target)}
           type="file"
+          id="file-image"
         />
       </div>
       {value?.map((img: string, index: number) => (

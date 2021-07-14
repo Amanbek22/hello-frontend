@@ -15,6 +15,8 @@ import { InputBase, MenuItem, Select } from "@material-ui/core";
 import { fetchAdsCategories } from "../../../store/feature/ads/ads.action";
 import { RootState } from "../../../store/rootReducer";
 import { Link } from "react-router-dom";
+import { Alert } from "@material-ui/lab";
+import adsSlice from "../../../store/feature/ads/ads.slice";
 
 function a11yProps(index: any) {
   return {
@@ -103,7 +105,9 @@ function Ads() {
   const [thirdSelect, setThirdSelect] = useState<any>("");
   const [city, setCity] = useState<any>("");
   const [search, setSearch] = useState<string>("");
-  const { categories }: any = useSelector((state: RootState) => state.ads);
+  const { categories, success }: any = useSelector(
+    (state: RootState) => state.ads,
+  );
   const { states }: any = useSelector((state: RootState) => state.data);
 
   //functions
@@ -147,6 +151,9 @@ function Ads() {
 
   useEffect(() => {
     dispatch(fetchAdsCategories());
+    setTimeout(() => {
+      dispatch(adsSlice.actions.setSuccess(false));
+    }, 3000);
   }, []);
   return (
     <>
@@ -367,7 +374,11 @@ function Ads() {
             </MenuItem>
           </Select>
         </div>
-
+        {success && (
+          <Alert variant="filled" severity="success" className={css.alert}>
+            Обьявление успешно добавленно
+          </Alert>
+        )}
         <div className={css.content}>
           <TabPanel index={0} value={value}>
             <Ad id={firstSelect} order={secondSelect} />
@@ -383,6 +394,7 @@ function Ads() {
           </TabPanel>
         </div>
       </div>
+
       <ModalWindow open={isModal} onClose={closeModal}>
         <div className={css.modal_wrapper}>
           <h3>Жарнама берүү</h3>

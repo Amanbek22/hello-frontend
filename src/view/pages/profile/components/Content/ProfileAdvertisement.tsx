@@ -10,7 +10,7 @@ import Preloader from "../../../../preloader/preloader";
 const GreenButton = withStyles({
   root: {
     display: "block",
-    margin: "100px auto",
+    margin: "50px auto",
     boxShadow: "none",
     textTransform: "none",
     fontSize: 14,
@@ -46,9 +46,13 @@ const ProfileAdvertisement: React.FC<IProps> = ({ onClick }) => {
     dispatch(fetchPersonalAds(uid));
   }, []);
 
+  if (loading) {
+    return <Preloader />;
+  }
+
   return (
     <div className={css.content_container}>
-      {loading && <Preloader />}
+      <GreenButton onClick={onClick}>Жарнама берүү</GreenButton>
       <div className={css.ad_wrapper}>
         {ads &&
           ads?.map((ad: any) => (
@@ -63,7 +67,6 @@ const ProfileAdvertisement: React.FC<IProps> = ({ onClick }) => {
             />
           ))}
       </div>
-      <GreenButton onClick={onClick}>Жарнама берүү</GreenButton>
     </div>
   );
 };

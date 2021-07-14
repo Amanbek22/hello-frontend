@@ -4,11 +4,26 @@ import CardCategory from "../../components/card_category/CardCategory";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/rootReducer";
 import { BilimModalType } from "../../../models/type";
+import { useEffect } from "react";
 
 const Main = () => {
   const { categories, popular, newPosts }: any = useSelector(
     (state: RootState) => state.data,
   );
+  const { uid }: any = useSelector((state: RootState) => state.user.userInfo);
+
+  useEffect(() => {
+    const newsTime = JSON.parse(localStorage.getItem(uid) || "[]");
+    const date = new Date();
+    localStorage.setItem(
+      uid,
+      JSON.stringify(
+        newsTime.filter(
+          (el: any) => el?.time * 1000 * 60 * 24 * 30 - date.getTime() > 0,
+        ),
+      ),
+    );
+  }, []);
 
   return (
     <div>

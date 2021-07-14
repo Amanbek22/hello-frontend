@@ -18,9 +18,12 @@ const ProfileCourses: React.FC = () => {
     dispatch(fetchPersonalCourses(uid));
   }, []);
 
+  if (loading) {
+    return <Preloader />;
+  }
+
   return (
     <div className={css.content_container}>
-      {loading && <Preloader />}
       <div className={css.cards}>
         {courses?.map((item: BilimModalType) => (
           <CourseCard

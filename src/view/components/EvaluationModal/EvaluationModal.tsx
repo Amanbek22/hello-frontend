@@ -55,7 +55,11 @@ const GreenButton = withStyles({
   },
 })(Button);
 
-const EvaluationModal = () => {
+interface IProps {
+  onClick: (data: any) => void;
+}
+
+const EvaluationModal: React.FC<IProps> = ({ onClick }) => {
   const [value, setValue] = useState<number>(0);
   const [message, setMessage] = useState<string>("");
 
@@ -68,7 +72,8 @@ const EvaluationModal = () => {
   };
 
   const onSubmit = () => {
-    console.log("clicked on button");
+    const data = { rating: value, reviewText: message };
+    onClick(data);
   };
   return (
     <>
@@ -102,7 +107,9 @@ const EvaluationModal = () => {
         multiline={true}
       />
       <span className={css.max}>{message.length}/500</span>
-      <GreenButton onClick={onSubmit}>Жиберүү</GreenButton>
+      <GreenButton onClick={onSubmit} disabled={value === 0}>
+        Жиберүү
+      </GreenButton>
     </>
   );
 };
