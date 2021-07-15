@@ -267,7 +267,7 @@ function Ads() {
             )}
           >
             <MenuItem value={0} classes={{ selected: css.selected }}>
-              Баардык категориялар
+              Бардык категориялар
             </MenuItem>
             {categories?.map((category: any) => (
               <MenuItem
@@ -351,7 +351,7 @@ function Ads() {
             )}
           >
             <MenuItem classes={{ selected: css.selected }} value={0}>
-              Баардык райондор
+              Бардык райондор
             </MenuItem>
             <MenuItem classes={{ selected: css.selected }} value={1}>
               Ленин району

@@ -62,7 +62,11 @@ const Header = ({ isAuth, img, name }: PropsType) => {
           <img className={Css.logo} src="/img/logo1.png" alt="logo1" />
         </Link>
         <div className={Css.header_menu}>
-          <NavLink activeClassName={Css.active} className={Css.item} to="/news">
+          <NavLink
+            activeClassName={Css.active}
+            className={Css.item}
+            to="/news/all"
+          >
             {t("header.news")}
           </NavLink>
           <NavLink activeClassName={Css.active} className={Css.item} to="/ads">

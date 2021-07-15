@@ -1,5 +1,12 @@
-.ads_tab{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+.ads_tab {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     grid-gap: 20px;
+}
+
+@media (max-width: 769px) {
+    .ads_tab {
+        justify-content: center;
+    }
 }

@@ -23,11 +23,15 @@ const MenuBurger = (props: PropsType) => {
           </Link>
           <div className={css.header_menu}>
             <ul className={css.burger_title}>
-              <NavLink onClick={() => props.setOpen(false)} to="/news">
+              <NavLink onClick={() => props.setOpen(false)} to="/news/all">
                 Жаңылыктар
               </NavLink>
-              <li>Маектер</li>
-              <li>Жарнамалар</li>
+              <NavLink onClick={() => props.setOpen(false)} to="/ads">
+                Жарнамалар
+              </NavLink>
+              <NavLink onClick={() => props.setOpen(false)} to="/communication">
+                Маектер
+              </NavLink>
               <li>Байланыш</li>
             </ul>
           </div>

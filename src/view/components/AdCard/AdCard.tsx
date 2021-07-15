@@ -9,7 +9,7 @@ const Card = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 5px;
-  background-color: #f1f1f1; ;
+  background-color: #f1f1f1;
 `;
 
 const CardBody = styled.div`
